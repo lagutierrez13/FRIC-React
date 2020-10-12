@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Home from './home'
 import Forms from './forms';
 import Extras from './extras'
+import Configuration from './configuration';
 
 class PageContent extends Component {
   render() {
@@ -10,6 +11,7 @@ class PageContent extends Component {
         { Forms }
         { Extras }
         { Home }
+        { Configuration }
       </div>
     )
   }
