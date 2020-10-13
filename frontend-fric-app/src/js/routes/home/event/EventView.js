@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
-import DetailedView from "./EventInfoFrom";
+import DetailedView from "./EventInfoForm";
 import EventTable from "./EventTable";
 import TeamInfo from "./EventTeamInfo";
 
