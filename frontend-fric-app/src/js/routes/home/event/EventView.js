@@ -3,6 +3,7 @@ import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
 import DetailedView from "./EventInfoFrom";
 import EventTable from "./EventTable";
+import TeamInfo from "./EventTeamInfo";
 
 class EventView extends Component {
   constructor(props) {
@@ -43,6 +44,16 @@ class EventView extends Component {
               <XPanel.Title title="Event Detailed View"></XPanel.Title>
               <XPanel.Content>
                 <DetailedView />
+              </XPanel.Content>
+            </XPanel>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12} sm={12} xs={12}>
+            <XPanel visible={panelVisible} onHide={onHide}>
+              <XPanel.Title title="Event Team Information"></XPanel.Title>
+              <XPanel.Content>
+                <TeamInfo />
               </XPanel.Content>
             </XPanel>
           </Col>
