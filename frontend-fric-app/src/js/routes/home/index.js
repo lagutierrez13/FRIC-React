@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router'
 import Dashboard from './dashboard-1/Dashboard'
+import SystemForm from './System/SystemForm.js'
 import HomeMenu from './Menu'
 
 export default [
@@ -14,6 +15,6 @@ export default [
     <Route path="/home/findings" component={Dashboard} />,
     <Route path="/home/subtasks" component={Dashboard} />,
     <Route path="/home/tasks" component={Dashboard} />,
-    <Route path="/home/systems" component={Dashboard} />
+    <Route path="/home/systems" component={SystemForm} />
   ]
 export { HomeMenu }
