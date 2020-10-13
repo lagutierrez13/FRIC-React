@@ -3,6 +3,7 @@ import Home from './home'
 import Forms from './forms';
 import Extras from './extras'
 import Configuration from './configuration';
+import Event from './home/event'
 
 class PageContent extends Component {
   render() {
@@ -12,6 +13,7 @@ class PageContent extends Component {
         { Extras }
         { Home }
         { Configuration }
+        { Event }
       </div>
     )
   }
