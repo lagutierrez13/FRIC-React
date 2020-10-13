@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
-import EventClassificationTable from "./EventClassificationTable";
+import EventConfiguration from "./EventConfiguration";
 
-class ConfigurationTables extends Component {
+class ConfigurationView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,4 +41,4 @@ class ConfigurationTables extends Component {
   }
 }
 
-export default ConfigurationTables;
+export default ConfigurationView
