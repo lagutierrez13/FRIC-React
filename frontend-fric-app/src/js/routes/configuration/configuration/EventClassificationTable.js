@@ -6,10 +6,10 @@ class EventClassificationTable extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeEventClassificationRequired = this.onChangeEventClassificationRequired.bind(
+    this.onChangeRequired = this.onChangeRequired.bind(
       this
     );
-    this.onChangeEventClassificationValueToAdd = this.onChangeEventClassificationValueToAdd.bind(
+    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(
       this
     );
     this.onAddValue = this.onAddValue.bind(this);
@@ -19,9 +19,9 @@ class EventClassificationTable extends Component {
 
     this.state = {
       panelVisible: true,
-      event_classification_required: false,
-      event_classification_value_to_add: "",
-      event_classifiaction_values: ["test1", "test2", "test3"],
+      required: false,
+      value_to_add: "",
+      values: ["test1", "test2", "test3"],
       is_checked: [],
     };
   }
@@ -30,42 +30,42 @@ class EventClassificationTable extends Component {
     e.preventDefault();
 
     console.log(`Form Submitted`);
-    console.log(`Values in list: ${this.state.event_classifiaction_values}`);
-    console.log(`Is required: ${this.state.event_classification_required}`);
+    console.log(`Values in list: ${this.state.values}`);
+    console.log(`Is required: ${this.state.required}`);
 
     this.setState({
-      event_classification_value_to_add: "",
+      value_to_add: "",
     });
   }
 
-  onChangeEventClassificationRequired(e) {
+  onChangeRequired(e) {
     this.setState({
-      event_classification_required: !this.state.event_classification_required
+      required: !this.state.required
     });
   }
 
-  onChangeEventClassificationValueToAdd = (event) => {
-    this.setState({ event_classification_value_to_add: event.target.value });
+  onChangeValueToAdd = (event) => {
+    this.setState({ value_to_add: event.target.value });
   };
 
   onAddValue = () => {
     this.setState((state) => {
-      const event_classifiaction_values = state.event_classifiaction_values.concat(
-        state.event_classification_value_to_add
+      const values = state.values.concat(
+        state.value_to_add
       );
 
-      console.log(`Added: ${this.state.event_classification_value_to_add}`);
+      console.log(`Added: ${this.state.value_to_add}`);
 
       return {
-        event_classifiaction_values,
-        event_classification_value_to_add: "",
+        values,
+        value_to_add: "",
       };
     });
   };
 
   onUpdateValue = (i) => {
     this.setState((state) => {
-      const event_classifiaction_values = state.event_classifiaction_values.map(
+      const values = state.values.map(
         (item, j) => {
           if (j == i) {
             return item + 1;
@@ -75,19 +75,19 @@ class EventClassificationTable extends Component {
         }
       );
       return {
-        event_classifiaction_values,
+        values,
       };
     });
   };
 
   onRemoveValue = (i) => {
     this.setState((state) => {
-      const event_classifiaction_values = state.event_classifiaction_values.filter(
+      const values = state.values.filter(
         (item, j) => i != j
       );
 
       return {
-        event_classifiaction_values,
+        values,
       };
     });
   };
@@ -109,15 +109,15 @@ class EventClassificationTable extends Component {
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  defaultChecked={this.state.event_classification_required}
-                  onChange={this.onChangeEventClassificationRequired}
+                  defaultChecked={this.state.required}
+                  onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
                 />
                 <label className="form-check-label">Required</label>
               </div>
               <ul>
-                {this.state.event_classifiaction_values.map((item) => (
+                {this.state.values.map((item) => (
                   <li>
                     <div className="form-group">
                       <input type="checkbox" />
@@ -132,8 +132,8 @@ class EventClassificationTable extends Component {
                 <li>
                   <div className="form-group">
                     <input
-                      value={this.state.event_classification_value_to_add}
-                      onChange={this.onChangeEventClassificationValueToAdd}
+                      value={this.state.value_to_add}
+                      onChange={this.onChangeValueToAdd}
                       type="text"
                       className="form-control"
                     />
@@ -144,7 +144,7 @@ class EventClassificationTable extends Component {
                 <input
                   type="button"
                   onClick={this.onAddValue}
-                  disabled={!this.state.event_classification_value_to_add}
+                  disabled={!this.state.value_to_add}
                   value="Add"
                   className="btn btn-primary"
                 />
