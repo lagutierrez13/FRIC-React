@@ -23,19 +23,7 @@ class ConfigurationView extends Component {
           onSearch={(text) => console.log(text)}
         />
         <Clearfix />
-        <Row>
-          <Col md={12} sm={12} xs={12}>
-            <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Configuration">
-                <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
-                <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
-              </XPanel.Title>
-              <XPanel.Content>
-                
-              </XPanel.Content>
-            </XPanel>
-          </Col>
-        </Row>
+        <EventConfiguration/>
       </div>
     );
   }
