@@ -35,21 +35,6 @@ class EventTypeTable extends Component {
               </div>
               <div className="form-group">
                 <input
-                  value="Cooperative Vulnerability Penetration Assessment (CVPA)"
-                  type="text"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  value="Cooperative Vulnerability Investigation (CVI)"
-                  type="text"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  value="Verification of Fixes"
                   type="text"
                   className="form-control"
                 />
