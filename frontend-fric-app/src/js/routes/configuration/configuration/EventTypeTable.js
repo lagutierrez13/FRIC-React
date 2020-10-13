@@ -17,7 +17,7 @@ class EventTypeTable extends Component {
     return (
       <Col md={6} sm={6} xs={12}>
         <XPanel visible={panelVisible} onHide={onHide}>
-          <XPanel.Title title="Event Classification Table">
+          <XPanel.Title title="Event Type Table">
             <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
@@ -41,7 +41,11 @@ class EventTypeTable extends Component {
                 />
               </div>
               <div className="form-group">
-                <input value="Cooperative Vulnerability Investigation (CVI)" type="text" className="form-control" />
+                <input
+                  value="Cooperative Vulnerability Investigation (CVI)"
+                  type="text"
+                  className="form-control"
+                />
               </div>
               <div className="form-group">
                 <input
