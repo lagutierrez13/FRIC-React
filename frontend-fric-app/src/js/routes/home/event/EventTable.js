@@ -18,17 +18,6 @@ class EventTable extends Component {
           </thead>
           <tbody></tbody>
         </table>
-        <div class="item form-group">
-          <button class="btn btn-warning" type="button">
-            Archive
-          </button>
-          <button class="btn btn-success" type="submit">
-            Save
-          </button>
-          <button class="btn btn-primary" type="reset">
-            Cancel
-          </button>
-        </div>
       </div>
     );
   }
