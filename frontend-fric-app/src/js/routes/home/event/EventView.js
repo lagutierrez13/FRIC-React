@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
-import EventClassificationTable from "./EventClassificationTable";
+import EventTable from "./EventTable";
 
-class ConfigurationTables extends Component {
+class EventView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,14 +19,27 @@ class ConfigurationTables extends Component {
       <div>
         <PageTitle
           showSearch
-          title="Configuration"
+          title="Event"
           onSearch={(text) => console.log(text)}
         />
         <Clearfix />
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Configuration">
+              <XPanel.Title title="Event Table">
+                <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
+                <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
+              </XPanel.Title>
+              <XPanel.Content>
+                <EventTable />
+              </XPanel.Content>
+            </XPanel>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12} sm={12} xs={12}>
+            <XPanel visible={panelVisible} onHide={onHide}>
+              <XPanel.Title title="Event Detailed View">
                 <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
                 <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
               </XPanel.Title>
@@ -41,4 +54,4 @@ class ConfigurationTables extends Component {
   }
 }
 
-export default ConfigurationTables;
+export default EventView;

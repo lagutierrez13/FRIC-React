@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
 
-class EventClassificationTable extends Component {
+class EventTypeTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class EventClassificationTable extends Component {
     return (
       <Col md={6} sm={6} xs={12}>
         <XPanel visible={panelVisible} onHide={onHide}>
-          <XPanel.Title title="Event Classification Table">
+          <XPanel.Title title="Event Type Table">
             <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
@@ -35,24 +35,21 @@ class EventClassificationTable extends Component {
               </div>
               <div className="form-group">
                 <input
-                  value="Top Secret"
-                  type="text"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <input value="Secret" type="text" className="form-control" />
-              </div>
-              <div className="form-group">
-                <input
-                  value="Confidential"
+                  value="Cooperative Vulnerability Penetration Assessment (CVPA)"
                   type="text"
                   className="form-control"
                 />
               </div>
               <div className="form-group">
                 <input
-                  value="Unclassified"
+                  value="Cooperative Vulnerability Investigation (CVI)"
+                  type="text"
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  value="Verification of Fixes"
                   type="text"
                   className="form-control"
                 />
@@ -69,4 +66,4 @@ class EventClassificationTable extends Component {
   }
 }
 
-export default EventClassificationTable;
+export default EventTypeTable;
