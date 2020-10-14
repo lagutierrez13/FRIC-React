@@ -31,10 +31,11 @@ class DetailedView extends Component {
               <div class="col-md-10 col-sm-10 ">
                 <select class="form-control">
                   <option>Choose option</option>
-                  <option>Option one</option>
-                  <option>Option two</option>
-                  <option>Option three</option>
-                  <option>Option four</option>
+                  <option>
+                    Cooperative Vulnerability Pennetration Assessment (CVPA)
+                  </option>
+                  <option>Cooperative Vulnerability Investigation (CVI)</option>
+                  <option>Verification of Fixes</option>
                 </select>
               </div>
             </div>
@@ -48,7 +49,14 @@ class DetailedView extends Component {
               </div>
             </div>
             {/* Assesment Date */}
-
+            <div class="form-group row ">
+              <label class="control-label col-md-2 col-sm-2 ">
+                Assesment Date
+              </label>
+              <div class="col-md-10 col-sm-10 ">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
             {/* Organization Name */}
             <div class="form-group row ">
               <label class="control-label col-md-2 col-sm-2 ">
@@ -73,14 +81,22 @@ class DetailedView extends Component {
               <div class="col-md-10 col-sm-10 ">
                 <select class="form-control">
                   <option>Choose option</option>
-                  <option>Option one</option>
-                  <option>Option two</option>
-                  <option>Option three</option>
-                  <option>Option four</option>
+                  <option>Top Secret</option>
+                  <option>Secret</option>
+                  <option>Confidential</option>
+                  <option>Unclassified</option>
                 </select>
               </div>
             </div>
             {/* Declassification Date */}
+            <div class="form-group row ">
+              <label class="control-label col-md-2 col-sm-2 ">
+                Declassification Date
+              </label>
+              <div class="col-md-10 col-sm-10 ">
+                <input type="text" class="form-control" />
+              </div>
+            </div>
             {/* Customer Name */}
             <div class="form-group row ">
               <label class="control-label col-md-2 col-sm-2 ">
