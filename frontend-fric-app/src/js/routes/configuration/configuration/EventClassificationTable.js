@@ -15,8 +15,8 @@ class EventClassificationTable extends Component {
     this.state = {
       panelVisible: true,
       required: false,
-      value_to_add: '',
-      values: ['test1', 'test2', 'test3'],
+      value_to_add: "",
+      values: ["test1", "test2", "test3"],
     };
   }
 
@@ -28,7 +28,7 @@ class EventClassificationTable extends Component {
     console.log(`Is required: ${this.state.required}`);
 
     this.setState({
-      value_to_add: '',
+      value_to_add: "",
     });
   }
 
@@ -86,14 +86,15 @@ class EventClassificationTable extends Component {
                   onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
+                  style={{ marginRight: "10px" }}
                 />
                 <label className="form-check-label">Required</label>
               </div>
-              <ul>
+              <ul style={{ listStyleType: "none" }}>
                 {this.state.values.map((item) => (
                   <li>
-                    <div className="form-group">
-                      <input type="checkbox" />
+                    <div class="form-group">
+                      <input type="checkbox" style={{ marginRight: "10px" }} />
                       <input
                         value={item}
                         type="text"

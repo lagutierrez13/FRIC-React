@@ -113,10 +113,11 @@ class EventClassificationTable extends Component {
                   onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
+                  style={{marginRight: '10px'}}
                 />
                 <label className="form-check-label">Required</label>
               </div>
-              <ul>
+              <ul style={{listStyleType: "none"}}>
                 {this.state.values.map((item) => (
                   <li>
                     <div className="form-group">
