@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class EventTable extends Component {
+class SystemTable extends Component {
   render() {
     return (
       <div>
@@ -10,8 +10,8 @@ class EventTable extends Component {
               <th>
                 <input type="checkbox" id="check-all"></input>
               </th>
-              <th>Event Name</th>
-              <th>No. of Systems</th>
+              <th>System Name</th>
+              <th>No. of Tasks</th>
               <th>No. of Findings</th>
               <th>Progress</th>
             </tr>
@@ -23,4 +23,4 @@ class EventTable extends Component {
   }
 }
 
-export default EventTable;
+export default SystemTable;
