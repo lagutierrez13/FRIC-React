@@ -14,7 +14,7 @@ class Top extends Component {
               {/* <a id="menu_toggle"><i className="fa fa-bars"></i></a> */}
             </div>
             <TopNavBar>
-              <UserMenuItem />
+              {/* <UserMenuItem /> */}
               <NotificationsMenuItem />
             </TopNavBar>
           </nav>
