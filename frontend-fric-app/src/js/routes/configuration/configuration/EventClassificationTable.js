@@ -17,7 +17,7 @@ class EventClassificationTable extends Component {
       panelVisible: true,
       required: false,
       value_to_add: "",
-      values: ["test1", "test2", "test3"],
+      values: [],
     };
   }
 
@@ -29,12 +29,15 @@ class EventClassificationTable extends Component {
     console.log(`Is required: ${this.state.required}`);
 
     const newEventClassificationTable = {
-      required = this.state.required,
-      values = this.state.values
-    }
+      required: this.state.required,
+      values: this.state.values,
+    };
 
     axios
-      .post("http://localhost:4000/configuration/configuration/eventclassificationtable/add", newEventClassificationTable)
+      .post(
+        "http://localhost:4000/configuration/configuration/eventclassificationtable/add",
+        newEventClassificationTable
+      )
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -101,10 +104,15 @@ class EventClassificationTable extends Component {
                 <label className="form-check-label">Required</label>
               </div>
               <ul style={{ listStyleType: "none" }}>
-                {this.state.values.map((item) => (
+                {this.state.values.map((item, index) => (
                   <li>
                     <div class="form-group">
-                      <input type="checkbox" style={{ marginRight: "10px" }} />
+                      <input
+                        type="button"
+                        onClick={() => this.onRemoveValue(index)}
+                        value="Remove"
+                        className="btn btn-danger"
+                      />
                       <input
                         value={item}
                         type="text"
@@ -131,13 +139,6 @@ class EventClassificationTable extends Component {
                   disabled={!this.state.value_to_add}
                   value="Add"
                   className="btn btn-primary"
-                />
-                <input
-                  type="button"
-                  onClick={this.onRemoveValue}
-                  disabled={this.state.is_checked != []}
-                  value="Remove"
-                  className="btn btn-danger"
                 />
                 <input type="submit" value="Save" className="btn btn-success" />
               </div>
