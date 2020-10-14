@@ -7,7 +7,7 @@ let EventClassificationTable = new Schema({
     },
     values: {
         type: [String]
-    }
+    },
 });
 
 module.exports = mongoose.model('eventClassificationTable', EventClassificationTable);
