@@ -10,13 +10,15 @@ class EventClassificationTable extends Component {
     this.onChangeValueToAdd = this.onChangeValueToAdd.bind(this);
     this.onAddValue = this.onAddValue.bind(this);
     this.onRemoveValue = this.onRemoveValue.bind(this);
+    this.onUpdateValue = this.onUpdateValue.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       panelVisible: true,
       required: false,
-      value_to_add: '',
-      values: ['test1', 'test2', 'test3'],
+      value_to_add: "",
+      values: ["test1", "test2", "test3"],
+      is_checked: [],
     };
   }
 
@@ -28,7 +30,7 @@ class EventClassificationTable extends Component {
     console.log(`Is required: ${this.state.required}`);
 
     this.setState({
-      value_to_add: '',
+      value_to_add: "",
     });
   }
 
@@ -55,6 +57,21 @@ class EventClassificationTable extends Component {
     });
   };
 
+  onUpdateValue = (i) => {
+    this.setState((state) => {
+      const values = state.values.map((item, j) => {
+        if (j == i) {
+          return item + 1;
+        } else {
+          return item;
+        }
+      });
+      return {
+        values,
+      };
+    });
+  };
+
   onRemoveValue = (i) => {
     this.setState((state) => {
       const values = state.values.filter((item, j) => i != j);
@@ -70,9 +87,9 @@ class EventClassificationTable extends Component {
     const onHide = (e) => this.setState({ panelVisible: !panelVisible });
 
     return (
-      <Col md={6} sm={6} xs={12}>
+      <Col md={12} sm={12} xs={12}>
         <XPanel visible={panelVisible} onHide={onHide}>
-          <XPanel.Title title="Event Classification Table">
+          <XPanel.Title title="Event Rules Table">
             <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>

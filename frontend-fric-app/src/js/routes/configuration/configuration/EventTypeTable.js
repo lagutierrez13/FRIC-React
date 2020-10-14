@@ -6,17 +6,23 @@ class EventClassificationTable extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeRequired = this.onChangeRequired.bind(this);
-    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(this);
+    this.onChangeRequired = this.onChangeRequired.bind(
+      this
+    );
+    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(
+      this
+    );
     this.onAddValue = this.onAddValue.bind(this);
     this.onRemoveValue = this.onRemoveValue.bind(this);
+    this.onUpdateValue = this.onUpdateValue.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       panelVisible: true,
       required: false,
-      value_to_add: '',
-      values: ['test1', 'test2', 'test3'],
+      value_to_add: "",
+      values: ["test1", "test2", "test3"],
+      is_checked: [],
     };
   }
 
@@ -28,13 +34,13 @@ class EventClassificationTable extends Component {
     console.log(`Is required: ${this.state.required}`);
 
     this.setState({
-      value_to_add: '',
+      value_to_add: "",
     });
   }
 
   onChangeRequired(e) {
     this.setState({
-      required: !this.state.required,
+      required: !this.state.required
     });
   }
 
@@ -44,7 +50,9 @@ class EventClassificationTable extends Component {
 
   onAddValue = () => {
     this.setState((state) => {
-      const values = state.values.concat(state.value_to_add);
+      const values = state.values.concat(
+        state.value_to_add
+      );
 
       console.log(`Added: ${this.state.value_to_add}`);
 
@@ -55,9 +63,28 @@ class EventClassificationTable extends Component {
     });
   };
 
+  onUpdateValue = (i) => {
+    this.setState((state) => {
+      const values = state.values.map(
+        (item, j) => {
+          if (j == i) {
+            return item + 1;
+          } else {
+            return item;
+          }
+        }
+      );
+      return {
+        values,
+      };
+    });
+  };
+
   onRemoveValue = (i) => {
     this.setState((state) => {
-      const values = state.values.filter((item, j) => i != j);
+      const values = state.values.filter(
+        (item, j) => i != j
+      );
 
       return {
         values,
@@ -72,7 +99,7 @@ class EventClassificationTable extends Component {
     return (
       <Col md={6} sm={6} xs={12}>
         <XPanel visible={panelVisible} onHide={onHide}>
-          <XPanel.Title title="Event Classification Table">
+          <XPanel.Title title="Event Type Table">
             <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
