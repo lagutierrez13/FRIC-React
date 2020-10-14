@@ -5,10 +5,65 @@ import { XPanel } from "../../../components";
 class EventClassificationTable extends Component {
   constructor(props) {
     super(props);
+
+    this.onChangeRequired = this.onChangeRequired.bind(this);
+    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(this);
+    this.onAddValue = this.onAddValue.bind(this);
+    this.onRemoveValue = this.onRemoveValue.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       panelVisible: true,
+      required: false,
+      value_to_add: '',
+      values: ['test1', 'test2', 'test3'],
     };
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log(`Form Submitted`);
+    console.log(`Values in list: ${this.state.values}`);
+    console.log(`Is required: ${this.state.required}`);
+
+    this.setState({
+      value_to_add: '',
+    });
+  }
+
+  onChangeRequired(e) {
+    this.setState({
+      required: !this.state.required,
+    });
+  }
+
+  onChangeValueToAdd = (event) => {
+    this.setState({ value_to_add: event.target.value });
+  };
+
+  onAddValue = () => {
+    this.setState((state) => {
+      const values = state.values.concat(state.value_to_add);
+
+      console.log(`Added: ${this.state.value_to_add}`);
+
+      return {
+        values,
+        value_to_add: "",
+      };
+    });
+  };
+
+  onRemoveValue = (i) => {
+    this.setState((state) => {
+      const values = state.values.filter((item, j) => i != j);
+
+      return {
+        values,
+      };
+    });
+  };
 
   render() {
     const { panelVisible } = this.state;
@@ -27,38 +82,52 @@ class EventClassificationTable extends Component {
                 <input
                   className="form-check-input"
                   type="checkbox"
+                  defaultChecked={this.state.required}
+                  onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
-                  value="Required"
                 />
                 <label className="form-check-label">Required</label>
               </div>
+              <ul>
+                {this.state.values.map((item) => (
+                  <li>
+                    <div className="form-group">
+                      <input type="checkbox" />
+                      <input
+                        value={item}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                  </li>
+                ))}
+                <li>
+                  <div className="form-group">
+                    <input
+                      value={this.state.value_to_add}
+                      onChange={this.onChangeValueToAdd}
+                      type="text"
+                      className="form-control"
+                    />
+                  </div>
+                </li>
+              </ul>
               <div className="form-group">
                 <input
-                  value="Top Secret"
-                  type="text"
-                  className="form-control"
+                  type="button"
+                  onClick={this.onAddValue}
+                  disabled={!this.state.value_to_add}
+                  value="Add"
+                  className="btn btn-primary"
                 />
-              </div>
-              <div className="form-group">
-                <input value="Secret" type="text" className="form-control" />
-              </div>
-              <div className="form-group">
                 <input
-                  value="Confidential"
-                  type="text"
-                  className="form-control"
+                  type="button"
+                  onClick={this.onRemoveValue}
+                  disabled={this.state.is_checked != []}
+                  value="Remove"
+                  className="btn btn-danger"
                 />
-              </div>
-              <div className="form-group">
-                <input
-                  value="Unclassified"
-                  type="text"
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <input type="submit" value="Add" className="btn btn-primary" />
                 <input type="submit" value="Save" className="btn btn-success" />
               </div>
             </form>
