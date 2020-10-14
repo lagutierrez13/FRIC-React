@@ -10,7 +10,7 @@ eventCtrl.getEvents = async (req, res) => {
   try {
     const events = await Event.find();
     if (events) {
-      res.status(200).send(events);
+      res.json(events); //need to change to .status(200).send(events) after done testing with postman
     } else {
       res.status(404).send({ error: "Events not found" });
     }
@@ -29,22 +29,22 @@ eventCtrl.createEvent = async (req, res) => {
   }
 };
 
-eventCtrl.getEventBySlug = async (req, res) => {
-  try {
-    const event = await Event.findOne({slug: req.params.slug});
-    res.status(200).send(event);
-  } catch (err) {
-    res.status(404).send(err);
-  }
-};
+// eventCtrl.getEventBySlug = async (req, res) => {
+//   try {
+//     const event = await Event.findOne({slug: req.params.slug});
+//     res.status(200).send(event);
+//   } catch (err) {
+//     res.status(404).send(err);
+//   }
+// };
 
 //TODO: update with event attributes
 eventCtrl.updateEvent = async (req, res) => {
-  const { image, title, description, markdown } = req.body;
+  const { name, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname } = req.body;
   try {
     await Event.findOneAndUpdate(
       { _id: req.params.id },
-      { image, title, description, markdown }
+      { name, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname }
     );
     res.status(200).send({ message: "Event update successfully" });
   } catch (error) {

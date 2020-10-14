@@ -10,7 +10,7 @@ systemCtrl.getSystems = async (req, res) => {
   try {
     const systems = await System.find();
     if (systems) {
-      res.json(systems);
+      res.json(systems); //need to change to .status(200).send(systems) after done testing with postman
     } else {
       res.status(404).send({ error: "Notes not found" });
     }
@@ -41,11 +41,11 @@ systemCtrl.createSystem = async (req, res) => {
 // };
 
 systemCtrl.updateSystem = async (req, res) => {
-  const { title,description,no_of_findings } = req.body;
+  const { name,description,no_of_findings } = req.body;
   try {
     await System.findOneAndUpdate(
       { _id: req.params.id },
-      {  title, description, no_of_findings }
+      {  name, description, no_of_findings }
     );
     res.status(200).send({ message: "System update successfully" });
   } catch (error) {

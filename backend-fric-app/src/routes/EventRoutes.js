@@ -14,13 +14,13 @@ const {
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/events/post", getEvents);
-router.get("/events/:slug", getEventBySlug);
+router.get("/events/get", getEvents);
+// router.get("/events/:slug", getEventBySlug);
 
 //Only admin
-router.post("/events/post", createEvent);
-router.put("/events/:id", updateEvent);
-router.delete("/events/:id", deleteEvent);
+router.post("/events/new", createEvent);
+router.put("/events/update/:id", updateEvent);
+router.delete("/events/delete/:id", deleteEvent);
 
 //Export
 module.exports = router;

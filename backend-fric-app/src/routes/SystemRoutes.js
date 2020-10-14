@@ -18,8 +18,8 @@ router.get("/systems/get", getSystems);
 
 //Only admin
 router.post("/systems/new", createSystem);
-router.put("/systems/:id", updateSystem);
-router.delete("/systems/:id", deleteSystem);
+router.put("/systems/update/:id", updateSystem);
+router.delete("/systems/delete/:id", deleteSystem);
 
 //Export
 module.exports = router;
