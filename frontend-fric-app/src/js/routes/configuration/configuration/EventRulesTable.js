@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
+import axios from "axios";
 
 class EventClassificationTable extends Component {
   constructor(props) {
@@ -28,6 +29,15 @@ class EventClassificationTable extends Component {
     console.log(`Form Submitted`);
     console.log(`Values in list: ${this.state.values}`);
     console.log(`Is required: ${this.state.required}`);
+
+    const newEventRulesTable = {
+      required = this.state.required,
+      values = this.state.values
+    }
+
+    axios
+      .post("http://localhost:4000/configuration/configuration/eventrulestable/add", newEventRulesTable)
+      .then((res) => console.log(res.data));
 
     this.setState({
       value_to_add: "",
