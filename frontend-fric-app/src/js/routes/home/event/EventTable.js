@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import "reactjs-popup/dist/index.css";
+
+const Event = props => (
+  <tr>
+      <td></td>
+      <td>{props.event.name}</td>
+      <td>{props.event.no_of_systems}</td>
+      <td>{props.event.no_of_findings}</td>
+      <td></td>
+      <td>
+          <Link to={"/update/"+props.event._id}>Edit</Link>
+      </td>
+  </tr>
+)
+
 
 const PopupExample = () => (
   <Popup trigger={<button>?</button>} position="right center">
@@ -16,6 +32,28 @@ const PopupExample = () => (
 );
 
 class EventTable extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {events: []};
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:4000/home/events/get')
+      .then(response => {
+          this.setState({ events: response.data });
+      })
+      .catch(function (error){
+          console.log(error);
+      })
+  }
+  
+  eventList() {
+    return this.state.events.map(function(currentEvent, i){
+        return <Event event={currentEvent} key={i} />;
+    })
+  } 
+
   render() {
     return (
       <div class="x_panel">
@@ -36,7 +74,9 @@ class EventTable extends Component {
               <th>Progress</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            { this.eventList() }
+          </tbody>
         </table>
       </div>
     );

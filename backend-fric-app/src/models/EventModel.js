@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const slugify = require("slugify");
+// const slugify = require("slugify");
 
 //event Schema
 
@@ -8,9 +8,11 @@ const eventSchema = new Schema(
   {
       name: {
         type: String,
-        required: true, 
+        
       },
       description: String,
+      no_of_findings: String,
+      no_of_systems: String,
       type: String,
       version: String,
       assessdate: String,
@@ -19,6 +21,7 @@ const eventSchema = new Schema(
       declassificationdate: String,
       customername: String,
       organizationname: String, 
+      
       // slug: {
       //   type: String,
       //   required: true,
