@@ -43,7 +43,35 @@ class DetailedView extends Component {
       classification: "",
       declassificationdate: "",
       customername: "",
+      valuesClassification: [],
+      valuesType: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/eventclassificationtable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          valuesClassification: response.data[response.data.length - 1].values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:4000/eventtypetable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          valuesType: response.data[response.data.length - 1].values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   onChangeName(e) {
@@ -151,6 +179,7 @@ class DetailedView extends Component {
       customername: "",
     });
   }
+
   // what you see
   render() {
     return (
@@ -193,18 +222,15 @@ class DetailedView extends Component {
             <div class="form-group row">
               <label class="control-label col-md-2 col-sm-2 ">Event Type</label>
               <div class="col-md-10 col-sm-10 ">
-                <select
-                  class="form-control"
-                  value={this.state.type}
-                  onChange={this.onChangeType}
-                >
-                  <option>Choose option</option>
-                  <option>
-                    Cooperative Vulnerability Pennetration Assessment (CVPA)
-                  </option>
-                  <option>Cooperative Vulnerability Investigation (CVI)</option>
-                  <option>Verification of Fixes</option>
-                </select>
+                {
+                  <select
+                    class="form-control"
+                    value={this.state.type}
+                    onChange={this.onChangeType}
+                  >
+                    {this.state.valuesType.map((value) => <option>{value}</option>)}
+                  </select>
+                }
               </div>
             </div>
             {/* Event Version */}
@@ -274,11 +300,7 @@ class DetailedView extends Component {
                   value={this.state.classification}
                   onChange={this.onChangeClassification}
                 >
-                  <option>Choose option</option>
-                  <option>Top Secret</option>
-                  <option>Secret</option>
-                  <option>Confidential</option>
-                  <option>Unclassified</option>
+                  {this.state.valuesClassification.map((value) => <option>{value}</option>)}
                 </select>
               </div>
             </div>
