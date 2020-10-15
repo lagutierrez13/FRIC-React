@@ -26,10 +26,10 @@ class EventClassificationTable extends Component {
     axios
       .get("http://localhost:4000/eventclassificationtable/get")
       .then((response) => {
-        console.log(response.data[response.data.length-1]);
-        this.setState({ 
-          values: response.data[response.data.length-1].values, 
-          required: response.data[response.data.length-1].required
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          values: response.data[response.data.length - 1].values,
+          required: response.data[response.data.length - 1].required,
         });
       })
       .catch(function (error) {
@@ -49,11 +49,20 @@ class EventClassificationTable extends Component {
       values: this.state.values,
     };
 
+    const newHistory = {
+      action: "Event classification table changed",
+      analyst: "",
+    };
+
     axios
       .post(
         "http://localhost:4000/eventclassificationtable/new",
         newEventClassificationTable
       )
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({

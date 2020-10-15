@@ -4,6 +4,8 @@ const { Schema, model } = require("mongoose");
 let analystSchema = new Schema(
     {
         initials: String,
+        first: String,
+        last: String,
         ip: String,
         isLead: Boolean,
         // description: String,
