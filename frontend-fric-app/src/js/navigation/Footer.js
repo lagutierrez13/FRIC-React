@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 class Footer extends Component {
-  render () {
+  render() {
     return (
-        <footer>
-          <div className="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div className="clearfix"></div>
-        </footer>
-    )
+      <footer>
+        <div className="pull-right">FRIC by Team Cactus Terror Fall 2020</div>
+        <div className="clearfix"></div>
+      </footer>
+    );
   }
 }
 
-export default Footer
+export default Footer;
