@@ -40,11 +40,11 @@ eventCtrl.createEvent = async (req, res) => {
 
 //TODO: update with event attributes
 eventCtrl.updateEvent = async (req, res) => {
-  const { name, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname } = req.body;
+  const { name, no_of_findings, no_of_tasks, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname } = req.body;
   try {
     await Event.findOneAndUpdate(
       { _id: req.params.id },
-      { name, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname }
+      { name, no_of_findings, no_of_tasks, description, type, version, assessdate, sctg, classification, declassificationdate, customername, organizationname }
     );
     res.status(200).send({ message: "Event update successfully" });
   } catch (error) {

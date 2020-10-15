@@ -31,6 +31,7 @@ class DetailedView extends Component {
     this.onChangeClassification = this.onChangeClassification.bind(this);
     this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this); // declassification date
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
 
     this.state = {
       name: "",
@@ -109,8 +110,8 @@ class DetailedView extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log("Event Submitted");
-    console.log("Name: ${this.state.name}");
+    console.log('Event Submitted');
+    console.log('Name: ${this.state.name}');
     console.log("Description: ${this.state.description}");
     console.log("Type: ${this.state.type}");
     console.log("Version: ${this.state.version}");
@@ -135,7 +136,7 @@ class DetailedView extends Component {
     };
 
     axios
-      .post("http://localhost:4000/home/event/add", newEvent) //double check this
+      .post("http://localhost:4000/home/events/new", newEvent) //double check this
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -164,7 +165,7 @@ class DetailedView extends Component {
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <form>
+          <form onSubmit={this.onSubmit}>
             {/* Event name */}
             <div class="form-group row">
               <label class="control-label  col-sm-2 ">Event Name</label>
