@@ -6,7 +6,6 @@ import "reactjs-popup/dist/index.css";
 
 const Event = props => (
   <tr>
-      <td></td>
       <td>{props.event.name}</td>
       <td>{props.event.no_of_systems}</td>
       <td>{props.event.no_of_findings}</td>

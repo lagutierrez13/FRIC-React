@@ -7,6 +7,7 @@ const System = props => (
       <td>{props.system.systemname}</td>
       <td>{props.system.no_of_tasks}</td>
       <td>{props.system.no_of_findings}</td>
+      <td></td>
       <td>
           <Link to={"/update/"+props.system._id}>Edit</Link>
       </td>
