@@ -48,7 +48,7 @@ class SystemView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="System Categorization"></XPanel.Title>
+              {/* <XPanel.Title title=""></XPanel.Title> */}
               <XPanel.Content>
                 <Categorization />
               </XPanel.Content>
