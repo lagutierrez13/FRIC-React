@@ -69,12 +69,21 @@ export class createEvent extends React.Component {
       isLead: true,
     };
 
+    const newHistory = {
+      action: "Event created",
+      analyst: this.state.initials,
+    };
+
     axios
-      .post("http://localhost:4000/home/event/add", newEvent) //double check this
+      .post("http://localhost:4000/home/event/add", newEvent)
       .then((res) => console.log(res.data));
 
     axios
-      .post("http://localhost:4000/analyst/new", newAnalyst) //double check this
+      .post("http://localhost:4000/analyst/new", newAnalyst)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -98,7 +107,7 @@ export class createEvent extends React.Component {
           <div className="login_wrapper" ref={this.props.containerRef}>
             <div className="animate form login_form">
               <section className="login_content" ref={this.props.containerRef}>
-                <form>
+                <form onSubmit={this.onSubmit}>
                   <h1>Create Account</h1>
                   <div>
                     <input
