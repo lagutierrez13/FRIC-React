@@ -3,8 +3,6 @@ import axios from "axios";
 // System Detailed View
 
 class DetailedView extends Component {
-  
-
   constructor(props) {
     super(props);
 
@@ -25,7 +23,6 @@ class DetailedView extends Component {
       eventrouter: '',
       eventswitch: '',
       testplan: '',
-  
     };
   }
 
@@ -73,7 +70,7 @@ class DetailedView extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    
     console.log('System Submitted');
     console.log(`Title: ${this.state.systemname}`);
     console.log(`Description: ${this.state.systemdescription}`);
