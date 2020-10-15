@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
+import axios from "axios";
 
 class EventClassificationTable extends Component {
   constructor(props) {
@@ -14,14 +15,13 @@ class EventClassificationTable extends Component {
     );
     this.onAddValue = this.onAddValue.bind(this);
     this.onRemoveValue = this.onRemoveValue.bind(this);
-    this.onUpdateValue = this.onUpdateValue.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       panelVisible: true,
       required: false,
       value_to_add: "",
-      values: ["test1", "test2", "test3"],
+      values: [],
       is_checked: [],
     };
   }
@@ -32,6 +32,15 @@ class EventClassificationTable extends Component {
     console.log(`Form Submitted`);
     console.log(`Values in list: ${this.state.values}`);
     console.log(`Is required: ${this.state.required}`);
+
+    const newEventTypeTable = {
+      required: this.state.required,
+      values: this.state.values
+    }
+
+    axios
+      .post("http://localhost:4000/configuration/configuration/eventclassificationtable/add", newEventTypeTable)
+      .then((res) => console.log(res.data));
 
     this.setState({
       value_to_add: "",
@@ -63,23 +72,6 @@ class EventClassificationTable extends Component {
     });
   };
 
-  onUpdateValue = (i) => {
-    this.setState((state) => {
-      const values = state.values.map(
-        (item, j) => {
-          if (j == i) {
-            return item + 1;
-          } else {
-            return item;
-          }
-        }
-      );
-      return {
-        values,
-      };
-    });
-  };
-
   onRemoveValue = (i) => {
     this.setState((state) => {
       const values = state.values.filter(
@@ -104,7 +96,7 @@ class EventClassificationTable extends Component {
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
           <XPanel.Content>
-            <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit}>
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
@@ -113,14 +105,20 @@ class EventClassificationTable extends Component {
                   onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
+                  style={{ marginRight: "10px" }}
                 />
                 <label className="form-check-label">Required</label>
               </div>
-              <ul>
-                {this.state.values.map((item) => (
+              <ul style={{ listStyleType: "none" }}>
+                {this.state.values.map((item, index) => (
                   <li>
-                    <div className="form-group">
-                      <input type="checkbox" />
+                    <div class="form-group">
+                      <input
+                        type="button"
+                        onClick={() => this.onRemoveValue(index)}
+                        value="Remove"
+                        className="btn btn-danger"
+                      />
                       <input
                         value={item}
                         type="text"
@@ -147,13 +145,6 @@ class EventClassificationTable extends Component {
                   disabled={!this.state.value_to_add}
                   value="Add"
                   className="btn btn-primary"
-                />
-                <input
-                  type="button"
-                  onClick={this.onRemoveValue}
-                  disabled={this.state.is_checked != []}
-                  value="Remove"
-                  className="btn btn-danger"
                 />
                 <input type="submit" value="Save" className="btn btn-success" />
               </div>
