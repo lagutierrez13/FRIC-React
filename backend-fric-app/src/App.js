@@ -7,6 +7,7 @@ const eventRoutes = require("./routes/EventRoutes");
 const eventClassificationTableRoutes = require("./routes/Configuration/EventClassificationTableRoutes");
 const eventTypeTableRoutes = require("./routes/Configuration/EventTypeTableRoutes");
 const eventRulesTableRoutes = require("./routes/Configuration/EventRulesTableRoutes");
+const history = require("./routes/HistoryRoutes");
 
 //settings
 app.set("port", 4000);
@@ -22,6 +23,7 @@ app.use(eventRoutes);
 app.use(eventClassificationTableRoutes);
 app.use(eventTypeTableRoutes);
 app.use(eventRulesTableRoutes);
+app.use(history);
 
 
 //Export

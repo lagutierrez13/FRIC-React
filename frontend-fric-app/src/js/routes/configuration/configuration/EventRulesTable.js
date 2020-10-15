@@ -26,10 +26,10 @@ class EventRulesTable extends Component {
     axios
       .get("http://localhost:4000/eventrulestable/get")
       .then((response) => {
-        console.log(response.data[response.data.length-1]);
-        this.setState({ 
-          values: response.data[response.data.length-1].values, 
-          required: response.data[response.data.length-1].required
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          values: response.data[response.data.length - 1].values,
+          required: response.data[response.data.length - 1].required,
         });
       })
       .catch(function (error) {
@@ -46,11 +46,20 @@ class EventRulesTable extends Component {
 
     const newEventRulesTable = {
       required: this.state.required,
-      values: this.state.values
-    }
+      values: this.state.values,
+    };
+
+    const newHistory = {
+      action: "Event rules table changed",
+      analyst: "",
+    };
 
     axios
       .post("http://localhost:4000/eventrulestable/new", newEventRulesTable)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -103,7 +112,7 @@ class EventRulesTable extends Component {
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
           <XPanel.Content>
-          <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit}>
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
