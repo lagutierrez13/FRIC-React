@@ -1,5 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Fill out System Information
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 // System Detailed View
 
 class DetailedView extends Component {
@@ -108,7 +123,10 @@ class DetailedView extends Component {
     return (
       <div class="x_panel">
         <div class="x-title">
-          <h2>System Information</h2>
+          <h2>
+            System Information <PopupExample />
+          </h2>
+
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
