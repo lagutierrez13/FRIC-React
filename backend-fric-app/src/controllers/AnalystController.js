@@ -33,7 +33,6 @@ analystCtrl.getAnalyst = async (initials, res) => {
     }
 };
 
-
 analystCtrl.authenticateAnalyst = async (initials) => {
     const analyst = await Analyst.findOne({
         initials

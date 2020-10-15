@@ -8,6 +8,7 @@ let analystSchema = new Schema(
         last: String,
         ip: String,
         isLead: Boolean,
+        title: String,
         // description: String,
         // no_of_findings: String
         // slug: {

@@ -38,8 +38,48 @@ class TeamInfo extends Component {
       analystlastname: "",
       analystinitials: "",
       analysttitle: "",
+      analysts: [],
+      leadAnalysts: [],
     };
   }
+
+  componentDidMount() {
+    //GET list of only analysts
+    axios
+      .get("http://localhost:4000/analyst/get")
+      .then((response) => {
+        const results = [];
+        const results2 = [];
+        for (let i = 0; i < response.data.length; i++) {
+          if (!response.data[i].isLead) {
+            results.push(response.data[i]);
+          } else {
+            results2.push(response.data[i]);
+          }
+        }
+        this.setState({
+          analysts: results,
+          leadAnalysts: results2,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  // componentDidMount() { //GET list of only Lead analysts
+  //   axios
+  //     .get("http://localhost:4000/analyst/get")
+  //     .then((response) => {
+  //       const leadAnalystsReturned
+  //       this.setState({
+  //         leadAnalysts: leadAnalystsReturned.filter(leadAnalyst => response.data.)
+  //       });
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
   onChangeLeadFirstName(e) {
     this.setState({
@@ -138,6 +178,71 @@ class TeamInfo extends Component {
     });
   }
 
+  leadAnalystList() {
+    return this.state.leadAnalysts.map(function (currentLead, i) {
+      return (
+        <tbody>
+          <th></th>
+          <th>{currentLead.leadinitials}</th>
+        </tbody>
+      );
+    });
+  }
+
+  analystList() {
+    return this.state.analysts.map(function (currentAnalyst, i) {
+      return (
+        <tbody>
+          <th></th>
+          <th>{currentAnalyst.analystinitials}</th>
+        </tbody>
+      );
+    });
+  }
+
+  onSubmitLead(e) {
+    e.preventDefault();
+
+    const newLeadAnalyst = {
+      initials: this.state.leadinitials,
+      first: this.state.leadfirstname,
+      last: this.state.leadlastname,
+      ip: "",
+      isLead: true,
+      title: this.state.leadtitle,
+    };
+
+    const newAnalyst = {
+      initials: this.state.analystinitials,
+      first: this.state.analystfirstname,
+      last: this.state.analystlastname,
+      ip: "",
+      isLead: false,
+      title: this.state.analysttitle,
+    };
+
+    const newHistory = {
+      action: "Lead analyst added",
+      analyst: this.state.leadinitials,
+    };
+
+    axios
+      .post("http://localhost:4000/analyst/new", newLeadAnalyst)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/analyst/new", newAnalyst)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
+      .then((res) => console.log(res.data));
+
+    this.setState({
+      value_to_add: "",
+    });
+  }
+
   render() {
     return (
       <div class="x_panel">
@@ -167,7 +272,7 @@ class TeamInfo extends Component {
                     <th>Initials</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                {this.leadAnalystList()}
               </table>
             </div>
           </div>
@@ -271,7 +376,10 @@ class TeamInfo extends Component {
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <form class="form-horizontal form-label-left">
+              <form
+                onSubmit={this.onSubmitLead}
+                class="form-horizontal form-label-left"
+              >
                 <div class="form-group row ">
                   <label class="control-label col-md-3 col-sm-3 ">
                     First Name
