@@ -3,9 +3,16 @@ const { Schema, model } = require("mongoose");
 
 let systemSchema = new Schema(
     {
-        name: String,
-        description: String,
-        no_of_findings: String
+        systemname: "",
+        systemdescription: "",
+        assesslocation: "",
+        roomnumber: "",
+        eventrouter: "",
+        eventswitch: "",
+        testplan: "",
+        no_of_findings: "",
+        no_of_tasks: "",
+        progress: "",
         // slug: {
         //     type: String,
         //     required: true,
