@@ -1,5 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Add Configuration options
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 
 // System Categorization Dropdowns
 
@@ -64,6 +79,13 @@ class Categorization extends Component {
   render() {
     return (
       <div class="x-panel">
+        <div class="x_title">
+          <h2>
+            System Configuration <PopupExample />
+          </h2>
+
+          <div class="clearfix"></div>
+        </div>
         <div class="x_content">
           <form class="form-horizontal form-label-left">
             {/* Confidentiality */}

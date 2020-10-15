@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
-
 import { XPanel, PageTitle } from "../../../components";
-import DetailedView from "./EventInfoForm";
-import EventTable from "./EventTable";
-import TeamInfo from "./EventTeamInfo";
+import Documentation from "./Documentation";
+import Dependecies from "./Dependencies";
 
-class EventView extends Component {
+class HelpView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +20,7 @@ class EventView extends Component {
       <div>
         <PageTitle
           showSearch
-          title="Event"
+          title="Help"
           onSearch={(text) => console.log(text)}
         />
 
@@ -30,12 +28,12 @@ class EventView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="">
+              <XPanel.Title title="Documentation">
                 <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
                 <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
               </XPanel.Title>
               <XPanel.Content>
-                <EventTable />
+                <Documentation />
               </XPanel.Content>
             </XPanel>
           </Col>
@@ -43,20 +41,12 @@ class EventView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Detailed View"></XPanel.Title>
-
+              <XPanel.Title title="Dependencies">
+                <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
+                <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
+              </XPanel.Title>
               <XPanel.Content>
-                <DetailedView />
-              </XPanel.Content>
-            </XPanel>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12} sm={12} xs={12}>
-            <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Team Information"></XPanel.Title>
-              <XPanel.Content>
-                <TeamInfo />
+                <Dependecies />
               </XPanel.Content>
             </XPanel>
           </Col>
@@ -66,4 +56,4 @@ class EventView extends Component {
   }
 }
 
-export default EventView;
+export default HelpView;

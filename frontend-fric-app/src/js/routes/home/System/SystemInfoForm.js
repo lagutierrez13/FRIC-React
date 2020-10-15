@@ -1,5 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Fill out System Information
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 // System Detailed View
 
 class DetailedView extends Component {
@@ -13,15 +28,16 @@ class DetailedView extends Component {
     this.onChangeEventRouter = this.onChangeEventRouter.bind(this);
     this.onChangeEventSwitch = this.onChangeEventSwitch.bind(this);
     this.onChangeTestPlan = this.onChangeTestPlan.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      systemname: "",
-      systemdescription: "",
-      assesslocation: "",
-      roomnumber: "",
-      eventrouter: "",
-      eventswitch: "",
-      testplan: "",
+      systemname: '',
+      systemdescription: '',
+      assesslocation: '',
+      roomnumber: '',
+      eventrouter: '',
+      eventswitch: '',
+      testplan: '',
     };
   }
 
@@ -69,15 +85,15 @@ class DetailedView extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
-    console.log("System Submitted");
-    console.log("Name: ${this.state.systemname}");
-    console.log("Description: ${this.state.systemdescription}");
-    console.log("Assessment Location: ${this.state.assesslocation}");
-    console.log("Room Number: ${this.state.roomnumber}");
-    console.log("Event Router: ${this.state.eventrouter");
-    console.log("Event Switch ${this.state.eventswitch}");
-    console.log("testplan: ${this.state.testplan}");
+    
+    console.log('System Submitted');
+    console.log(`Title: ${this.state.systemname}`);
+    console.log(`Description: ${this.state.systemdescription}`);
+    console.log(`Assessment Location: ${this.state.assesslocation}`);
+    console.log(`Room number: ${this.state.roomnumber}`);
+    console.log(`Event Router: ${this.state.eventrouter}`);
+    console.log(`Event Switch: ${this.state.eventswitch}`);
+    console.log(`test plan: ${this.state.testplan}`);
 
     const newSystem = {
       systemname: this.state.systemname,
@@ -86,11 +102,11 @@ class DetailedView extends Component {
       roomnumber: this.state.roomnumber,
       eventrouter: this.state.eventrouter,
       eventswitch: this.state.eventswitch,
-      testplan: this.state.testplan,
+      testplan: this.state.testplan
     };
 
     axios
-      .post("http://localhost:4000/home/system/add", newSystem) //double check this
+      .post("http://localhost:4000/home/systems/new", newSystem) //double check this
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -108,11 +124,14 @@ class DetailedView extends Component {
     return (
       <div class="x_panel">
         <div class="x-title">
-          <h2>System Information</h2>
+          <h2>
+            System Information <PopupExample />
+          </h2>
+
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <form>
+          <form onSubmit={this.onSubmit}>
             {/* System Name */}
             <div class="form-group row">
               <label class="control-label  col-sm-2 ">System Name</label>
@@ -217,5 +236,4 @@ class DetailedView extends Component {
     );
   }
 }
-
 export default DetailedView;

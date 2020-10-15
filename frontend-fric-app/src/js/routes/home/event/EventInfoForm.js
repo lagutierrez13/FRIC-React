@@ -1,7 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { func } from "prop-types";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Fill out an Event Information
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 // event detailed view
+
 class DetailedView extends Component {
   constructor(props) {
     super(props);
@@ -171,7 +186,10 @@ class DetailedView extends Component {
       // x_panel is container
       <div class="x_panel">
         <div class="x_title">
-          <h2>Event Information</h2>
+          <h2>
+            Event Information <PopupExample />
+          </h2>
+
           <div class="clearfix"></div>
         </div>
         <div class="x_content">

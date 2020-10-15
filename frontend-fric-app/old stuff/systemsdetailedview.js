@@ -1,6 +1,3 @@
-// DEPREcated File
-// Program breaks if this file is missing tho
-
 import React, { Component } from "react";
 import axios from "axios";
 

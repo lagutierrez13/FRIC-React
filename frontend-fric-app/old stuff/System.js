@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
-import { XPanel, PageTitle } from "../../../components";
+import { XPanel, PageTitle } from "../src/js/components";
 import GeneralForm from "./GeneralForm";
-import SystemTable from "./SystemTable";
+import SystemTable from "../src/js/routes/home/System/SystemTable";
 
 class Dashboard extends Component {
   render() {

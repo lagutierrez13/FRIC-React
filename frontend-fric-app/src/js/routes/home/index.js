@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router";
 import Dashboard from "./dashboard-1/Dashboard";
-import SystemDetailedView from "./System/SystemDeatiledView.js";
 import HomeMenu from "./Menu";
 import EventView from "./event/EventView";
 import SystemView from "./System/SystemView.js";

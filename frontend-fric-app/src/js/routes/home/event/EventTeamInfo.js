@@ -1,5 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Add and Edit Lead Analysts and Analysts
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 //Event team Information
 class TeamInfo extends Component {
   constructor(props) {
@@ -118,7 +133,10 @@ class TeamInfo extends Component {
     return (
       <div class="x_panel">
         <div class="x_title">
-          <h2>Team Information</h2>
+          <h2>
+            Team Information <PopupExample />
+          </h2>
+
           <div class="clearfix"></div>
         </div>
         {/* Lead */}
