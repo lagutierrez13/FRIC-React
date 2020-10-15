@@ -6,7 +6,6 @@ import "reactjs-popup/dist/index.css";
 
 const Event = props => (
   <tr>
-      <td></td>
       <td>{props.event.name}</td>
       <td>{props.event.no_of_systems}</td>
       <td>{props.event.no_of_findings}</td>
@@ -68,9 +67,6 @@ class EventTable extends Component {
         <table className="table table-bordered">
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" id="check-all"></input>
-              </th>
               <th>Event Name</th>
               <th>No. of Systems</th>
               <th>No. of Findings</th>
