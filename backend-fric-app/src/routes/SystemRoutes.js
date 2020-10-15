@@ -13,13 +13,13 @@ const {
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/systems/get", getSystems);
+router.get("/home/systems/get", getSystems);
 // router.get("/systems/:slug", getSystemBySlug);
 
 //Only admin
-router.post("/systems/new", createSystem);
-router.put("/systems/update/:id", updateSystem);
-router.delete("/systems/delete/:id", deleteSystem);
+router.post("/home/systems/new", createSystem);
+router.put("/home/systems/update/:id", updateSystem);
+router.delete("/home/systems/delete/:id", deleteSystem);
 
 //Export
 module.exports = router;

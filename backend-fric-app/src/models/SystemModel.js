@@ -5,7 +5,8 @@ let systemSchema = new Schema(
     {
         name: String,
         description: String,
-        no_of_findings: String
+        no_of_findings: String,
+        no_of_tasks: String,
         // slug: {
         //     type: String,
         //     required: true,
