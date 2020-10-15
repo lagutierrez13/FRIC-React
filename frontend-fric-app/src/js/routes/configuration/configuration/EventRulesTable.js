@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-class EventClassificationTable extends Component {
+class EventRulesTable extends Component {
   constructor(props) {
     super(props);
 
@@ -21,6 +22,21 @@ class EventClassificationTable extends Component {
     };
   }
 
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/eventrulestable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length-1]);
+        this.setState({ 
+          values: response.data[response.data.length-1].values, 
+          required: response.data[response.data.length-1].required
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -34,7 +50,7 @@ class EventClassificationTable extends Component {
     }
 
     axios
-      .post("http://localhost:4000/configuration/configuration/eventrulestable/add", newEventRulesTable)
+      .post("http://localhost:4000/eventrulestable/new", newEventRulesTable)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -93,6 +109,7 @@ class EventClassificationTable extends Component {
                   className="form-check-input"
                   type="checkbox"
                   defaultChecked={this.state.required}
+                  checked={this.state.required}
                   onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
@@ -103,7 +120,7 @@ class EventClassificationTable extends Component {
               <ul style={{ listStyleType: "none" }}>
                 {this.state.values.map((item, index) => (
                   <li>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="button"
                         onClick={() => this.onRemoveValue(index)}
@@ -147,4 +164,4 @@ class EventClassificationTable extends Component {
   }
 }
 
-export default EventClassificationTable;
+export default EventRulesTable;
