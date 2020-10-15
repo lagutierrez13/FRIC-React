@@ -162,8 +162,17 @@ class DetailedView extends Component {
       customername: this.state.customername,
     };
 
+    const newHistory = {
+      action: "Event edited",
+      analyst: "",
+    };
+
     axios
       .post("http://localhost:4000/home/event/add", newEvent) //double check this
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -228,7 +237,9 @@ class DetailedView extends Component {
                     value={this.state.type}
                     onChange={this.onChangeType}
                   >
-                    {this.state.valuesType.map((value) => <option>{value}</option>)}
+                    {this.state.valuesType.map((value) => (
+                      <option>{value}</option>
+                    ))}
                   </select>
                 }
               </div>
@@ -300,7 +311,9 @@ class DetailedView extends Component {
                   value={this.state.classification}
                   onChange={this.onChangeClassification}
                 >
-                  {this.state.valuesClassification.map((value) => <option>{value}</option>)}
+                  {this.state.valuesClassification.map((value) => (
+                    <option>{value}</option>
+                  ))}
                 </select>
               </div>
             </div>

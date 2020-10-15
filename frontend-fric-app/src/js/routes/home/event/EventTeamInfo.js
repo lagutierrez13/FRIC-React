@@ -113,8 +113,17 @@ class TeamInfo extends Component {
       analysttitle: this.state.analysttitle,
     };
 
+    const newHistory = {
+      action: "Team information edited",
+      analyst: "",
+    };
+
     axios
       .post("http://localhost:4000/home/event/add", editAnalyst) //double check this
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
