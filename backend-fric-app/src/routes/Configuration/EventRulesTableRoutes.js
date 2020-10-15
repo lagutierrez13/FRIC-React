@@ -3,19 +3,19 @@
 const express = require('express');
 const router = express.Router();
 const {
-  getEventClassificationTable,
-  createEventClassificationTable,
+  getEventRulesTable,
+  createEventRulesTable,
   // getSystemBySlug,
-} = require("../../controllers/Configuration/EventClassificationTableController");
+} = require("../../controllers/Configuration/EventRulesTableController");
 
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/eventclassificationtable/get", getEventClassificationTable);
+router.get("/eventrulestable/get", getEventRulesTable);
 // router.get("/systems/:slug", getSystemBySlug);
 
 //Only admin
-router.post("/eventclassificationtable/new", createEventClassificationTable);
+router.post("/eventrulestable/new", createEventRulesTable);
 
 //Export
 module.exports = router;

@@ -1,5 +1,5 @@
 //Imports
-const EventClassificationTable = require("../models/Configuration/EventClassificationTableModel");
+const EventClassificationTable = require("../../models/Configuration/EventClassificationTableModel");
 
 //Object
 const eventClassificationTableCtrl = {};
@@ -23,7 +23,7 @@ eventClassificationTableCtrl.createEventClassificationTable = async (req, res) =
   const newEventClassificationTable = new EventClassificationTable(req.body);
   try {
     await newEventClassificationTable.save();
-    res.json('create event classificatin table!');
+    res.json('create event classification table!');
     res.status(200).send({ message: "Event Classification Table Created" });
   } catch (error) {
     res.status(500).send(error);
@@ -41,4 +41,4 @@ eventClassificationTableCtrl.createEventClassificationTable = async (req, res) =
 // };
 
 //Export
-module.exports = systemCtrl;
+module.exports = eventClassificationTableCtrl;

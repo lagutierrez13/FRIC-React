@@ -2,17 +2,14 @@ import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 class EventClassificationTable extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeRequired = this.onChangeRequired.bind(
-      this
-    );
-    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(
-      this
-    );
+    this.onChangeRequired = this.onChangeRequired.bind(this);
+    this.onChangeValueToAdd = this.onChangeValueToAdd.bind(this);
     this.onAddValue = this.onAddValue.bind(this);
     this.onRemoveValue = this.onRemoveValue.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -22,8 +19,22 @@ class EventClassificationTable extends Component {
       required: false,
       value_to_add: "",
       values: [],
-      is_checked: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/eventtypetable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length-1]);
+        this.setState({ 
+          values: response.data[response.data.length-1].values, 
+          required: response.data[response.data.length-1].required
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   onSubmit(e) {
@@ -35,11 +46,14 @@ class EventClassificationTable extends Component {
 
     const newEventTypeTable = {
       required: this.state.required,
-      values: this.state.values
-    }
+      values: this.state.values,
+    };
 
     axios
-      .post("http://localhost:4000/configuration/configuration/eventclassificationtable/add", newEventTypeTable)
+      .post(
+        "http://localhost:4000/eventtypetable/new",
+        newEventTypeTable
+      )
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -49,7 +63,7 @@ class EventClassificationTable extends Component {
 
   onChangeRequired(e) {
     this.setState({
-      required: !this.state.required
+      required: !this.state.required,
     });
   }
 
@@ -59,9 +73,7 @@ class EventClassificationTable extends Component {
 
   onAddValue = () => {
     this.setState((state) => {
-      const values = state.values.concat(
-        state.value_to_add
-      );
+      const values = state.values.concat(state.value_to_add);
 
       console.log(`Added: ${this.state.value_to_add}`);
 
@@ -74,9 +86,7 @@ class EventClassificationTable extends Component {
 
   onRemoveValue = (i) => {
     this.setState((state) => {
-      const values = state.values.filter(
-        (item, j) => i != j
-      );
+      const values = state.values.filter((item, j) => i != j);
 
       return {
         values,
@@ -96,12 +106,13 @@ class EventClassificationTable extends Component {
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
           <XPanel.Content>
-          <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit}>
               <div className="form-check form-check-inline">
                 <input
                   className="form-check-input"
                   type="checkbox"
                   defaultChecked={this.state.required}
+                  checked={this.state.required}
                   onChange={this.onChangeRequired}
                   name="required"
                   id="eventClassificationRequired"
@@ -112,7 +123,7 @@ class EventClassificationTable extends Component {
               <ul style={{ listStyleType: "none" }}>
                 {this.state.values.map((item, index) => (
                   <li>
-                    <div class="form-group">
+                    <div className="form-group">
                       <input
                         type="button"
                         onClick={() => this.onRemoveValue(index)}
