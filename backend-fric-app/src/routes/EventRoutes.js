@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const {
   getEvents,
-  getEventBySlug,
+  // getEventBySlug,
   createEvent,
   deleteEvent,
   updateEvent,
@@ -14,13 +14,13 @@ const {
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/events/get", getEvents);
+router.get("/home/events/get", getEvents);
 // router.get("/events/:slug", getEventBySlug);
 
 //Only admin
-router.post("/events/new", createEvent);
-router.put("/events/update/:id", updateEvent);
-router.delete("/events/delete/:id", deleteEvent);
+router.post("/home/events/new", createEvent);
+router.put("/home/events/update/:id", updateEvent);
+router.delete("/home/events/delete/:id", deleteEvent);
 
 //Export
 module.exports = router;
