@@ -4,7 +4,7 @@ import axios from 'axios';
  
 const System = props => (
   <tr>
-      <td>{props.system.name}</td>
+      <td>{props.system.systemname}</td>
       <td>{props.system.no_of_tasks}</td>
       <td>{props.system.no_of_findings}</td>
       <td>
