@@ -4,6 +4,63 @@ import axios from "axios";
 // System Categorization Dropdowns
 
 class Categorization extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChangeConfidentiality = this.onChangeConfidentiality.bind(this);
+    this.onChangeIntegrity = this.onChangeIntegrity.bind(this);
+    this.onChangeAvailability = this.onChangeAvailability.bind(this);
+
+    this.state = {
+      confidentiality: "",
+      integrity: "",
+      availability: "",
+    };
+  }
+
+  onChangeConfidentiality(e) {
+    this.setState({
+      confidentiality: e.target.value,
+    });
+  }
+
+  onChangeIntegrity(e) {
+    this.setState({
+      integrity: e.target.value,
+    });
+  }
+
+  onChangeAvailability(e) {
+    this.setState({
+      availability: e.target.value,
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    console.log("System Categorization Submitted");
+    console.log("Confidentiality: ${this.state.confidentiality}");
+    console.log("Integrity: ${this.state.integrity}");
+    console.log("Availability: ${this.state.availability}");
+
+    const newSystemCategorization = {
+      confidentiality: this.state.confidentiality,
+      integrity: this.state.integrity,
+      availability: this.state.availability,
+    };
+
+    axios
+      .post("http://localhost:4000/home/system/add", newSystemCategorization) //double check this
+      .then((res) => console.log(res.data));
+
+    this.setState({
+      confidentiality: "",
+      integrity: "",
+      availability: "",
+    });
+  }
+
   render() {
     return (
       <div class="x-panel">
@@ -13,7 +70,11 @@ class Categorization extends Component {
             <div class="form-group row">
               <label class="control-label col-sm-2 ">Confidentiality</label>
               <div class="col-sm-10 ">
-                <select class="form-control">
+                <select
+                  class="form-control"
+                  value={this.state.confidentiality}
+                  onChange={this.onChangeConfidentiality}
+                >
                   <option>Choose option</option>
                   <option>Option one</option>
                   <option>Option two</option>
@@ -26,7 +87,11 @@ class Categorization extends Component {
             <div class="form-group row">
               <label class="control-label col-sm-2 ">Integrity</label>
               <div class="col-sm-10 ">
-                <select class="form-control">
+                <select
+                  class="form-control"
+                  value={this.state.integrity}
+                  onChange={this.onChangeIntegrity}
+                >
                   <option>Choose option</option>
                   <option>Option one</option>
                   <option>Option two</option>
@@ -39,7 +104,11 @@ class Categorization extends Component {
             <div class="form-group row">
               <label class="control-label col-sm-2 ">Availability</label>
               <div class="col-sm-10 ">
-                <select class="form-control">
+                <select
+                  class="form-control"
+                  value={this.state.availability}
+                  onChange={this.onChangeAvailability}
+                >
                   <option>Choose option</option>
                   <option>Option one</option>
                   <option>Option two</option>
