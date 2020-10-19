@@ -31,13 +31,13 @@ class DetailedView extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      systemname: '',
-      systemdescription: '',
-      assesslocation: '',
-      roomnumber: '',
-      eventrouter: '',
-      eventswitch: '',
-      testplan: '',
+      systemname: "",
+      systemdescription: "",
+      assesslocation: "",
+      roomnumber: "",
+      eventrouter: "",
+      eventswitch: "",
+      testplan: "",
     };
   }
 
@@ -85,8 +85,8 @@ class DetailedView extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    
-    console.log('System Submitted');
+
+    console.log("System Submitted");
     console.log(`Title: ${this.state.systemname}`);
     console.log(`Description: ${this.state.systemdescription}`);
     console.log(`Assessment Location: ${this.state.assesslocation}`);
@@ -102,11 +102,20 @@ class DetailedView extends Component {
       roomnumber: this.state.roomnumber,
       eventrouter: this.state.eventrouter,
       eventswitch: this.state.eventswitch,
-      testplan: this.state.testplan
+      testplan: this.state.testplan,
+    };
+
+    const newHistory = {
+      action: "System edited",
+      analyst: "",
     };
 
     axios
       .post("http://localhost:4000/home/systems/new", newSystem) //double check this
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
