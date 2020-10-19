@@ -15,7 +15,8 @@ const {
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/analyst/get", getAnalysts);
+router.get("/analyst/getall", getAnalysts);
+router.get("/analyst/get", getAnalyst);
 // router.get("/systems/:slug", getSystemBySlug);
 
 //Only admin
