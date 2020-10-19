@@ -3,7 +3,7 @@ import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
-const PopupExample = () => (
+const Tooltip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
@@ -31,7 +31,7 @@ class DetailedView extends Component {
     this.onChangeClassification = this.onChangeClassification.bind(this);
     this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this); // declassification date
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
-    this.onSubmit = this.onSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       name: "",
@@ -138,8 +138,8 @@ class DetailedView extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log('Event Submitted');
-    console.log('Name: ${this.state.name}');
+    console.log("Event Submitted");
+    console.log("Name: ${this.state.name}");
     console.log("Description: ${this.state.description}");
     console.log("Type: ${this.state.type}");
     console.log("Version: ${this.state.version}");
@@ -197,7 +197,7 @@ class DetailedView extends Component {
       <div class="x_panel">
         <div class="x_title">
           <h2>
-            Event Information <PopupExample />
+            Event Information <Tooltip />
           </h2>
 
           <div class="clearfix"></div>
