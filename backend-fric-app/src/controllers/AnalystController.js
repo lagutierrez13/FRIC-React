@@ -33,21 +33,33 @@ analystCtrl.getAnalyst = async (initials, res) => {
   }
 };
 
-analystCtrl.authenticateAnalyst = async (initials) => {
-  const analyst = await Analyst.findOne({
-    initials,
-  });
-  if (analyst) {
-    const isMatched = await bcrypt.compare(initials, analyst.initials);
-    if (isMatched) {
-      return analyst;
-    } else {
-      throw new Error("unable to log in");
-    }
-  } else {
-    throw new Error({
-      error: "unable to log in",
-    });
+// analystCtrl.authenticateAnalyst = async (initials) => {
+//   const analyst = await Analyst.findOne({
+//     initials,
+//   });
+//   if (analyst) {
+//     const isMatched = await bcrypt.compare(initials, analyst.initials);
+//     if (isMatched) {
+//       return analyst;
+//     } else {
+//       throw new Error("unable to log in");
+//     }
+//   } else {
+//     throw new Error({
+//       error: "unable to log in",
+//     });
+//   }
+// };
+
+//Login user endpoint
+analystCtrl.authenticateAnalyst = async (req, res) => {
+  const { initials } = req.body.initials;
+  try {
+    const analyst = await Analyst.findByCredentials(initials);
+    const token = await analyst.generateAuthToken();
+    res.status(200).send({ token });
+  } catch (error) {
+    res.status(400).send({ error });
   }
 };
 

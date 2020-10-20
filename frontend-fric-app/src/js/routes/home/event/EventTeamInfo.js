@@ -236,6 +236,13 @@ class TeamInfo extends Component {
     axios
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
+
+      this.setState({
+        analystfirstname: "",
+        analystlastname: "",
+        analystinitials: "",
+        analysttitle: "",
+      });
   }
 
   onSubmitLead(e) {
@@ -262,6 +269,13 @@ class TeamInfo extends Component {
     axios
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
+
+      this.setState({
+        leadfirstname: "",
+        leadlastname: "",
+        leadinitials: "",
+        leadtitle: "",
+      });
   }
 
   render() {
@@ -293,7 +307,7 @@ class TeamInfo extends Component {
                     <th>Initials</th>
                   </tr>
                 </thead>
-                {this.leadAnalystList}
+                {this.leadAnalystList()}
               </table>
             </div>
           </div>
@@ -386,7 +400,7 @@ class TeamInfo extends Component {
                     <th>Initials</th>
                   </tr>
                 </thead>
-                {this.analystList}
+                {this.analystList()}
               </table>
             </div>
           </div>
