@@ -51,15 +51,15 @@ class TeamInfo extends Component {
         const results = [];
         const results2 = [];
         for (let i = 0; i < response.data.length; i++) {
-          if (!response.data[i].isLead) {
+          if (response.data[i].isLead) {
             results.push(response.data[i]);
           } else {
             results2.push(response.data[i]);
           }
         }
         this.setState({
-          analysts: results,
-          leadAnalysts: results2,
+          analysts: results2,
+          leadAnalysts: results,
         });
       })
       .catch(function (error) {
@@ -113,7 +113,7 @@ class TeamInfo extends Component {
 
   onChangeAnalystLastName(e) {
     this.setState({
-      onChangeAnalystLastName: e.target.value,
+      analystlastname: e.target.value,
     });
   }
 
@@ -200,6 +200,51 @@ class TeamInfo extends Component {
     });
   }
 
+  // analystList() {
+  //   return this.state.analysts.map(function (currentAnalyst, i) {
+  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
+  //   });
+  // }
+
+  // leadAnalystList() {
+  //   return this.state.leadAnalysts.map(function (currentAnalyst, i) {
+  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
+  //   });
+  // }
+
+  onSubmitAnalyst(e){
+    e.preventDefault();
+
+    const newAnalyst = {
+      initials: this.state.analystinitials,
+      first: this.state.analystfirstname,
+      last: this.state.analystlastname,
+      ip: "",
+      isLead: false,
+      title: this.state.analysttitle,
+    };
+
+    const newHistory = {
+      action: "Analyst added",
+      analyst: this.state.leadinitials,
+    };
+
+    axios
+      .post("http://localhost:4000/analyst/new", newAnalyst)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
+      .then((res) => console.log(res.data));
+
+      this.setState({
+        analystfirstname: "",
+        analystlastname: "",
+        analystinitials: "",
+        analysttitle: "",
+      });
+  }
+
   onSubmitLead(e) {
     e.preventDefault();
 
@@ -212,15 +257,6 @@ class TeamInfo extends Component {
       title: this.state.leadtitle,
     };
 
-    const newAnalyst = {
-      initials: this.state.analystinitials,
-      first: this.state.analystfirstname,
-      last: this.state.analystlastname,
-      ip: "",
-      isLead: false,
-      title: this.state.analysttitle,
-    };
-
     const newHistory = {
       action: "Lead analyst added",
       analyst: this.state.leadinitials,
@@ -231,16 +267,15 @@ class TeamInfo extends Component {
       .then((res) => console.log(res.data));
 
     axios
-      .post("http://localhost:4000/analyst/new", newAnalyst)
-      .then((res) => console.log(res.data));
-
-    axios
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-    this.setState({
-      value_to_add: "",
-    });
+      this.setState({
+        leadfirstname: "",
+        leadlastname: "",
+        leadinitials: "",
+        leadtitle: "",
+      });
   }
 
   render() {
@@ -283,7 +318,7 @@ class TeamInfo extends Component {
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <form class="form-horizontal form-label-left">
+              <form onSubmit={this.onSubmitLead} class="form-horizontal form-label-left">
                 <div class="form-group row ">
                   <label class="control-label col-md-3 col-sm-3 ">
                     First Name
@@ -365,7 +400,7 @@ class TeamInfo extends Component {
                     <th>Initials</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                {this.analystList()}
               </table>
             </div>
           </div>
@@ -377,7 +412,7 @@ class TeamInfo extends Component {
             </div>
             <div class="x_content">
               <form
-                onSubmit={this.onSubmitLead}
+                onSubmit={this.onSubmitAnalyst}
                 class="form-horizontal form-label-left"
               >
                 <div class="form-group row ">
