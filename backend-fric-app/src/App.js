@@ -9,6 +9,7 @@ const eventTypeTableRoutes = require("./routes/Configuration/EventTypeTableRoute
 const eventRulesTableRoutes = require("./routes/Configuration/EventRulesTableRoutes");
 const history = require("./routes/HistoryRoutes");
 const analyst = require("./routes/AnalystRoutes");
+const notification = require("./routes/NotificationRoutes");
 
 //settings
 app.set("port", 4000);
@@ -26,6 +27,7 @@ app.use(eventTypeTableRoutes);
 app.use(eventRulesTableRoutes);
 app.use(history);
 app.use(analyst);
+app.use(notification);
 
 
 //Export
