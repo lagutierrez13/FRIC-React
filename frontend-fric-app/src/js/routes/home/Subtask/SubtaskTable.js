@@ -4,6 +4,9 @@ import axios from "axios";
 
 const Subtask = (props) => (
   <tr>
+    <td>
+      <input type="checkbox" type={props.subtask.subtaskID}></input>
+    </td>
     <td>{props.subtask.subtasktitle}</td>
     <td>{props.subtask.parent_task}</td>
     <td>{props.subtask.working_analyst}</td>
@@ -52,6 +55,7 @@ class SubtaskTable extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th>Title</th>
               <th>Task</th>
               <th>Analyst</th>

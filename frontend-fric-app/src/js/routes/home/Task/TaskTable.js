@@ -4,6 +4,9 @@ import axios from "axios";
 
 const Task = (props) => (
   <tr>
+    <td>
+      <input type="checkbox" type={props.Task.taskID}></input>
+    </td>
     <td>{props.task.task_title}</td>
     <td>{props.task.system}</td>
     <td>{props.task.working_analyst}</td>
@@ -54,6 +57,7 @@ class TaskTable extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
+              <th></th>
               <th>Title</th>
               <th>System</th>
               <th>Analyst</th>
