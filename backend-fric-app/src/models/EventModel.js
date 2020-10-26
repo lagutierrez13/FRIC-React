@@ -1,56 +1,49 @@
 const { Schema, model } = require("mongoose");
-const slugify = require("slugify");
+
+// const slugify = require("slugify");
 
 //event Schema
 
-this.state = {
-  name: "",
-  description: "",
-  type: "",
-  version: "",
-  assessdate: "",
-  sctg: "",
-  classification: "",
-  declassificationdate: "",
-  customername: "",
-};
 
 const eventSchema = new Schema(
   {
-    name: {
+      name: {
+        type: String,
+        
+      },
+      description: String,
+      no_of_findings: String,
+      no_of_systems: String,
       type: String,
-      required: true, 
+      version: String,
+      assessdate: String,
+      sctg: String,
+      classification: String,
+      declassificationdate: String,
+      customername: String,
+      organizationname: String, 
+      
+      // slug: {
+      //   type: String,
+      //   required: true,
+      //   unique: true
+      // }
     },
-    description: String,
-    type: String,
-    version: String,
-    assessdate: String,
-    sctg: "",
-    classification: "",
-    declassificationdate: "",
-    customername: "",
-    organizationname: "", 
-    slug: {
-      type: String,
-      required: true,
-      unique: true
-    }
-  },
   
-  {
-    timestamps: true,
-  }
+    {
+      timestamps: true,
+    }
 );
 
-eventSchema.pre("validate", function(next) {
-  const event = this;
+// eventSchema.pre("validate", function(next) {
+//   const event = this;
   
-  if(event.title) {
-    post.slug = slugify(event.title, { lower: true, strict: true });
-  }
+//   if(event.name) {
+//     post.slug = slugify(event.name, { lower: true, strict: true });
+//   }
 
-  next();
-})
+//   next();
+// })
 
 const Event = model("Event", eventSchema);
 

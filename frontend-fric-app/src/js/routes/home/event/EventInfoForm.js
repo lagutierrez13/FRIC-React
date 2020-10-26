@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+
+const Tooltip = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Fill out an Event Information
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
+);
 // event detailed view
+
 class DetailedView extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +31,7 @@ class DetailedView extends Component {
     this.onChangeClassification = this.onChangeClassification.bind(this);
     this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this); // declassification date
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       name: "",
@@ -27,7 +44,35 @@ class DetailedView extends Component {
       classification: "",
       declassificationdate: "",
       customername: "",
+      valuesClassification: [],
+      valuesType: [],
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/eventclassificationtable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          valuesClassification: response.data[response.data.length - 1].values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:4000/eventtypetable/get")
+      .then((response) => {
+        console.log(response.data[response.data.length - 1]);
+        this.setState({
+          valuesType: response.data[response.data.length - 1].values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   onChangeName(e) {
@@ -118,8 +163,17 @@ class DetailedView extends Component {
       customername: this.state.customername,
     };
 
+    const newHistory = {
+      action: "Event edited",
+      analyst: "",
+    };
+
     axios
-      .post("http://localhost:4000/home/event/add", newEvent) //double check this
+      .post("http://localhost:4000/home/events/new", newEvent) //double check this
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
     this.setState({
@@ -135,17 +189,21 @@ class DetailedView extends Component {
       customername: "",
     });
   }
+
   // what you see
   render() {
     return (
       // x_panel is container
       <div class="x_panel">
         <div class="x_title">
-          <h2>Event Information</h2>
+          <h2>
+            Event Information <Tooltip />
+          </h2>
+
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
-          <form>
+          <form onSubmit={this.onSubmit}>
             {/* Event name */}
             <div class="form-group row">
               <label class="control-label  col-sm-2 ">Event Name</label>
@@ -174,18 +232,17 @@ class DetailedView extends Component {
             <div class="form-group row">
               <label class="control-label col-md-2 col-sm-2 ">Event Type</label>
               <div class="col-md-10 col-sm-10 ">
-                <select
-                  class="form-control"
-                  value={this.state.type}
-                  onChange={this.onChangeType}
-                >
-                  <option>Choose option</option>
-                  <option>
-                    Cooperative Vulnerability Pennetration Assessment (CVPA)
-                  </option>
-                  <option>Cooperative Vulnerability Investigation (CVI)</option>
-                  <option>Verification of Fixes</option>
-                </select>
+                {
+                  <select
+                    class="form-control"
+                    value={this.state.type}
+                    onChange={this.onChangeType}
+                  >
+                    {this.state.valuesType.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
+                }
               </div>
             </div>
             {/* Event Version */}
@@ -255,11 +312,9 @@ class DetailedView extends Component {
                   value={this.state.classification}
                   onChange={this.onChangeClassification}
                 >
-                  <option>Choose option</option>
-                  <option>Top Secret</option>
-                  <option>Secret</option>
-                  <option>Confidential</option>
-                  <option>Unclassified</option>
+                  {this.state.valuesClassification.map((value) => (
+                    <option>{value}</option>
+                  ))}
                 </select>
               </div>
             </div>
