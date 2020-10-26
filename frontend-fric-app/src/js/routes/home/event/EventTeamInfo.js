@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { Link } from "react-router-dom";
 
 const PopupExample = () => (
   <Popup trigger={<button>?</button>} position="right center">
@@ -14,6 +15,40 @@ const PopupExample = () => (
       </div>
     )}
   </Popup>
+);
+
+const Analyst = (props) => (
+  <tr>
+    <td>
+      <button class="btn btn-success" type="button">
+        Promote
+      </button>
+      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.analyst.id)}>
+        Remove
+      </button>
+    </td>
+    <td>{props.analyst.initials}</td>
+    <td>
+      <Link to={"/update/" + props.analyst._id}>Edit</Link>
+    </td>
+  </tr>
+);
+
+const LeadAnalyst = (props) => (
+  <tr>
+    <td>
+      <button class="btn btn-warning" type="button">
+        Demote
+      </button>
+      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.leadAnalyst.id)}>
+        Remove
+      </button>
+    </td>
+    <td>{props.leadAnalyst.initials}</td>
+    <td>
+      <Link to={"/update/" + props.leadAnalyst._id}>Edit</Link>
+    </td>
+  </tr>
 );
 //Event team Information
 class TeamInfo extends Component {
@@ -28,6 +63,11 @@ class TeamInfo extends Component {
     this.onChangeAnalystLastName = this.onChangeAnalystLastName.bind(this);
     this.onChangeAnalystInitials = this.onChangeAnalystInitials.bind(this);
     this.onChangeAnalystTitle = this.onChangeAnalystTitle.bind(this);
+    this.onSubmitLead = this.onSubmitLead.bind(this);
+    this.onSubmitAnalyst = this.onSubmitAnalyst.bind(this);
+    this.onRemove = this.onRemove.bind(this);
+    this.onDemoteClicked = this.onDemoteClicked.bind(this);
+    this.onPromoteClicked = this.onPromoteClicked.bind(this);
 
     this.state = {
       leadfirstname: "",
@@ -48,18 +88,20 @@ class TeamInfo extends Component {
     axios
       .get("http://localhost:4000/analyst/get")
       .then((response) => {
-        const results = [];
-        const results2 = [];
+        const resultsLead = [];
+        const resultsAnalyst = [];
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].isLead) {
-            results.push(response.data[i]);
+            console.log(`Lead added: ${response.data[i]}`);
+            resultsLead.push(response.data[i]);
           } else {
-            results2.push(response.data[i]);
+            console.log(`Analyst added: ${response.data[i]}`);
+            resultsAnalyst.push(response.data[i]);
           }
         }
         this.setState({
-          analysts: results2,
-          leadAnalysts: results,
+          analysts: resultsAnalyst,
+          leadAnalysts: resultsLead,
         });
       })
       .catch(function (error) {
@@ -67,42 +109,32 @@ class TeamInfo extends Component {
       });
   }
 
-  // componentDidMount() { //GET list of only Lead analysts
-  //   axios
-  //     .get("http://localhost:4000/analyst/get")
-  //     .then((response) => {
-  //       const leadAnalystsReturned
-  //       this.setState({
-  //         leadAnalysts: leadAnalystsReturned.filter(leadAnalyst => response.data.)
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
   onChangeLeadFirstName(e) {
     this.setState({
       leadfirstname: e.target.value,
     });
+    console.log(`Lead First: ${this.state.leadfirstname}`);
   }
 
   onChangeLeadLastName(e) {
     this.setState({
       leadlastname: e.target.value,
     });
+    console.log(`Lead Last: ${this.state.leadlastname}`);
   }
 
   onChangeLeadInitials(e) {
     this.setState({
       leadinitials: e.target.value,
     });
+    console.log(`Lead Initials: ${this.state.leadinitials}`);
   }
 
   onChangeLeadTitle(e) {
     this.setState({
       leadtitle: e.target.value,
     });
+    console.log(`Lead Title: ${this.state.leadtitle}`);
   }
 
   onChangeAnalystFirstName(e) {
@@ -129,99 +161,45 @@ class TeamInfo extends Component {
     });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    console.log("Analyst Updated");
-    console.log("Lead First Name: ${this.state.leadfirstname}");
-    console.log("Lead Last Name: ${this.state.leadlastname}");
-    console.log("Lead Initials: ${this.state.leadinitials}");
-    console.log("Lead Title: ${this.state.leadtitle}");
-    console.log("Analyst First Name: ${this.state.analystfirstname}");
-    console.log("Analyst Last Name: ${this.state.analystlastname}");
-    console.log("Analyst Initials: ${this.state.analsytinitials}");
-    console.log("Analyst Title: ${this.state.analysttitle}");
-
-    const editAnalyst = {
-      leadfirstname: this.state.leadfirstname,
-      leadlastname: this.state.leadlastname,
-      leadinitials: this.state.leadinitials,
-      leadtitle: this.state.leadtitle,
-      analystfirstname: this.state.analystfirstname,
-      analystlastname: this.state.analystlastname,
-      analystinitials: this.state.analystinitials,
-      analysttitle: this.state.analysttitle,
-    };
-
-    const newHistory = {
-      action: "Team information edited",
-      analyst: "",
-    };
-
-    axios
-      .post("http://localhost:4000/home/event/add", editAnalyst) //double check this
-      .then((res) => console.log(res.data));
-
-    axios
-      .post("http://localhost:4000/history/new", newHistory)
-      .then((res) => console.log(res.data));
-
-    this.setState({
-      leadfirstname: "",
-      leadlastname: "",
-      leadinitials: "",
-      leadtitle: "",
-      analystfirstname: "",
-      analystlastname: "",
-      analystinitials: "",
-      analysttitle: "",
-    });
-  }
-
   leadAnalystList() {
     return this.state.leadAnalysts.map(function (currentLead, i) {
-      return (
-        <tbody>
-          <th></th>
-          <th>{currentLead.leadinitials}</th>
-        </tbody>
-      );
+      return <LeadAnalyst leadAnalyst={currentLead} key={i} />;
     });
   }
 
   analystList() {
     return this.state.analysts.map(function (currentAnalyst, i) {
-      return (
-        <tbody>
-          <th></th>
-          <th>{currentAnalyst.analystinitials}</th>
-        </tbody>
-      );
+      return <Analyst analyst={currentAnalyst} key={i} />;
     });
   }
 
-  // analystList() {
-  //   return this.state.analysts.map(function (currentAnalyst, i) {
-  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
-  //   });
-  // }
+  onRemove(id) {
+    console.log(`Item to remove: ${id}`);
+  }
 
-  // leadAnalystList() {
-  //   return this.state.leadAnalysts.map(function (currentAnalyst, i) {
-  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
-  //   });
-  // }
+  onPromoteClicked(e) {
+    this.setState({
+      required: !this.state.required,
+    });
+  }
 
-  onSubmitAnalyst(e){
+  onDemoteClicked(e) {
+    this.setState({
+      required: !this.state.required,
+    });
+  }
+
+  onSubmitAnalyst(e) {
     e.preventDefault();
 
     const newAnalyst = {
       initials: this.state.analystinitials,
       first: this.state.analystfirstname,
       last: this.state.analystlastname,
+      title: this.state.analysttitle,
       ip: "",
       isLead: false,
-      title: this.state.analysttitle,
+      progress: 0,
     };
 
     const newHistory = {
@@ -237,24 +215,30 @@ class TeamInfo extends Component {
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-      this.setState({
-        analystfirstname: "",
-        analystlastname: "",
-        analystinitials: "",
-        analysttitle: "",
-      });
+    this.setState({
+      analystfirstname: "",
+      analystlastname: "",
+      analystinitials: "",
+      analysttitle: "",
+    });
   }
 
   onSubmitLead(e) {
     e.preventDefault();
 
+    console.log(`Lead Initials: ${this.state.leadinitials}`);
+    console.log(`Lead First: ${this.state.leadfirstname}`);
+    console.log(`Lead Last: ${this.state.leadlastname}`);
+    console.log(`Lead Title: ${this.state.leadtitle}`);
+
     const newLeadAnalyst = {
       initials: this.state.leadinitials,
       first: this.state.leadfirstname,
       last: this.state.leadlastname,
+      title: this.state.leadtitle,
       ip: "",
       isLead: true,
-      title: this.state.leadtitle,
+      progress: 0,
     };
 
     const newHistory = {
@@ -270,12 +254,12 @@ class TeamInfo extends Component {
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-      this.setState({
-        leadfirstname: "",
-        leadlastname: "",
-        leadinitials: "",
-        leadtitle: "",
-      });
+    this.setState({
+      leadfirstname: "",
+      leadlastname: "",
+      leadinitials: "",
+      leadtitle: "",
+    });
   }
 
   render() {
@@ -300,14 +284,12 @@ class TeamInfo extends Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      <input type="checkbox" id="check-all"></input>
-                    </th>
                     <th>Options</th>
                     <th>Initials</th>
+                    <th></th>
                   </tr>
                 </thead>
-                {this.leadAnalystList()}
+                <tbody>{this.leadAnalystList()}</tbody>
               </table>
             </div>
           </div>
@@ -318,7 +300,10 @@ class TeamInfo extends Component {
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <form onSubmit={this.onSubmitLead} class="form-horizontal form-label-left">
+              <form
+                onSubmit={this.onSubmitLead}
+                class="form-horizontal form-label-left"
+              >
                 <div class="form-group row ">
                   <label class="control-label col-md-3 col-sm-3 ">
                     First Name
@@ -393,14 +378,12 @@ class TeamInfo extends Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      <input type="checkbox" id="check-all"></input>
-                    </th>
                     <th>Options</th>
                     <th>Initials</th>
+                    <th></th>
                   </tr>
                 </thead>
-                {this.analystList()}
+                <tbody>{this.analystList()}</tbody>
               </table>
             </div>
           </div>

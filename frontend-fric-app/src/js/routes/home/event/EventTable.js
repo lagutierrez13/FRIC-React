@@ -70,6 +70,7 @@ class EventTable extends Component {
               <th>No. of Systems</th>
               <th>No. of Findings</th>
               <th>Progress</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{this.eventList()}</tbody>
