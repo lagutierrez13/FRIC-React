@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+
 // const slugify = require("slugify");
 
 //event Schema
