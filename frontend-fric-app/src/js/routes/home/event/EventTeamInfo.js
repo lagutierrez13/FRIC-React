@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { Link } from "react-router-dom";
 
 const PopupExample = () => (
   <Popup trigger={<button>?</button>} position="right center">
@@ -184,9 +185,18 @@ class TeamInfo extends Component {
     return this.state.leadAnalysts.map(function (currentLead, i) {
       return (
         <tbody>
-          <th></th>
-          <th></th>
+          <th>
+            <button class="btn btn-warning" type="submit" value="Save Event">
+              Demote
+            </button>
+            <button class="btn btn-danger" type="submit" value="Save Event">
+              Remove
+            </button>
+          </th>
           <th>{currentLead.initials}</th>
+          <th>
+            <Link to={"/update/" + currentLead.id}>Edit</Link>
+          </th>
         </tbody>
       );
     });
@@ -196,9 +206,18 @@ class TeamInfo extends Component {
     return this.state.analysts.map(function (currentAnalyst, i) {
       return (
         <tbody>
-          <th></th>
-          <th></th>
+          <th>
+            <button class="btn btn-success" type="submit" value="Save Event">
+              Promote
+            </button>
+            <button class="btn btn-danger" type="submit" value="Save Event">
+              Remove
+            </button>
+          </th>
           <th>{currentAnalyst.initials}</th>
+          <th>
+            <Link to={"/update/" + currentAnalyst.id}>Edit</Link>
+          </th>
         </tbody>
       );
     });
@@ -216,7 +235,7 @@ class TeamInfo extends Component {
   //   });
   // }
 
-  onSubmitAnalyst(e){
+  onSubmitAnalyst(e) {
     e.preventDefault();
 
     const newAnalyst = {
@@ -242,12 +261,12 @@ class TeamInfo extends Component {
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-      this.setState({
-        analystfirstname: "",
-        analystlastname: "",
-        analystinitials: "",
-        analysttitle: "",
-      });
+    this.setState({
+      analystfirstname: "",
+      analystlastname: "",
+      analystinitials: "",
+      analysttitle: "",
+    });
   }
 
   onSubmitLead(e) {
@@ -276,12 +295,12 @@ class TeamInfo extends Component {
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-      this.setState({
-        leadfirstname: "",
-        leadlastname: "",
-        leadinitials: "",
-        leadtitle: "",
-      });
+    this.setState({
+      leadfirstname: "",
+      leadlastname: "",
+      leadinitials: "",
+      leadtitle: "",
+    });
   }
 
   render() {
@@ -306,11 +325,9 @@ class TeamInfo extends Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      <input type="checkbox" id="check-all"></input>
-                    </th>
                     <th>Options</th>
                     <th>Initials</th>
+                    <th></th>
                   </tr>
                 </thead>
                 {this.leadAnalystList()}
@@ -324,7 +341,10 @@ class TeamInfo extends Component {
               <div class="clearfix"></div>
             </div>
             <div class="x_content">
-              <form onSubmit={this.onSubmitLead} class="form-horizontal form-label-left">
+              <form
+                onSubmit={this.onSubmitLead}
+                class="form-horizontal form-label-left"
+              >
                 <div class="form-group row ">
                   <label class="control-label col-md-3 col-sm-3 ">
                     First Name
@@ -399,11 +419,9 @@ class TeamInfo extends Component {
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      <input type="checkbox" id="check-all"></input>
-                    </th>
                     <th>Options</th>
                     <th>Initials</th>
+                    <th></th>
                   </tr>
                 </thead>
                 {this.analystList()}
