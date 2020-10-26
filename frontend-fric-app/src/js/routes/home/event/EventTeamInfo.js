@@ -16,6 +16,40 @@ const PopupExample = () => (
     )}
   </Popup>
 );
+
+const Analyst = (props) => (
+  <tr>
+    <td>
+      <button class="btn btn-success" type="button">
+        Promote
+      </button>
+      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.analyst.id)}>
+        Remove
+      </button>
+    </td>
+    <td>{props.analyst.initials}</td>
+    <td>
+      <Link to={"/update/" + props.analyst._id}>Edit</Link>
+    </td>
+  </tr>
+);
+
+const LeadAnalyst = (props) => (
+  <tr>
+    <td>
+      <button class="btn btn-warning" type="button">
+        Demote
+      </button>
+      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.leadAnalyst.id)}>
+        Remove
+      </button>
+    </td>
+    <td>{props.leadAnalyst.initials}</td>
+    <td>
+      <Link to={"/update/" + props.leadAnalyst._id}>Edit</Link>
+    </td>
+  </tr>
+);
 //Event team Information
 class TeamInfo extends Component {
   constructor(props) {
@@ -31,7 +65,9 @@ class TeamInfo extends Component {
     this.onChangeAnalystTitle = this.onChangeAnalystTitle.bind(this);
     this.onSubmitLead = this.onSubmitLead.bind(this);
     this.onSubmitAnalyst = this.onSubmitAnalyst.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onRemove = this.onRemove.bind(this);
+    this.onDemoteClicked = this.onDemoteClicked.bind(this);
+    this.onPromoteClicked = this.onPromoteClicked.bind(this);
 
     this.state = {
       leadfirstname: "",
@@ -72,20 +108,6 @@ class TeamInfo extends Component {
         console.log(error);
       });
   }
-
-  // componentDidMount() { //GET list of only Lead analysts
-  //   axios
-  //     .get("http://localhost:4000/analyst/get")
-  //     .then((response) => {
-  //       const leadAnalystsReturned
-  //       this.setState({
-  //         leadAnalysts: leadAnalystsReturned.filter(leadAnalyst => response.data.)
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
 
   onChangeLeadFirstName(e) {
     this.setState({
@@ -139,108 +161,33 @@ class TeamInfo extends Component {
     });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    console.log("Analyst Updated");
-    console.log("Lead First Name: ${this.state.leadfirstname}");
-    console.log("Lead Last Name: ${this.state.leadlastname}");
-    console.log("Lead Initials: ${this.state.leadinitials}");
-    console.log("Lead Title: ${this.state.leadtitle}");
-    console.log("Analyst First Name: ${this.state.analystfirstname}");
-    console.log("Analyst Last Name: ${this.state.analystlastname}");
-    console.log("Analyst Initials: ${this.state.analsytinitials}");
-    console.log("Analyst Title: ${this.state.analysttitle}");
-
-    const editAnalyst = {
-      leadfirstname: this.state.leadfirstname,
-      leadlastname: this.state.leadlastname,
-      leadinitials: this.state.leadinitials,
-      leadtitle: this.state.leadtitle,
-      analystfirstname: this.state.analystfirstname,
-      analystlastname: this.state.analystlastname,
-      analystinitials: this.state.analystinitials,
-      analysttitle: this.state.analysttitle,
-    };
-
-    const newHistory = {
-      action: "Team information edited",
-      analyst: "",
-    };
-
-    axios
-      .post("http://localhost:4000/home/event/add", editAnalyst) //double check this
-      .then((res) => console.log(res.data));
-
-    axios
-      .post("http://localhost:4000/history/new", newHistory)
-      .then((res) => console.log(res.data));
-
-    this.setState({
-      leadfirstname: "",
-      leadlastname: "",
-      leadinitials: "",
-      leadtitle: "",
-      analystfirstname: "",
-      analystlastname: "",
-      analystinitials: "",
-      analysttitle: "",
-    });
-  }
-
   leadAnalystList() {
     return this.state.leadAnalysts.map(function (currentLead, i) {
-      return (
-        <tbody>
-          <th>
-            <button class="btn btn-warning" type="submit" value="Save Event">
-              Demote
-            </button>
-            <button class="btn btn-danger" type="submit" value="Save Event">
-              Remove
-            </button>
-          </th>
-          <th>{currentLead.initials}</th>
-          <th>
-            <Link to={"/update/" + currentLead.id}>Edit</Link>
-          </th>
-        </tbody>
-      );
+      return <LeadAnalyst leadAnalyst={currentLead} key={i} />;
     });
   }
 
   analystList() {
     return this.state.analysts.map(function (currentAnalyst, i) {
-      return (
-        <tbody>
-          <th>
-            <button class="btn btn-success" type="submit" value="Save Event">
-              Promote
-            </button>
-            <button class="btn btn-danger" type="submit" value="Save Event">
-              Remove
-            </button>
-          </th>
-          <th>{currentAnalyst.initials}</th>
-          <th>
-            <Link to={"/update/" + currentAnalyst.id}>Edit</Link>
-          </th>
-        </tbody>
-      );
+      return <Analyst analyst={currentAnalyst} key={i} />;
     });
   }
 
-  // analystList() {
-  //   return this.state.analysts.map(function (currentAnalyst, i) {
-  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
-  //   });
-  // }
+  onRemove(id) {
+    console.log(`Item to remove: ${id}`);
+  }
 
-  // leadAnalystList() {
-  //   return this.state.leadAnalysts.map(function (currentAnalyst, i) {
-  //     return <Analyst analyst={currentAnalyst.analystinitials} key={i} />;
-  //   });
-  // }
+  onPromoteClicked(e) {
+    this.setState({
+      required: !this.state.required,
+    });
+  }
+
+  onDemoteClicked(e) {
+    this.setState({
+      required: !this.state.required,
+    });
+  }
 
   onSubmitAnalyst(e) {
     e.preventDefault();
@@ -342,7 +289,7 @@ class TeamInfo extends Component {
                     <th></th>
                   </tr>
                 </thead>
-                {this.leadAnalystList()}
+                <tbody>{this.leadAnalystList()}</tbody>
               </table>
             </div>
           </div>
@@ -436,7 +383,7 @@ class TeamInfo extends Component {
                     <th></th>
                   </tr>
                 </thead>
-                {this.analystList()}
+                <tbody>{this.analystList()}</tbody>
               </table>
             </div>
           </div>
