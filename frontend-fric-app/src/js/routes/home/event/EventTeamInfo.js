@@ -48,18 +48,20 @@ class TeamInfo extends Component {
     axios
       .get("http://localhost:4000/analyst/get")
       .then((response) => {
-        const results = [];
-        const results2 = [];
+        const resultsLead = [];
+        const resultsAnalyst = [];
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].isLead) {
-            results.push(response.data[i]);
+            console.log(`Lead added: ${response.data[i]}`);
+            resultsLead.push(response.data[i]);
           } else {
-            results2.push(response.data[i]);
+            console.log(`Analyst added: ${response.data[i]}`);
+            resultsAnalyst.push(response.data[i]);
           }
         }
         this.setState({
-          analysts: results2,
-          leadAnalysts: results,
+          analysts: resultsAnalyst,
+          leadAnalysts: resultsLead,
         });
       })
       .catch(function (error) {
@@ -183,7 +185,8 @@ class TeamInfo extends Component {
       return (
         <tbody>
           <th></th>
-          <th>{currentLead.leadinitials}</th>
+          <th></th>
+          <th>{currentLead.initials}</th>
         </tbody>
       );
     });
@@ -194,7 +197,8 @@ class TeamInfo extends Component {
       return (
         <tbody>
           <th></th>
-          <th>{currentAnalyst.analystinitials}</th>
+          <th></th>
+          <th>{currentAnalyst.initials}</th>
         </tbody>
       );
     });
@@ -219,9 +223,10 @@ class TeamInfo extends Component {
       initials: this.state.analystinitials,
       first: this.state.analystfirstname,
       last: this.state.analystlastname,
+      title: this.state.analysttitle,
       ip: "",
       isLead: false,
-      title: this.state.analysttitle,
+      progress: 0,
     };
 
     const newHistory = {
@@ -252,9 +257,10 @@ class TeamInfo extends Component {
       initials: this.state.leadinitials,
       first: this.state.leadfirstname,
       last: this.state.leadlastname,
+      title: this.state.leadtitle,
       ip: "",
       isLead: true,
-      title: this.state.leadtitle,
+      progress: 0,
     };
 
     const newHistory = {
