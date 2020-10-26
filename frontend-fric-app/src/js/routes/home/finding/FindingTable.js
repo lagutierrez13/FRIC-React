@@ -7,21 +7,19 @@ import "reactjs-popup/dist/index.css";
 
 const Finding = (props) => (
   <tr>
-    <td><input type="checkbox" type={props.Finding.findingID}></input></td>
-    <td>{props.Finding.findingID}</td>
-    <td>{props.Finding.title}</td>
-    <td>{props.Finding.findingID}</td>
-    <td>{props.Finding.findingSystem}</td>
-    <td>{props.Finding.findingTask}</td>
-    <td>{props.Finding.findingSubtask}</td>
-    <td>{props.Finding.findingAnalyst}</td>
-    <td>{props.Finding.status}</td>
-    <td>{props.Finding.classification}</td>
-    <td>{props.Finding.type}</td>
-    <td>{props.Finding.risk}</td>
-    <td></td>
+    <td><input type="checkbox" value={props.finding.findingID}></input></td>
+    <td>{props.finding.findingID}</td>
+    <td>{props.finding.title}</td>
+    <td>{props.finding.findingSystem}</td>
+    <td>{props.finding.findingTask}</td>
+    <td>{props.finding.findingSubtask}</td>
+    <td>{props.finding.findingAnalyst}</td>
+    <td>{props.finding.status}</td>
+    <td>{props.finding.classification}</td>
+    <td>{props.finding.type}</td>
+    <td>{props.finding.risk}</td>
     <td>
-      <Link to={"/update/" + props.finding._id}>Edit</Link>
+      <Link to={"/update/" + props.finding._id}><span class="glyphicon glyphicon-edit"></span></Link>
     </td>
   </tr>
 );
@@ -47,7 +45,7 @@ class FindingTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/home/finding/get")
+      .get("http://localhost:4000/home/findings/get")
       .then((response) => {
         this.setState({ findings: response.data });
       })
@@ -87,9 +85,10 @@ class FindingTable extends Component {
                 <th>Classification</th>
                 <th>Type</th>
                 <th>Risk</th>
+                <th>Edit</th>
             </tr>
           </thead>
-          {/* <tbody>{this.FindingList()}</tbody> */}
+          <tbody>{this.findingList()}</tbody>
         </table>
       </div>
     );
