@@ -29,6 +29,9 @@ class TeamInfo extends Component {
     this.onChangeAnalystLastName = this.onChangeAnalystLastName.bind(this);
     this.onChangeAnalystInitials = this.onChangeAnalystInitials.bind(this);
     this.onChangeAnalystTitle = this.onChangeAnalystTitle.bind(this);
+    this.onSubmitLead = this.onSubmitLead.bind(this);
+    this.onSubmitAnalyst = this.onSubmitAnalyst.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       leadfirstname: "",
@@ -88,24 +91,28 @@ class TeamInfo extends Component {
     this.setState({
       leadfirstname: e.target.value,
     });
+    console.log(`Lead First: ${this.state.leadfirstname}`);
   }
 
   onChangeLeadLastName(e) {
     this.setState({
       leadlastname: e.target.value,
     });
+    console.log(`Lead Last: ${this.state.leadlastname}`);
   }
 
   onChangeLeadInitials(e) {
     this.setState({
       leadinitials: e.target.value,
     });
+    console.log(`Lead Initials: ${this.state.leadinitials}`);
   }
 
   onChangeLeadTitle(e) {
     this.setState({
       leadtitle: e.target.value,
     });
+    console.log(`Lead Title: ${this.state.leadtitle}`);
   }
 
   onChangeAnalystFirstName(e) {
@@ -271,6 +278,11 @@ class TeamInfo extends Component {
 
   onSubmitLead(e) {
     e.preventDefault();
+
+    console.log(`Lead Initials: ${this.state.leadinitials}`);
+    console.log(`Lead First: ${this.state.leadfirstname}`);
+    console.log(`Lead Last: ${this.state.leadlastname}`);
+    console.log(`Lead Title: ${this.state.leadtitle}`);
 
     const newLeadAnalyst = {
       initials: this.state.leadinitials,
