@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
 import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 class EventClassificationTable extends Component {
   constructor(props) {
@@ -92,7 +92,7 @@ class EventClassificationTable extends Component {
 
   onRemoveValue = (i) => {
     this.setState((state) => {
-      const values = state.values.filter((item, j) => i != j);
+      const values = state.values.filter((item, j) => i !== j);
 
       return {
         values,

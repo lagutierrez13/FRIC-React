@@ -14,6 +14,7 @@ class PageContent extends Component {
         { Home }
         { Configuration }
         { Event }
+
       </div>
     )
   }

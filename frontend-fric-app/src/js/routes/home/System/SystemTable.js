@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
- 
+
 const System = props => (
   <tr>
       <td>{props.system.systemname}</td>
@@ -41,7 +41,7 @@ class SystemTable extends Component {
     render() {
         return (
             <div>
-                <h3>System Overview</h3>
+                <h2>System Overview</h2>
                 <table className="table table-bordered">
                     <thead>
                         <tr>

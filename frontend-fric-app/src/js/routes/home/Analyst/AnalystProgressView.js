@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
-
 import { XPanel, PageTitle } from "../../../components";
-import DetailedView from "./EventInfoForm";
-import EventTable from "./EventTable";
-import TeamInfo from "./EventTeamInfo";
+import TaskTable from "../Task/TaskTable";
+import SubtaskTable from "../Subtask/SubtaskTable";
+import FindingOverviewTable from "../findings/FindingOverviewTable";
+import SystemTable from "../System/SystemTable";
 
-
-
-class EventView extends Component {
+class AnalystProgressView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,20 +22,16 @@ class EventView extends Component {
       <div>
         <PageTitle
           showSearch
-          title="Event"
+          title="Analyst Progress View"
           onSearch={(text) => console.log(text)}
         />
-
         <Clearfix />
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="">
-                <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
-                <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
-              </XPanel.Title>
+              <XPanel.Title title="Tasks Overview Table"></XPanel.Title>
               <XPanel.Content>
-                <EventTable />
+                <TaskTable />
               </XPanel.Content>
             </XPanel>
           </Col>
@@ -45,10 +39,9 @@ class EventView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Detailed View"></XPanel.Title>
-
+              <XPanel.Title title="Subtasks Overview Table"></XPanel.Title>
               <XPanel.Content>
-                <DetailedView />
+                <SubtaskTable />
               </XPanel.Content>
             </XPanel>
           </Col>
@@ -56,17 +49,27 @@ class EventView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Event Team Information"></XPanel.Title>
+              <XPanel.Title title="Findings Overview Table"></XPanel.Title>
               <XPanel.Content>
-                <TeamInfo />
+                <FindingOverviewTable />
               </XPanel.Content>
             </XPanel>
           </Col>
         </Row>
-
+        <Row>
+          <Col md={12} sm={12} xs={12}>
+            <XPanel visible={panelVisible} onHide={onHide}>
+              <XPanel.Title title="Systems Overview Table"></XPanel.Title>
+              <XPanel.Content>
+                <SystemTable />
+              </XPanel.Content>
+            </XPanel>
+          </Col>
+        </Row>
       </div>
     );
   }
+
 }
 
-export default EventView;
+export default AnalystProgressView;
