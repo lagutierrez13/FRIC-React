@@ -91,6 +91,7 @@ analystCtrl.updateAnalyst = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
 analystCtrl.deleteAnalyst = async (req, res) => {
   try {
     await Analyst.findOneAndDelete({ _id: req.params.id });
