@@ -1,7 +1,5 @@
-import React, { Component, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import axios from "axios";
-import Modal from "react-bootstrap/Modal";
 import EditAnalystModal from "./EditAnalystModal";
 
 class LeadAnalyst extends Component {
@@ -18,8 +16,6 @@ class LeadAnalyst extends Component {
       .then((res) => console.log(res.data));
     console.log("Lead demoted");
   };
-
-  onEditLeadAnalyst = (id) => {};
 
   render() {
     const { _id, initials } = this.props.leadAnalyst;
@@ -43,7 +39,7 @@ class LeadAnalyst extends Component {
         </td>
         <td>{initials}</td>
         <td>
-          <EditAnalystModal />
+          <EditAnalystModal analyst={this.props.leadAnalyst} />
         </td>
       </tr>
     );

@@ -16,6 +16,20 @@ class EditEventModal extends React.Component {
   }
 
   render() {
+    const {
+      name,
+      description,
+      no_of_findings,
+      no_of_systems,
+      type,
+      version,
+      assessdate,
+      sctg,
+      classification,
+      declassificationdate,
+      customername,
+      organizationname,
+    } = this.props.event;
     return (
       <div>
         <Button variant="primary" onClick={() => this.handleModalShowHide()}>
@@ -35,7 +49,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.name}
+                    value={name}
                     onChange={this.onChangeName}
                   />
                 </div>
@@ -47,7 +61,7 @@ class EditEventModal extends React.Component {
                   <textarea
                     class="form-control"
                     rows="4"
-                    value={this.state.description}
+                    value={description}
                     onChange={this.onChangeDescription}
                   ></textarea>
                 </div>
@@ -80,7 +94,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.version}
+                    value={version}
                     onChange={this.onChangeVersion}
                   />
                 </div>
@@ -94,7 +108,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.assessdate}
+                    value={assessdate}
                     onChange={this.onChangeAssesDate}
                   />
                 </div>
@@ -108,7 +122,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.organizationname}
+                    value={organizationname}
                     onChange={this.onChangeOrganizationName}
                   />
                 </div>
@@ -122,7 +136,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.sctg}
+                    value={sctg}
                     onChange={this.onChangeSCTG}
                   />
                 </div>
@@ -153,7 +167,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.declassificationdate}
+                    value={declassificationdate}
                     onChange={this.onChangeDeclassDate}
                   />
                 </div>
@@ -167,7 +181,7 @@ class EditEventModal extends React.Component {
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.customername}
+                    value={customername}
                     onChange={this.onChangeCustomerName}
                   />
                 </div>

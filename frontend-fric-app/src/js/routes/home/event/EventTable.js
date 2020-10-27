@@ -12,7 +12,7 @@ const Event = (props) => (
     <td>{props.event.no_of_findings}</td>
     <td></td>
     <td>
-      <EditEventModal/>
+      <EditEventModal event={props.event}/>
     </td>
   </tr>
 );

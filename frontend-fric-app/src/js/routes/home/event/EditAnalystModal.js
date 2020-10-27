@@ -14,6 +14,7 @@ class EditAnalystModal extends React.Component {
   }
 
   render() {
+    const { _id, initials, first, last, title, ip, isLead } = this.props.analyst;
     return (
       <div>
         <Button variant="primary" onClick={() => this.handleModalShowHide()}>
@@ -35,7 +36,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={this.state.leadfirstname}
+                value={initials}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -46,7 +47,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={this.state.leadfirstname}
+                value={first}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -57,7 +58,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={this.state.leadfirstname}
+                value={last}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -68,7 +69,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={this.state.leadfirstname}
+                value={title}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -79,7 +80,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={this.state.leadfirstname}
+                value={ip}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
