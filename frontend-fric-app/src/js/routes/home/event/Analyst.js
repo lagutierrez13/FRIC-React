@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import EditAnalystModal from "./EditAnalystModal";
 
 class Analyst extends Component {
   onRemoveAnalyst = (id) => {
@@ -15,6 +16,10 @@ class Analyst extends Component {
       .put(`http://localhost:4000/analyst/promotedemote/${id}`)
       .then((res) => console.log(res.data));
     console.log("Analyst promoted");
+  };
+
+  onEditAnalyst = (id) => {
+    console.log(`Editing analyst`);
   };
 
   render() {
@@ -39,7 +44,7 @@ class Analyst extends Component {
         </td>
         <td>{initials}</td>
         <td>
-          <Link to={"/update/" + _id}>Edit</Link>
+          <EditAnalystModal />
         </td>
       </tr>
     );

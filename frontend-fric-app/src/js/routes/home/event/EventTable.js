@@ -3,6 +3,7 @@ import Popup from "reactjs-popup";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
+import EditEventModal from "./EditEventModal";
 
 const Event = (props) => (
   <tr>
@@ -11,7 +12,7 @@ const Event = (props) => (
     <td>{props.event.no_of_findings}</td>
     <td></td>
     <td>
-      <Link to={"/update/" + props.event._id}>Edit</Link>
+      <EditEventModal/>
     </td>
   </tr>
 );
