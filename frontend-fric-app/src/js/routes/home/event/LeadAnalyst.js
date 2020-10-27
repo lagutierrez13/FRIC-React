@@ -11,7 +11,10 @@ class LeadAnalyst extends Component {
   };
 
   onDemoteLeadAnalyst = (id) => {
-    console.log("Lead promoted");
+    axios
+      .put(`http://localhost:4000/analyst/promotedemote/${id}`)
+      .then((res) => console.log(res.data));
+    console.log("Lead demoted");
   };
 
   render() {

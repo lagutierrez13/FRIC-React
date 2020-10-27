@@ -82,14 +82,82 @@ analystCtrl.createAnalyst = async (req, res) => {
 //     res.status(404).send(err);
 //   }
 // };
+
+// analystCtrl.updateAnalyst = async (req, res) => {
+//   const { initials } = req.body;
+//   try {
+//     await Analyst.findOneAndUpdate({ _id: req.params.id }, { initials });
+//     res.status(200).send({ message: "Analyst update successfully" });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
+
 analystCtrl.updateAnalyst = async (req, res) => {
-  const { initials } = req.body;
-  try {
-    await Analyst.findOneAndUpdate({ _id: req.params.id }, { initials });
-    res.status(200).send({ message: "Analyst update successfully" });
-  } catch (error) {
-    res.status(500).send(error);
+  const body = req.body;
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
   }
+  Analyst.findOne({ _id: req.params.id }, (err, analyst) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "Movie not found!",
+      });
+    }
+    analyst.initials = body.initials;
+    analyst.first = body.first;
+    analyst.last = body.last;
+    analyst.title = body.title;
+    analyst.ip = body.ip;
+    analyst.isLead = body.isLead;
+    analyst.progress = body.progress;
+    analyst
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: analyst._id,
+          message: "Analyst updated!",
+        });
+      })
+      .catch((error) => {
+        return res.status(404).json({
+          error,
+          message: "Analyst not updated!",
+        });
+      });
+  });
+};
+
+analystCtrl.promoteDemoteAnalyst = async (req, res) => {
+  Analyst.findOne({ _id: req.params.id }, (err, analyst) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "Analyst not found!",
+      });
+    }
+    analyst.isLead = !analyst.isLead;
+    analyst
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: analyst._id,
+          message: "Analyst promoted!",
+        });
+      })
+      .catch((error) => {
+        return res.status(404).json({
+          error,
+          message: "Analyst not promoted!",
+        });
+      });
+  });
 };
 
 analystCtrl.deleteAnalyst = async (req, res) => {

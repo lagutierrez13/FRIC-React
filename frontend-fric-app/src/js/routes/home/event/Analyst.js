@@ -11,6 +11,9 @@ class Analyst extends Component {
   };
 
   onPromoteAnalyst = (id) => {
+    axios
+      .put(`http://localhost:4000/analyst/promotedemote/${id}`)
+      .then((res) => console.log(res.data));
     console.log("Analyst promoted");
   };
 
@@ -22,7 +25,7 @@ class Analyst extends Component {
           <button
             class="btn btn-success"
             type="button"
-            onClick={() => this.onPromoteAnalyst}
+            onClick={() => this.onPromoteAnalyst(_id)}
           >
             Promote
           </button>
