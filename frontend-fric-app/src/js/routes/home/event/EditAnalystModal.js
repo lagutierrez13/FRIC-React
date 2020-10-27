@@ -2,11 +2,50 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 
 class EditAnalystModal extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.onChangeFirstName = this.onChangeFirstName.bind(this);
+
     this.state = {
       showHide: false,
+      analyst: props.analyst,
+      newInitials: props.analyst.initials,
+      newFirst: props.analyst.first,
+      newLast: props.analyst.last,
+      newTitle: props.analyst.title,
+      newIP: props.analyst.ip,
     };
+  }
+
+  onChangeInitials(e) {
+    this.setState({
+      newInitials: e.target.value,
+    });
+  }
+
+  onChangeFirstName(e) {
+    this.setState({
+      newFirst: e.target.value,
+    });
+  }
+
+  onChangeLastName(e) {
+    this.setState({
+      newLast: e.target.value,
+    });
+  }
+
+  onChangeTitle(e) {
+    this.setState({
+      newTitle: e.target.value,
+    });
+  }
+
+  onChangeIP(e) {
+    this.setState({
+      newIP: e.target.value,
+    });
   }
 
   handleModalShowHide() {
@@ -14,7 +53,6 @@ class EditAnalystModal extends React.Component {
   }
 
   render() {
-    const { _id, initials, first, last, title, ip, isLead } = this.props.analyst;
     return (
       <div>
         <Button variant="primary" onClick={() => this.handleModalShowHide()}>
@@ -36,8 +74,8 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={initials}
-                onChange={this.onChangeLeadFirstName}
+                defaultValue={this.state.newInitials}
+                onChange={this.onChangeInitials}
               />
             </div>
           </div>
@@ -47,7 +85,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={first}
+                defaultValue={this.state.analyst.first}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -58,7 +96,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={last}
+                defaultValue={this.state.analyst.last}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -69,7 +107,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={title}
+                defaultValue={this.state.analyst.title}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
@@ -80,7 +118,7 @@ class EditAnalystModal extends React.Component {
               <input
                 type="text"
                 class="form-control"
-                value={ip}
+                defaultValue={this.state.analyst.ip}
                 onChange={this.onChangeLeadFirstName}
               />
             </div>
