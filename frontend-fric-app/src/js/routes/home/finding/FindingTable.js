@@ -7,7 +7,7 @@ import "reactjs-popup/dist/index.css";
 
 const Finding = (props) => (
   <tr>
-    <td><input type="checkbox" value={props.finding.findingID}></input></td>
+    <td><input type="checkbox" name="findingCheck" ></input></td>
     <td>{props.finding.findingID}</td>
     <td>{props.finding.title}</td>
     <td>{props.finding.findingSystem}</td>
@@ -37,10 +37,34 @@ const FindingContentToolTip = () => (
   </Popup>
 );
 
+const reportButtons = () => {
+  
+  return (
+    <div>
+      <button class="btn btn-primary">
+        ERB Report
+      </button>
+
+      <button class="btn btn-primary">
+        Risk Matrix
+      </button>
+
+      <button class="btn btn-primary">
+        Final Report
+      </button>
+    </div>
+  );
+  
+};
+
 class FindingTable extends Component {
   constructor(props) {
     super(props);
-    this.state = { findings: [] };
+    this.state = { 
+      findings: [],
+      findingElements: [],
+      checkedFindings: [] };
+      
   }
 
   componentDidMount() {
@@ -54,11 +78,21 @@ class FindingTable extends Component {
       });
   }
 
-  findingList() {
-    return this.state.findings.map(function (currentFinding, i) {
+  findingList = () =>{
+    return this.state.findings.map((currentFinding, i) => {
       return <Finding finding={currentFinding} key={i} />;
     });
   }
+
+  // checkFinding(props){
+  //   let checkedFindings = this.state.checkedFindings
+  //   if(!checkedFindings.includes(props.finding)){
+  //     console.log(props.finding);
+  //   }
+  //   else{
+  //     console.log("Removed");
+  //   }
+
 
   render() {
     return (
@@ -90,6 +124,7 @@ class FindingTable extends Component {
           </thead>
           <tbody>{this.findingList()}</tbody>
         </table>
+        {reportButtons()}
       </div>
     );
   }

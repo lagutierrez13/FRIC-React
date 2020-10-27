@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
 import FindingTable from "./FindingTable";
-// import DetailedView from "./FindingForm";
+import DetailedView from "./FindingForm";
 
 class FindingView extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class FindingView extends Component {
               <XPanel.Title title="Detailed"></XPanel.Title>
               <XPanel.Content>
                   <h2> Detailed View </h2>
-                {/* <DetailedView /> */}
+                <DetailedView />
               </XPanel.Content>
             </XPanel>
           </Col>
