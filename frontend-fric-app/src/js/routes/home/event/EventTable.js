@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
 import EditEventModal from "./EditEventModal";

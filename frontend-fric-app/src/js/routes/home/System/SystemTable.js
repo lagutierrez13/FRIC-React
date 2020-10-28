@@ -1,20 +1,31 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import Popup from "reactjs-popup";
 import axios from "axios";
+import EditSystemModal from "./EditSystemModal";
 
 const System = (props) => (
   <tr>
-    <td>
-      <input type="checkbox" type={props.system.systemID}></input>
-    </td>
     <td>{props.system.systemname}</td>
     <td>{props.system.no_of_tasks}</td>
     <td>{props.system.no_of_findings}</td>
     <td></td>
     <td>
-      <Link to={"/update/" + props.system._id}>Edit</Link>
+      <EditSystemModal system={props.system}/>
     </td>
   </tr>
+);
+
+const PopupExample = () => (
+  <Popup trigger={<button>?</button>} position="right center">
+    {(close) => (
+      <div>
+        Shows Systems information
+        <a className="close" onClick={close}>
+          &times;
+        </a>
+      </div>
+    )}
+  </Popup>
 );
 
 class SystemTable extends Component {
@@ -42,20 +53,23 @@ class SystemTable extends Component {
 
   render() {
     return (
-      <div>
-        <h3>System Overview</h3>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th></th>
-              <th>System Name</th>
-              <th>No. of Tasks</th>
-              <th>No. of Findings</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>{this.systemList()}</tbody>
-        </table>
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>
+            System Contents Table <PopupExample />{" "}
+          </h2>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>System Name</th>
+                <th>No. of Tasks</th>
+                <th>No. of Findings</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>{this.systemList()}</tbody>
+          </table>
+        </div>
       </div>
     );
   }
