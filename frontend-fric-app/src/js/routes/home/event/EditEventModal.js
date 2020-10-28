@@ -1,19 +1,140 @@
 import React from "react";
+import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
 
 class EditEventModal extends React.Component {
   constructor(props) {
     super(props);
+
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeType = this.onChangeType.bind(this);
+    this.onChangeVersion = this.onChangeVersion.bind(this);
+    this.onChangeAssesDate = this.onChangeAssesDate.bind(this);
+    this.onChangeSCTG = this.onChangeSCTG.bind(this);
+    this.onChangeClassification = this.onChangeClassification.bind(this);
+    this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this);
+    this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
+    this.onChangeOrganizationName = this.onChangeOrganizationName.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
     this.state = {
       showHide: false,
       event: props.event,
+      _id: props.event._id,
+      newName: props.event.name,
+      newDescription: props.event.description,
+      newType: props.event.type,
+      newVersion: props.event.version,
+      newAssessDate: props.event.assessdate,
+      newSctg: props.event.sctg,
+      newClassification: props.event.classification,
+      newDeclassificationDate: props.event.declassificationdate,
+      newCustomerName: props.event.customername,
+      newOrganizationName: props.event.organizationname,
       valuesClassification: [1, 2, 3],
       valuesType: [1, 2, 3],
     };
   }
 
+  onChangeName(e) {
+    this.setState({
+      newName: e.target.value,
+    });
+  }
+
+  onChangeDescription(e) {
+    this.setState({
+      newDescription: e.target.value,
+    });
+  }
+
+  onChangeType(e) {
+    this.setState({
+      newType: e.target.value,
+    });
+  }
+
+  onChangeVersion(e) {
+    this.setState({
+      newVersion: e.target.value,
+    });
+  }
+
+  onChangeAssesDate(e) {
+    this.setState({
+      newAssessDate: e.target.value,
+    });
+  }
+
+  onChangeSCTG(e) {
+    this.setState({
+      newSctg: e.target.value,
+    });
+  }
+
+  onChangeClassification(e) {
+    this.setState({
+      newClassification: e.target.value,
+    });
+  }
+
+  onChangeDeclassDate(e) {
+    this.setState({
+      newDeclassificationDate: e.target.value,
+    });
+  }
+
+  onChangeCustomerName(e) {
+    this.setState({
+      newCustomerName: e.target.value,
+    });
+  }
+
+  onChangeOrganizationName(e) {
+    this.setState({
+      newOrganizationName: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const updatedEvent = {
+      name: this.state.newName,
+      description: this.state.newDescription,
+      type: this.state.newType,
+      version: this.state.newVersion,
+      assessdate: this.state.newAssessDate,
+      sctg: this.state.newSctg,
+      classification: this.state.newClassification,
+      declassificationdate: this.state.newDeclassificationDate,
+      customername: this.state.newCustomerName,
+      organizationname: this.state.newOrganizationName,
+    };
+
+    console.log(`Name: ${updatedEvent.name}`);
+    console.log(`Description: ${updatedEvent.description}`);
+    console.log(`Type: ${updatedEvent.type}`);
+    console.log(`Version: ${updatedEvent.version}`);
+    console.log(`Assess Date: ${updatedEvent.assessdate}`);
+
+    const newHistory = {
+      action: `Event: ${this.state.newName} was edited`,
+      analyst: "",
+    };
+
+    axios
+      .put(`http://localhost:4000/home/event/update/${this.state._id}`, updatedEvent)
+      .then((res) => console.log(res.data));
+
+    axios
+      .post("http://localhost:4000/history/new", newHistory)
+      .then((res) => console.log(res.data));
   }
 
   render() {
@@ -173,24 +294,22 @@ class EditEventModal extends React.Component {
                   />
                 </div>
               </div>
+              <button
+                class="btn btn-danger"
+                type="button"
+                onClick={() => this.handleModalShowHide()}
+              >
+                Cancel
+              </button>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                onClick={() => this.handleModalShowHide()}
+              >
+                Save Changes
+              </button>
             </form>
           </Modal.Body>
-          <Modal.Footer>
-            <button
-              class="btn btn-danger"
-              type="button"
-              onClick={() => this.handleModalShowHide()}
-            >
-              Cancel
-            </button>
-            <button
-              class="btn btn-primary"
-              type="button"
-              onClick={() => this.handleModalShowHide()}
-            >
-              Save Changes
-            </button>
-          </Modal.Footer>
         </Modal>
       </div>
     );

@@ -105,7 +105,7 @@ analystCtrl.updateAnalyst = async (req, res) => {
     if (err) {
       return res.status(404).json({
         err,
-        message: "Movie not found!",
+        message: "Analyst not found!",
       });
     }
     analyst.initials = body.initials;

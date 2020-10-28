@@ -38,7 +38,7 @@ class EventTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/home/events/get")
+      .get("http://localhost:4000/home/event/get")
       .then((response) => {
         this.setState({ events: response.data });
       })
