@@ -1,18 +1,10 @@
 const { Schema, model } = require("mongoose");
 // const slugify = require("slugify");
 
-let systemSchema = new Schema(
+let notificationSchema = new Schema(
     {
-        systemname: String,
-        systemdescription: String,
-        assesslocation: String,
-        roomnumber: String,
-        eventrouter: String,
-        eventswitch: String,
-        testplan: String,
-        no_of_findings: String,
-        no_of_tasks: String,
-        progress: String,
+        required: Boolean,
+        values: [String]
         // slug: {
         //     type: String,
         //     required: true,
@@ -24,7 +16,6 @@ let systemSchema = new Schema(
     }
 );
 
-
 // systemSchema.pre("validate", function(next) {
 //     const system = this;
     
@@ -35,7 +26,7 @@ let systemSchema = new Schema(
 //     next();
 // })
 
-const System = model("System", systemSchema);
+const Notification = model("Notification", notificationSchema);
 
 //export
-module.exports = System;
+module.exports = Notification;

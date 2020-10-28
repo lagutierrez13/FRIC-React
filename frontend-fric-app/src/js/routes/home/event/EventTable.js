@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
+import EditEventModal from "./EditEventModal";
 
 const Event = (props) => (
   <tr>
@@ -11,7 +11,7 @@ const Event = (props) => (
     <td>{props.event.no_of_findings}</td>
     <td></td>
     <td>
-      <Link to={"/update/" + props.event._id}>Edit</Link>
+      <EditEventModal event={props.event}/>
     </td>
   </tr>
 );
@@ -37,7 +37,7 @@ class EventTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/home/events/get")
+      .get("http://localhost:4000/home/event/get")
       .then((response) => {
         this.setState({ events: response.data });
       })
@@ -70,6 +70,7 @@ class EventTable extends Component {
               <th>No. of Systems</th>
               <th>No. of Findings</th>
               <th>Progress</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{this.eventList()}</tbody>
