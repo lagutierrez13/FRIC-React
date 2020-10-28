@@ -3,13 +3,14 @@ import Popup from "reactjs-popup";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
 import EditEventModal from "./EditEventModal";
+import ProgressBar from "react-bootstrap/ProgressBar"
 
 const Event = (props) => (
   <tr>
     <td>{props.event.name}</td>
     <td>{props.event.no_of_systems}</td>
     <td>{props.event.no_of_findings}</td>
-    <td></td>
+    <td><ProgressBar animated variant="info" now={props.event.progress}/></td>
     <td>
       <EditEventModal event={props.event}/>
     </td>

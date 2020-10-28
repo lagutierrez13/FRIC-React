@@ -160,6 +160,40 @@ analystCtrl.promoteDemoteAnalyst = async (req, res) => {
   });
 };
 
+analystCtrl.updateProgress = async (req, res) => {
+  const body = req.body;
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
+  }
+  Analyst.findOne({ _id: req.params.id }, (err, analyst) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "Analyst not found!",
+      });
+    }
+    analyst.progress = body.progress;
+    analyst
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: analyst._id,
+          message: "Analyst updated!",
+        });
+      })
+      .catch((error) => {
+        return res.status(404).json({
+          error,
+          message: "Analyst not updated!",
+        });
+      });
+  });
+};
+
 analystCtrl.deleteAnalyst = async (req, res) => {
   try {
     await Analyst.findOneAndDelete({ _id: req.params.id });

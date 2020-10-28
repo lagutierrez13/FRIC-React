@@ -22,6 +22,7 @@ class EditEventModal extends React.Component {
       showHide: false,
       event: props.event,
       _id: props.event._id,
+      progress: props.event.progress,
       newName: props.event.name,
       newDescription: props.event.description,
       newType: props.event.type,
@@ -115,6 +116,7 @@ class EditEventModal extends React.Component {
       declassificationdate: this.state.newDeclassificationDate,
       customername: this.state.newCustomerName,
       organizationname: this.state.newOrganizationName,
+      progress: this.state.progress,
     };
 
     console.log(`Name: ${updatedEvent.name}`);

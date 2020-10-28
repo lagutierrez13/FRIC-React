@@ -44,6 +44,7 @@ class DetailedView extends Component {
       classification: "",
       declassificationdate: "",
       customername: "",
+      progress: 0,
       valuesClassification: [],
       valuesType: [],
     };
@@ -161,6 +162,7 @@ class DetailedView extends Component {
       classification: this.state.classification,
       declassificationdate: this.state.declassificationdate,
       customername: this.state.customername,
+      progress: this.state.progress,
     };
 
     const newHistory = {
@@ -187,6 +189,7 @@ class DetailedView extends Component {
       classification: "",
       declassificationdate: "",
       customername: "",
+      progress: 0,
     });
   }
 
