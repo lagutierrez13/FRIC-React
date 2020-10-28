@@ -169,7 +169,7 @@ class EditEventModal extends React.Component {
                   <textarea
                     class="form-control"
                     rows="4"
-                    defaultValue={this.props.event.description}
+                    defaultValue={this.state.event.description}
                     onChange={this.onChangeDescription}
                   ></textarea>
                 </div>
