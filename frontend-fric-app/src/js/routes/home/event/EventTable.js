@@ -17,7 +17,7 @@ const Event = (props) => (
   </tr>
 );
 
-const PopupExample = () => (
+const EventContentToolTip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
@@ -58,7 +58,7 @@ class EventTable extends Component {
       <div class="x_panel">
         <div class="x_title">
           <h2>
-            Event Contents Table <PopupExample />
+            Event Contents Table <EventContentToolTip />
           </h2>
 
           <div class="clearfix"></div>
