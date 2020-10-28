@@ -16,6 +16,8 @@ class EditAnalystModal extends React.Component {
     this.state = {
       showHide: false,
       analyst: props.analyst,
+      isLead: props.analyst.isLead,
+      progress: props.analyst.progress,
       _id: props.analyst._id,
       newInitials: props.analyst.initials,
       newFirst: props.analyst.first,
@@ -68,6 +70,8 @@ class EditAnalystModal extends React.Component {
       last: this.state.newLast,
       title: this.state.newTitle,
       ip: this.state.newIP,
+      isLead: this.state.isLead,
+      progress: this.state.progress,
     };
 
     console.log(`Initials: ${updatedAnalyst.initials}`);
