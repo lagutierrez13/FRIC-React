@@ -38,9 +38,8 @@ class FindingView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Detailed"></XPanel.Title>
+              <XPanel.Title title="Detailed View"></XPanel.Title>
               <XPanel.Content>
-                  <h2> Detailed View </h2>
                 <DetailedView />
               </XPanel.Content>
             </XPanel>
