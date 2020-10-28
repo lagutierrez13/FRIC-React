@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { Link } from "react-router-dom";
+import Analyst from "./Analyst";
+import LeadAnalyst from "./LeadAnalyst";
 
 const PopupExample = () => (
   <Popup trigger={<button>?</button>} position="right center">
@@ -17,39 +18,6 @@ const PopupExample = () => (
   </Popup>
 );
 
-const Analyst = (props) => (
-  <tr>
-    <td>
-      <button class="btn btn-success" type="button">
-        Promote
-      </button>
-      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.analyst.id)}>
-        Remove
-      </button>
-    </td>
-    <td>{props.analyst.initials}</td>
-    <td>
-      <Link to={"/update/" + props.analyst._id}>Edit</Link>
-    </td>
-  </tr>
-);
-
-const LeadAnalyst = (props) => (
-  <tr>
-    <td>
-      <button class="btn btn-warning" type="button">
-        Demote
-      </button>
-      <button class="btn btn-danger" type="button" onClick={() => this.onRemove(props.leadAnalyst.id)}>
-        Remove
-      </button>
-    </td>
-    <td>{props.leadAnalyst.initials}</td>
-    <td>
-      <Link to={"/update/" + props.leadAnalyst._id}>Edit</Link>
-    </td>
-  </tr>
-);
 //Event team Information
 class TeamInfo extends Component {
   constructor(props) {
@@ -65,9 +33,6 @@ class TeamInfo extends Component {
     this.onChangeAnalystTitle = this.onChangeAnalystTitle.bind(this);
     this.onSubmitLead = this.onSubmitLead.bind(this);
     this.onSubmitAnalyst = this.onSubmitAnalyst.bind(this);
-    this.onRemove = this.onRemove.bind(this);
-    this.onDemoteClicked = this.onDemoteClicked.bind(this);
-    this.onPromoteClicked = this.onPromoteClicked.bind(this);
 
     this.state = {
       leadfirstname: "",
@@ -163,29 +128,13 @@ class TeamInfo extends Component {
 
   leadAnalystList() {
     return this.state.leadAnalysts.map(function (currentLead, i) {
-      return <LeadAnalyst leadAnalyst={currentLead} key={i} />;
+      return <LeadAnalyst leadAnalyst={currentLead} key={i}/>;
     });
   }
 
   analystList() {
     return this.state.analysts.map(function (currentAnalyst, i) {
-      return <Analyst analyst={currentAnalyst} key={i} />;
-    });
-  }
-
-  onRemove(id) {
-    console.log(`Item to remove: ${id}`);
-  }
-
-  onPromoteClicked(e) {
-    this.setState({
-      required: !this.state.required,
-    });
-  }
-
-  onDemoteClicked(e) {
-    this.setState({
-      required: !this.state.required,
+      return <Analyst analyst={currentAnalyst} key={i}/>;
     });
   }
 

@@ -10,6 +10,7 @@ const {
   updateAnalyst,
   authenticateAnalyst,
   getAnalyst,
+  promoteDemoteAnalyst,
 } = require("../controllers/AnalystController");
 
 // const auth = require("../middlewares/auth");
@@ -20,10 +21,11 @@ router.get("/analyst/get", getAnalysts);
 
 //Only admin
 router.post("/analyst/new", createAnalyst);
-router.put("/analyst/update/:initials", updateAnalyst);
-router.delete("/analyst/delete/:initials", deleteAnalyst);
+router.put("/analyst/update/:id", updateAnalyst);
+router.put("/analyst/promotedemote/:id", promoteDemoteAnalyst);
+router.delete("/analyst/delete/:id", deleteAnalyst);
 router.get("/analyst/get/:initials", getAnalyst);
-router.get("/analyst/get/:initials", authenticateAnalyst);
+router.get("/analyst/authenticate/:initials", authenticateAnalyst);
 
 //Export
 module.exports = router;
