@@ -77,6 +77,41 @@ eventCtrl.updateEvent = async (req, res) => {
     event.declassificationdate = body.declassificationdate;
     event.customername = body.customername;
     event.organizationname = body.organizationname;
+    event.progress = body.progress;
+    event
+      .save()
+      .then(() => {
+        return res.status(200).json({
+          success: true,
+          id: event._id,
+          message: "Event updated!",
+        });
+      })
+      .catch((error) => {
+        return res.status(404).json({
+          error,
+          message: "Event not updated!",
+        });
+      });
+  });
+};
+
+eventCtrl.updateProgress = async (req, res) => {
+  const body = req.body;
+  if (!body) {
+    return res.status(400).json({
+      success: false,
+      error: "You must provide a body to update",
+    });
+  }
+  Analyst.findOne({ _id: req.params.id }, (err, event) => {
+    if (err) {
+      return res.status(404).json({
+        err,
+        message: "Event not found!",
+      });
+    }
+    event.progress = body.progress;
     event
       .save()
       .then(() => {

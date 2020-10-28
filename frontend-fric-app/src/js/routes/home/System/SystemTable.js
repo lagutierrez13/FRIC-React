@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
 import EditSystemModal from "./EditSystemModal";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const System = (props) => (
   <tr>
     <td>{props.system.systemname}</td>
     <td>{props.system.no_of_tasks}</td>
     <td>{props.system.no_of_findings}</td>
-    <td></td>
+    <td><ProgressBar animated variant="info" now={props.system.progress}/></td>
     <td>
-      <EditSystemModal system={props.system}/>
+      <EditSystemModal system={props.system} />
     </td>
   </tr>
 );

@@ -11,6 +11,7 @@ const {
   authenticateAnalyst,
   getAnalyst,
   promoteDemoteAnalyst,
+  updateProgress,
 } = require("../controllers/AnalystController");
 
 // const auth = require("../middlewares/auth");
@@ -22,6 +23,7 @@ router.get("/analyst/get", getAnalysts);
 //Only admin
 router.post("/analyst/new", createAnalyst);
 router.put("/analyst/update/:id", updateAnalyst);
+router.put("/analyst/updateprogress/:id", updateProgress);
 router.put("/analyst/promotedemote/:id", promoteDemoteAnalyst);
 router.delete("/analyst/delete/:id", deleteAnalyst);
 router.get("/analyst/get/:initials", getAnalyst);

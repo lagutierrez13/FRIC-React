@@ -8,6 +8,7 @@ const {
   createSystem,
   deleteSystem,
   updateSystem,
+  updateProgress,
 } = require("../controllers/SystemController");
 
 // const auth = require("../middlewares/auth");
@@ -19,6 +20,7 @@ router.get("/home/systems/get", getSystems);
 //Only admin
 router.post("/home/systems/new", createSystem);
 router.put("/home/systems/update/:id", updateSystem);
+router.put("/home/systems/updateprogress/:id", updateProgress);
 router.delete("/home/systems/delete/:id", deleteSystem);
 
 //Export

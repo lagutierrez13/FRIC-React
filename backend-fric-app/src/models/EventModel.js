@@ -21,7 +21,8 @@ const eventSchema = new Schema(
       classification: String,
       declassificationdate: String,
       customername: String,
-      organizationname: String, 
+      organizationname: String,
+      progress: Number,
       
       // slug: {
       //   type: String,
