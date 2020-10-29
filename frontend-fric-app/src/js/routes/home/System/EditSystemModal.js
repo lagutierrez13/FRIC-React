@@ -13,12 +13,14 @@ class EditSystemModal extends React.Component {
     this.onChangeEventRouter = this.onChangeEventRouter.bind(this);
     this.onChangeEventSwitch = this.onChangeEventSwitch.bind(this);
     this.onChangeTestPlan = this.onChangeTestPlan.bind(this);
+    this.onChangeProgress = this.onChangeProgress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       showHide: false,
       system: props.system,
       _id: props.system._id,
+      progress: props.system.progress,
       newSystemName: props.system.systemname,
       newSystemDescription: props.system.systemdescription,
       newAssessLocation: props.system.assesslocation,
@@ -26,6 +28,7 @@ class EditSystemModal extends React.Component {
       newEventRouter: props.system.eventrouter,
       newEventSwitch: props.system.eventswitch,
       newTestPlan: props.system.testplan,
+      newProgress: props.system.progress,
     };
   }
 
@@ -71,6 +74,12 @@ class EditSystemModal extends React.Component {
     });
   }
 
+  onChangeProgress(e) {
+    this.setState({
+      newProgress: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
@@ -86,6 +95,7 @@ class EditSystemModal extends React.Component {
       eventrouter: this.state.newEventRouter,
       eventswitch: this.state.newEventSwitch,
       testplan: this.state.newTestPlan,
+      progress: this.state.newProgress,
     };
 
     console.log(`Name: ${updatedSystem.systemname}`);
@@ -95,6 +105,7 @@ class EditSystemModal extends React.Component {
     console.log(`Event Router: ${updatedSystem.eventrouter}`);
     console.log(`Event Switch: ${updatedSystem.eventswitch}`);
     console.log(`Test Plan: ${updatedSystem.testplan}`);
+    console.log(`Test Plan: ${updatedSystem.progress}`);
 
     const newHistory = {
       action: `System: ${this.state.newSystemName} was edited`,
@@ -216,6 +227,18 @@ class EditSystemModal extends React.Component {
                     defaultValue={this.state.system.testplan}
                     onChange={this.onChangeTestPlan}
                   ></textarea>
+                </div>
+              </div>
+              {/* Progress */}
+              <div class="form-group row">
+                <label class="control-label col-sm-2">Progress</label>
+                <div class=" col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    defaultValue={this.state.system.progress}
+                    onChange={this.onChangeProgress}
+                  ></input>
                 </div>
               </div>
               <button

@@ -16,6 +16,7 @@ class EditEventModal extends React.Component {
     this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this);
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
     this.onChangeOrganizationName = this.onChangeOrganizationName.bind(this);
+    this.onChangeProgress = this.onChangeProgress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -33,6 +34,7 @@ class EditEventModal extends React.Component {
       newDeclassificationDate: props.event.declassificationdate,
       newCustomerName: props.event.customername,
       newOrganizationName: props.event.organizationname,
+      newProgress: props.event.progress,
       valuesClassification: [1, 2, 3],
       valuesType: [1, 2, 3],
     };
@@ -98,6 +100,12 @@ class EditEventModal extends React.Component {
     });
   }
 
+  onChangeProgress(e) {
+    this.setState({
+      newProgress: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
@@ -116,7 +124,7 @@ class EditEventModal extends React.Component {
       declassificationdate: this.state.newDeclassificationDate,
       customername: this.state.newCustomerName,
       organizationname: this.state.newOrganizationName,
-      progress: this.state.progress,
+      progress: this.state.newProgress,
     };
 
     console.log(`Name: ${updatedEvent.name}`);
@@ -124,6 +132,7 @@ class EditEventModal extends React.Component {
     console.log(`Type: ${updatedEvent.type}`);
     console.log(`Version: ${updatedEvent.version}`);
     console.log(`Assess Date: ${updatedEvent.assessdate}`);
+    console.log(`Assess Date: ${updatedEvent.progress}`);
 
     const newHistory = {
       action: `Event: ${this.state.newName} was edited`,
@@ -293,6 +302,20 @@ class EditEventModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.event.customername}
                     onChange={this.onChangeCustomerName}
+                  />
+                </div>
+              </div>
+              {/* Progress */}
+              <div class="form-group row ">
+                <label class="control-label col-md-2 col-sm-2 ">
+                  Progress
+                </label>
+                <div class="col-md-10 col-sm-10 ">
+                  <input
+                    type="text"
+                    class="form-control"
+                    defaultValue={this.state.event.progress}
+                    onChange={this.onChangeProgress}
                   />
                 </div>
               </div>
