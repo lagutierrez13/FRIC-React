@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Col } from "react-bootstrap";
-import { XPanel } from "../../../components";
+import { XPanel } from "../../../../components";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
-class EventRulesTable extends Component {
+class FindingStatusTable extends Component {
   constructor(props) {
     super(props);
 
@@ -24,7 +23,7 @@ class EventRulesTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/configuration/get/eventrules")
+      .get("http://localhost:4000/configuration/get/findingstatus")
       .then((response) => {
         console.log(response.data);
         this.setState({
@@ -41,17 +40,17 @@ class EventRulesTable extends Component {
     e.preventDefault();
 
     console.log(`Form Submitted`);
-    console.log(`Values in list: ${this.state.values}`);
+    console.log(`Values: ${this.state.values}`);
     console.log(`Is required: ${this.state.required}`);
 
     const newConfiguration = {
-      tablename: "eventrules",
+      tablename: "findingstatus",
       required: this.state.required,
       values: this.state.values,
     };
 
     const newHistory = {
-      action: "Event rules table changed",
+      action: "Finding status table changed",
       analyst: "",
     };
 
@@ -109,9 +108,9 @@ class EventRulesTable extends Component {
     const onHide = (e) => this.setState({ panelVisible: !panelVisible });
 
     return (
-      <Col md={12} sm={12} xs={12}>
+      <Col md={6} sm={6} xs={12}>
         <XPanel visible={panelVisible} onHide={onHide}>
-          <XPanel.Title title="Event Rules Table">
+          <XPanel.Title title="Finding Status Table">
             <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
             <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
           </XPanel.Title>
@@ -125,7 +124,7 @@ class EventRulesTable extends Component {
                   checked={this.state.required}
                   onChange={this.onChangeRequired}
                   name="required"
-                  id="eventClassificationRequired"
+                  id="findingStatusRequired"
                   style={{ marginRight: "10px" }}
                 />
                 <label className="form-check-label">Required</label>
@@ -177,4 +176,4 @@ class EventRulesTable extends Component {
   }
 }
 
-export default EventRulesTable;
+export default FindingStatusTable;
