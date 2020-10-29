@@ -11,6 +11,7 @@ const findingRoutes = require("./routes/FindingRoutes");
 const history = require("./routes/HistoryRoutes");
 const analyst = require("./routes/AnalystRoutes");
 const notification = require("./routes/NotificationRoutes");
+const configuration = require("./routes/ConfigurationRoutes");
 
 
 //settings
@@ -31,6 +32,7 @@ app.use(history);
 app.use(analyst);
 app.use(findingRoutes);
 app.use(notification);
+app.use(configuration);
 
 
 //Export

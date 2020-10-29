@@ -24,12 +24,12 @@ class EventClassificationTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/eventclassificationtable/get")
+      .get("http://localhost:4000/configuration/get/eventclassification")
       .then((response) => {
-        console.log(response.data[response.data.length - 1]);
+        console.log(response.data);
         this.setState({
-          values: response.data[response.data.length - 1].values,
-          required: response.data[response.data.length - 1].required,
+          values: response.data.values,
+          required: response.data.required,
         });
       })
       .catch(function (error) {
@@ -44,7 +44,8 @@ class EventClassificationTable extends Component {
     console.log(`Values: ${this.state.values}`);
     console.log(`Is required: ${this.state.required}`);
 
-    const newEventClassificationTable = {
+    const newConfiguration = {
+      tablename: "eventclassification",
       required: this.state.required,
       values: this.state.values,
     };
@@ -55,9 +56,9 @@ class EventClassificationTable extends Component {
     };
 
     axios
-      .post(
-        "http://localhost:4000/eventclassificationtable/new",
-        newEventClassificationTable
+      .put(
+        `http://localhost:4000/configuration/update/${newConfiguration.tablename}`,
+        newConfiguration
       )
       .then((res) => console.log(res.data));
 

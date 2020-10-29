@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col } from "react-bootstrap";
 import { XPanel } from "../../../components";
+import FindingStatusTable from "./Finding/FindingStatusTable";
 
 class FindingConfiguration extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class FindingConfiguration extends Component {
               <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
             </XPanel.Title>
             <XPanel.Content>
-
+              <FindingStatusTable />
             </XPanel.Content>
           </XPanel>
         </Col>
