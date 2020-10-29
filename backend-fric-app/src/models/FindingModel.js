@@ -16,7 +16,7 @@ const findingSchema = new Schema(
       classification: String,
       type: String,
       risk: String,
-      prpgress: Number,
+      progress: Number,
       // slug: {
       //   type: String,
       //   required: true,
