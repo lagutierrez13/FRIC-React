@@ -11,315 +11,11 @@ const Tooltip = () => (
                 Fill out Finding Information
                 <a className="close" onClick={close}>
                     &times;
-        </a>
+                </a>
             </div>
         )}
     </Popup>
 );
-
-const FindingInformation = () => (
-    <div class="x_panel tile">
-        {/* Finding information */}
-        <div class="x_title">
-            <h2>
-                Finding Information <Tooltip />
-            </h2>
-            <div class="clearfix"></div>
-        </div>
-        {/* ID */}
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">ID</label>
-            <div class=" col-sm-10 ">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        {/*  Host Name */}
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Host Name</label>
-            <div class=" col-sm-10 ">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        {/* IP port */}
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">IP Port</label>
-            <div class=" col-sm-10 ">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        {/* Description */}
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="2" type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-        {/* Long description */}
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Long description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="4" type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-        {/* Status */}
-        <div class="form-group row">
-            <label class="control-label col-md-2 col-sm-2 ">Status</label>
-            <div class="col-md-10 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-        <option>{value}</option>
-        ))} */}
-                    </select>
-                }
-            </div>
-        </div>
-        {/* Type */}
-        <div class="form-group row">
-            <label class="control-label col-md-2 col-sm-2 ">Type</label>
-            <div class="col-md-10 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-        <option>{value}</option>
-        ))} */}
-                    </select>
-                }
-            </div>
-        </div>
-        {/* Classification */}
-        <div class="form-group row">
-            <label class="control-label col-md-2 col-sm-2 ">Classification</label>
-            <div class="col-md-10 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-        <option>{value}</option>
-        ))} */}
-                    </select>
-                }
-            </div>
-        </div>
-        {/* Related findings */}
-        <div class="form-group row">
-            <label class="control-label col-sm-2 ">Related Finding(s)</label>
-            <div class="col-md-10 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-        <option>{value}</option>
-        ))} */}
-                    </select>
-
-                }
-            </div>
-        </div>
-
-        <Row>
-            <Col md={4} sm={2} xs={12}>
-                {/* System */}
-                <div class="form-group row">
-                    <label class="control-label col-md-4 col-sm-2 ">System</label>
-                    <div class="col-md-10 col-sm-10 ">
-                        {
-                            <select
-                                class="form-control"
-                            // value={this.state.type}
-                            // onChange={this.onChangeType}
-                            >
-                                {/* {this.state.valuesType.map((value) => (
-                <option>{value}</option>
-                ))} */}
-                            </select>
-                        }
-                    </div>
-                </div>
-
-            </Col>
-            <Col md={4} sm={2} xs={12}>
-                {/* Task */}
-                <div class="form-group row">
-                    <label class="control-label col-md-4 col-sm-2 ">Task</label>
-                    <div class="col-md-10 col-sm-10 ">
-                        {
-                            <select
-                                class="form-control"
-                            // value={this.state.type}
-                            // onChange={this.onChangeType}
-                            >
-                                {/* {this.state.valuesType.map((value) => (
-                <option>{value}</option>
-                ))} */}
-                            </select>
-                        }
-                    </div>
-                </div>
-            </Col>
-            <Col md={4} sm={2} xs={12}>
-                {/* Subtask */}
-                <div class="form-group row">
-                    <label class="control-label col-md-4 col-sm-2 ">Subtask</label>
-                    <div class="col-md-10 col-sm-10 ">
-                        {
-                            <select
-                                class="form-control"
-                            // value={this.state.type}
-                            // onChange={this.onChangeType}
-                            >
-                                {/* {this.state.valuesType.map((value) => (
-                <option>{value}</option>
-                ))} */}
-                            </select>
-
-                        }
-                    </div>
-                </div>
-            </Col>
-        </Row>
-    </div>
-)
-
-const FindingImpact = () => (
-
-     <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Finding Impact <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <Row>
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Availability</label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-        </Row> 
-     </div>
-)
-
-const AnalystInformation = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Analyst Information <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <Row>
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <label class="control-label col-md-3 col-sm-3 ">Posture</label>
-                <div class="col-md-6 col-sm-10 ">
-                    {
-                        <select
-                            class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
-                        >
-                            {/* {this.state.valuesType.map((value) => (
-                            <option>{value}</option>
-                            ))} */}
-                        </select>
-                    }
-                </div>
-            </div>
-        </Row> 
-     </div>
-
-)
 
 const Mitigation = () => (
     <div class="x_panel tile">
@@ -332,7 +28,7 @@ const Mitigation = () => (
             <div class=" col-sm-10 ">
                 <textarea
                     rows="2" type="text" class="form-control" >
-                    </textarea>
+                </textarea>
             </div>
         </div>
         <div class="form-group row">
@@ -343,36 +39,7 @@ const Mitigation = () => (
             </div>
         </div>
     </div>
-
 )
-
-const Threat = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Threat Relevance <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
-            <div class="col-md-6 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-                        <option>{value}</option>
-                        ))} */}
-                    </select>
-                }
-            </div>
-        </div>
-
-
-    </div>
-)
-
 const CounterMeasure = () => (
     <div class="x_panel tile">
         <div class="x_title">
@@ -395,43 +62,8 @@ const CounterMeasure = () => (
                 }
             </div>
         </div>
-
-
     </div>
 )
-const Impact = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Impact <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
-            <div class="col-md-10 col-sm-10 ">
-                {
-                    <select
-                        class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-                        <option>{value}</option>
-                        ))} */}
-                    </select>
-                }
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label  col-sm-3 ">Impact description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="3" type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-    </div>
-
-)
-
 const Severity = () => (
     <div class="x_panel tile">
         <div class="x_title">
@@ -457,7 +89,6 @@ const Severity = () => (
             </div>
         </div>
     </div>
-    
 )
 
 const Risk = () => (
@@ -479,7 +110,6 @@ const Risk = () => (
             </div>
         </div>
     </div>
-    
 )
 
 const FindingSystemLevelImpact = () => (
@@ -513,22 +143,22 @@ const FindingSystemLevelImpact = () => (
             </div>
         </div>
     </div>
-    
 )
 
 class DetailedView extends Component {
     constructor(props) {
         super(props);
-    
+
         this.onChangeFindingID = this.onChangeFindingID.bind(this);
         this.onChangeHostname = this.onChangeHostname.bind(this);
-        this.onChangeIP = thisonChangeIP.bind(this);
+        this.onChangeIP = this.onChangeIP.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangeLongDescription = this.onChangeLongDescription.bind(this); //assessment date
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeSystem = this.onChangeSystem.bind(this); //security classification title guide
         this.onChangeTask = this.onChangeTask.bind(this);
-        this.onChangeAnalyst= this.onChangeAnalyst.bind(this); // declassification date
+        this.onChangeSubtask = this.onChangeTask.bind(this);
+        this.onChangeAnalyst = this.onChangeAnalyst.bind(this); // declassification date
         this.onChangeCollaborator = this.onChangeCollaborator.bind(this);
         this.onChangePosture = this.onChangePosture.bind(this);
         this.onChangeStatus = this.onChangeStatus.bind(this);
@@ -549,50 +179,308 @@ class DetailedView extends Component {
         this.onChangeSeverityCategoryScore = this.onChangeSeverityCategoryScore.bind(this);
         this.onChangeVulnerabilitySeverity = this.onChangeVulnerabilitySeverity.bind(this);
         this.onChangeRisk = this.onChangeRisk.bind(this);
+        this.onChangeLikelihood = this.onChangeLikelihood.bind(this);
         this.onChangeConfImpactSystem = this.onChangeConfImpactSystem.bind(this);
         this.onChangeIntegImpactSystem = this.onChangeIntegImpactSystem.bind(this);
         this.onChangeAvailImpactSystem = this.onChangeAvailImpactSystem.bind(this);
+        this.onChangeImpactScore = this.onChangeImpactScore.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
-    
+
         this.state = {
-          findingID: "",
-          hostname: "",
-          ipPort: "",
-          description: "",
-          longDescription: "",
-          title: "",
-          findingSystem: "",
-          findingTask: "",
-          findingSubtask: "",
-          findingAnalyst: "",
-          collaborator: "",
-          posture: "",
-          status: "",
-          classification: "",
-          related: [],
-          type: "",
-          progress: 0,
-          confidentiality: "",
-          integrity: "",
-          availability: "",
-          mitigationBrief: "",
-          mitigationLong: "",
-          relevance: "",
-          effectivenessRate: "",
-          impactLevel: "",
-          impactDescription: "",
-          severityCategoryCode: "",
-          severityCategoryScore: 0,
-          vulnerabilitySeverity: 0,
-          risk: "",
-          likelihood: "",
-          confImpactSystem: "",
-          integImpactSystem: "",
-          availImpactSystem: "",
-          impactScore: 0
+            findingID: "",
+            hostname: "",
+            ipPort: "",
+            description: "",
+            longDescription: "",
+            title: "",
+            findingSystem: "",
+            findingTask: "",
+            findingSubtask: "",
+            findingAnalyst: "",
+            collaborator: "",
+            posture: "",
+            status: "",
+            classification: "",
+            related: [],
+            type: "",
+            progress: 0,
+            confidentiality: "",
+            integrity: "",
+            availability: "",
+            mitigationBrief: "",
+            mitigationLong: "",
+            relevance: "",
+            effectivenessRate: "",
+            impactLevel: "",
+            impactDescription: "",
+            severityCategoryCode: "",
+            severityCategoryScore: 0,
+            vulnerabilitySeverity: 0,
+            risk: "",
+            likelihood: "",
+            confImpactSystem: "",
+            integImpactSystem: "",
+            availImpactSystem: "",
+            impactScore: 0,
+            statusValues: [], //done
+            typeValues: [], //done
+            classificationValues: [], //done
+            confidentialityValues: [],
+            integrityValues: [],
+            availabilityValues: [],
+            impactLevelValues: [], //done
+            postureValues: [], //done
+            relevanceValues: [] //done
+
         };
-      }
+    }
+    componentDidMount() {
+        axios
+            .get("http://localhost:4000/configuration/get/findingstatus")
+            .then((response) => {
+                this.setState({
+                    statusValues: response.data.values
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        axios
+            .get("http://localhost:4000/configuration/get/findingtype")
+            .then((response) => {
+                this.setState({
+                    typeValues: response.data.values
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    onChangeFindingID(e) {
+        this.setState({
+            findingID: e.target.value,
+        });
+    }
+    onChangeHostname(e) {
+        this.setState({
+            hostname: e.target.value,
+        });
+
+    }
+    onChangeIP(e) {
+        this.setState({
+            ipPort: e.target.value,
+        });
+    }
+    onChangeDescription(e) {
+        this.setState({
+            description: e.target.value,
+        });
+    }
+
+    onChangeLongDescription(e) {
+        this.setState({
+            longDescription: e.target.value,
+        });
+    }
+    onChangeTitle(e) {
+        this.setState({
+            title: e.target.value,
+        });
+    }
+    onChangeSystem(e) {
+        this.setState({
+            findingSystem: e.target.value,
+        });
+    }
+    onChangeTask(e) {
+        this.setState({
+            findingTask: e.target.value,
+        });
+    }
+    onChangeSubtask(e) {
+        this.setState({
+            findingTask: e.target.value,
+        });
+    }
+    onChangeAnalyst(e) {
+        this.setState({
+            findingAnalyst: e.target.value,
+        });
+    }
+    onChangeCollaborator(e) {
+        this.setState({
+            collaborator: e.target.value,
+        });
+    }
+    onChangePosture(e) {
+        this.setState({
+            posture: e.target.value,
+        });
+    }
+    onChangeStatus(e) {
+        this.setState({
+            status: e.target.value,
+        });
+    }
+    onChangeClassification(e) {
+        this.setState({
+            classification: e.target.value
+        })
+    }
+    onChangeRelated(e) {
+        this.setState({
+            related: e.target.value
+        })
+    }
+    onChangeType(e) {
+        this.setState({
+            type: e.target.value
+        })
+    }
+    onChangeProgress(e) {
+        this.setState({
+            progress: e.target.value
+        })
+    }
+    onChangeConfidentiality(e) {
+        this.setState({
+            confidentiality: e.target.value
+        })
+    }
+    onChangeIntegrity(e) {
+        this.setState({
+            integrity: e.target.value
+        })
+    }
+    onChangeAvailability(e) {
+        this.setState({
+            availability: e.target.value
+        })
+    }
+    onChangeMitigationBrief(e) {
+        this.setState({
+            mitigationBrief: e.target.value
+        })
+    }
+    onChangeMitigationLong(e) {
+        this.setState({
+            mitigationLong: e.target.value
+        })
+    }
+    onChangeRelevance(e) {
+        this.setState({
+            relevance: e.target.value
+        })
+    }
+    onChangeEffectiveness(e) {
+        this.setState({
+            effectivenessRate: e.target.value
+        })
+    }
+    onChangeImpactLevel(e) {
+        this.setState({
+            impactLevel: e.target.value
+        })
+    }
+    onChangeImpactDescription(e) {
+        this.setState({
+            impactDescription: e.target.value
+        })
+    }
+    onChangeSeverityCategoryCode(e) {
+        this.setState({
+            severityCategoryCode: e.target.value
+        })
+    }
+    onChangeSeverityCategoryScore(e) {
+        this.setState({
+            severityCategoryScore: e.target.value
+        })
+    }
+    onChangeVulnerabilitySeverity(e) {
+        this.setState({
+            vulnerabilitySeverity: e.target.value
+        })
+    }
+    onChangeRisk(e) {
+        this.setState({
+            risk: e.target.value
+        })
+    }
+    onChangeLikelihood(e) {
+        this.setState({
+            likelihood: e.target.value
+        })
+    }
+    onChangeConfImpactSystem(e) {
+        this.setState({
+            confImpactSystem: e.target.value
+        })
+    }
+    onChangeIntegImpactSystem(e) {
+        this.setState({
+            integImpactSystem: e.target.value
+        })
+    }
+    onChangeAvailImpactSystem(e) {
+        this.setState({
+            availImpactSystem: e.target.value
+        })
+    }
+    onChangeImpactScore(e) {
+        this.setState({
+            impactScore: e.target.value
+        })
+    }
+    onSubmit(e) {
+        e.preventDefault();
+
+        console.log("Finding Submitted");
+        console.log("Finding ID: ${this.state.findingID}");
+        console.log("Host name: ${this.state.hostname}");
+        console.log("IP Port: ${this.state.ipPort}");
+        console.log("Description: ${this.state.description}");
+        console.log("Description long: ${this.state.longDescription}");
+
+        const newFinding = {
+            findingID: this.state.findingID,
+            hostname: this.state.hostname,
+            ipPort: this.state.ipPort,
+            description: this.state.description,
+            longDescription: this.state.longDescription,
+        };
+
+        const newHistory = {
+            action: "Finding added",
+            analyst: "",
+        };
+
+        axios
+            .post("http://localhost:4000/home/findings/new", newFinding) //double check this
+            .then((res) => console.log(res.data));
+
+        axios
+            .post("http://localhost:4000/history/new", newHistory)
+            .then((res) => console.log(res.data));
+
+        this.setState({
+            name: "",
+            description: "",
+            type: "",
+            version: "",
+            assessdate: "",
+            organizationname: "",
+            sctg: "",
+            classification: "",
+            declassificationdate: "",
+            customername: "",
+            progress: 0,
+        });
+    }
 
     // what you see
     render() {
@@ -600,25 +488,387 @@ class DetailedView extends Component {
             // x_panel is container
             <div class="x_panel" >
                 <Tooltip />
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <Row>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingInformation />
+                            <div class="x_panel tile">
+                                {/* Finding information */}
+                                <div class="x_title">
+                                    <h2>
+                                        Finding Information <Tooltip />
+                                    </h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                {/* ID */}
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-2 ">ID</label>
+                                    <div class=" col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            value={this.findingID}
+                                            onChange={this.onChangeFindingID}
+                                        />
+                                    </div>
+                                </div>
+                                {/*  Host Name */}
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-2 ">Host Name</label>
+                                    <div class=" col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            value={this.hostname}
+                                            onChange={this.onChangeHostname}
+                                        />
+                                    </div>
+                                </div>
+                                {/* IP port */}
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-2 ">IP Port</label>
+                                    <div class=" col-sm-10 ">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            value={this.ipPort}
+                                            onChange={this.onChangeIP}
+                                        />
+                                    </div>
+                                </div>
+                                {/* Description */}
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-2 ">Description</label>
+                                    <div class=" col-sm-10 ">
+                                        <textarea
+                                            rows="2"
+                                            type="text"
+                                            class="form-control"
+                                            value={this.description}
+                                            onChange={this.onChangeDescription}
+                                        ></textarea>
+                                    </div>
+                                </div>
+                                {/* Long description */}
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-2 ">Long description</label>
+                                    <div class=" col-sm-10 ">
+                                        <textarea
+                                            rows="2"
+                                            type="text"
+                                            class="form-control"
+                                            value={this.longDescription}
+                                            onChange={this.onChangeLongDescription}
+                                        ></textarea>
+                                    </div>
+                                </div>
+                                {/* Status */}
+                                <div class="form-group row">
+                                    <label class="control-label col-md-2 col-sm-2 ">Status</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.status}
+                                                onChange={this.onChangeStatus}
+                                            >
+                                                {this.state.statusValues.map((value) => (
+                                                    <option>{value}</option>
+                                                ))}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                                {/* Type */}
+                                <div class="form-group row">
+                                    <label class="control-label col-md-2 col-sm-2 ">Type</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.type}
+                                                onChange={this.onChangeType}
+                                            >
+                                                {this.state.typeValues.map((value) => (
+                                                    <option>{value}</option>
+                                                ))}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                                {/* Classification */}
+                                <div class="form-group row">
+                                    <label class="control-label col-md-2 col-sm-2 ">Classification</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.type}
+                                                onChange={this.onChangeType}
+                                            >
+                                                {this.state.classificationValues.map((value) => (
+                                                    <option>{value}</option>
+                                                ))}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                                {/* Related findings */}
+                                <div class="form-group row">
+                                    <label class="control-label col-sm-2 ">Related Finding(s)</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.related}
+                                                onChange={this.onChangeRelated}
+                                            >
+                                                {/* {this.state.valuesType.map((value) => (
+                                                    <option>{value}</option>))} */}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+
+                                <Row>
+                                    <Col md={4} sm={2} xs={12}>
+                                        {/* System */}
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4 col-sm-2 ">System</label>
+                                            <div class="col-md-10 col-sm-10 ">
+                                                {
+                                                    <select
+                                                        class="form-control"
+                                                    // value={this.state.type}
+                                                    // onChange={this.onChangeType}
+                                                    >
+                                                        {/* {this.state.valuesType.map((value) => (
+                                                        <option>{value}</option>
+                                                        ))} */}
+                                                    </select>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </Col>
+                                    <Col md={4} sm={2} xs={12}>
+                                        {/* Task */}
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4 col-sm-2 ">Task</label>
+                                            <div class="col-md-10 col-sm-10 ">
+                                                {
+                                                    <select
+                                                        class="form-control"
+                                                    // value={this.state.type}
+                                                    // onChange={this.onChangeType}
+                                                    >
+                                                        {/* {this.state.valuesType.map((value) => (
+                                        <option>{value}</option>
+                                        ))} */}
+                                                    </select>
+                                                }
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col md={4} sm={2} xs={12}>
+                                        {/* Subtask */}
+                                        <div class="form-group row">
+                                            <label class="control-label col-md-4 col-sm-2 ">Subtask</label>
+                                            <div class="col-md-10 col-sm-10 ">
+                                                {
+                                                    <select
+                                                        class="form-control"
+                                                    // value={this.state.type}
+                                                    // onChange={this.onChangeType}
+                                                    >
+                                                        {/* {this.state.valuesType.map((value) => (
+                                        <option>{value}</option>
+                                        ))} */}
+                                                    </select>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <AnalystInformation />
+                            <div class="x_panel tile">
+                                <div class="x_title">
+                                    <h2> Analyst Information <Tooltip /></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <Row>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                // value={this.state.type}
+                                                // onChange={this.onChangeType}
+                                                >
+                                                    {/* {this.state.valuesType.map((value) => (
+                                                    <option>{value}</option>
+                                                    ))} */}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                // value={this.state.type}
+                                                // onChange={this.onChangeType}
+                                                >
+                                                    {/* {this.state.valuesType.map((value) => (
+                                                    <option>{value}</option>
+                                                    ))} */}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Posture</label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                    value={this.state.posture}
+                                                    onChange={this.onChangePosture}
+                                                >
+                                                    {this.state.postureValues.map((value) => (
+                                                        <option>{value}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+                                </Row>
+                            </div>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingImpact />
+                            <div class="x_panel tile">
+                                <div class="x_title">
+                                    <h2> Finding Impact <Tooltip /></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <Row>
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                    value={this.state.confidentiality}
+                                                    onChange={this.onChangeConfidentiality}
+                                                >
+                                                    {this.state.confidentialityValues.map((value) => (
+                                                        <option>{value}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                    value={this.state.integrity}
+                                                    onChange={this.onChangeIntegrity}
+                                                >
+                                                    {this.state.integrityValues.map((value) => (
+                                                        <option>{value}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3 col-sm-3 ">Availability</label>
+                                        <div class="col-md-6 col-sm-10 ">
+                                            {
+                                                <select
+                                                    class="form-control"
+                                                    value={this.state.availability}
+                                                    onChange={this.onChangeAvailability}
+                                                >
+                                                    {this.state.availabilityValues.map((value) => (
+                                                        <option>{value}</option>
+                                                    ))}
+                                                </select>
+                                            }
+                                        </div>
+                                    </div>
+                                </Row>
+                            </div>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Threat />
+                            <div class="x_panel tile">
+                                <div class="x_title">
+                                    <h2> Threat Relevance <Tooltip /></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
+                                    <div class="col-md-6 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.relevance}
+                                                onChange={this.onChangeRelevance}
+                                            >
+                                                {this.state.relevanceValues.map((value) => (
+                                                    <option>{value}</option>
+                                                ))}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <CounterMeasure />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Impact />
+                            <div class="x_panel tile">
+                                <div class="x_title">
+                                    <h2> Impact <Tooltip /></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
+                                    <div class="col-md-10 col-sm-10 ">
+                                        {
+                                            <select
+                                                class="form-control"
+                                                value={this.state.impactLevel}
+                                                onChange={this.onChangeImpactLevel}
+                                            >
+                                                {this.state.impactLevelValues.map((value) => (
+                                                    <option>{value}</option>
+                                                ))}
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="control-label  col-sm-3 ">Impact description</label>
+                                    <div class=" col-sm-10 ">
+                                        <textarea
+                                            rows="3" type="text" class="form-control" ></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <Severity />
@@ -630,18 +880,18 @@ class DetailedView extends Component {
                             <FindingSystemLevelImpact />
                         </Col>
                     </Row>
-                    
+
                     <Row md={6} sm={6} xs={12}>
                         <Mitigation />
                     </Row>
-                    
+
                     {/* Buttons */}
                     <br />
                     <div class="item form-group">
-                        <button class="btn btn-primary" type="submit" value="Save Task">
+                        <button onClick={() => window.location.reload(false)} class="btn btn-primary" type="submit" value="Save Finding">
                             Save
                         </button>
-                        <button class="btn btn-danger" type="cancel">
+                        <button onClick={() => window.location.reload(false)} class="btn btn-danger" type="cancel">
                             Cancel
                         </button>
                     </div>
