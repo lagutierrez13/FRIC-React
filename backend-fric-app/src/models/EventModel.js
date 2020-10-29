@@ -23,6 +23,7 @@ const eventSchema = new Schema(
       customername: String,
       organizationname: String,
       progress: Number,
+      derivedfrom: String,
       
       // slug: {
       //   type: String,
