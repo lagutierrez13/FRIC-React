@@ -519,7 +519,80 @@ const FindingSystemLevelImpact = () => (
 class DetailedView extends Component {
     constructor(props) {
         super(props);
-    }
+    
+        this.onChangeFindingID = this.onChangeFindingID.bind(this);
+        this.onChangeHostname = this.onChangeHostname.bind(this);
+        this.onChangeIP = thisonChangeIP.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeLongDescription = this.onChangeLongDescription.bind(this); //assessment date
+        this.onChangeTitle = this.onChangeTitle.bind(this);
+        this.onChangeSystem = this.onChangeSystem.bind(this); //security classification title guide
+        this.onChangeTask = this.onChangeTask.bind(this);
+        this.onChangeAnalyst= this.onChangeAnalyst.bind(this); // declassification date
+        this.onChangeCollaborator = this.onChangeCollaborator.bind(this);
+        this.onChangePosture = this.onChangePosture.bind(this);
+        this.onChangeStatus = this.onChangeStatus.bind(this);
+        this.onChangeClassification = this.onChangeClassification.bind(this);
+        this.onChangeRelated = this.onChangeRelated.bind(this);
+        this.onChangeType = this.onChangeType.bind(this);
+        this.onChangeProgress = this.onChangeProgress.bind(this);
+        this.onChangeConfidentiality = this.onChangeConfidentiality.bind(this);
+        this.onChangeIntegrity = this.onChangeIntegrity.bind(this);
+        this.onChangeAvailability = this.onChangeAvailability.bind(this);
+        this.onChangeMitigationBrief = this.onChangeMitigationBrief.bind(this);
+        this.onChangeMitigationLong = this.onChangeMitigationLong.bind(this);
+        this.onChangeRelevance = this.onChangeRelevance.bind(this);
+        this.onChangeEffectiveness = this.onChangeEffectiveness.bind(this);
+        this.onChangeImpactLevel = this.onChangeImpactLevel.bind(this);
+        this.onChangeImpactDescription = this.onChangeImpactDescription.bind(this);
+        this.onChangeSeverityCategoryCode = this.onChangeSeverityCategoryCode.bind(this);
+        this.onChangeSeverityCategoryScore = this.onChangeSeverityCategoryScore.bind(this);
+        this.onChangeVulnerabilitySeverity = this.onChangeVulnerabilitySeverity.bind(this);
+        this.onChangeRisk = this.onChangeRisk.bind(this);
+        this.onChangeConfImpactSystem = this.onChangeConfImpactSystem.bind(this);
+        this.onChangeIntegImpactSystem = this.onChangeIntegImpactSystem.bind(this);
+        this.onChangeAvailImpactSystem = this.onChangeAvailImpactSystem.bind(this);
+
+        this.onSubmit = this.onSubmit.bind(this);
+    
+        this.state = {
+          findingID: "",
+          hostname: "",
+          ipPort: "",
+          description: "",
+          longDescription: "",
+          title: "",
+          findingSystem: "",
+          findingTask: "",
+          findingSubtask: "",
+          findingAnalyst: "",
+          collaborator: "",
+          posture: "",
+          status: "",
+          classification: "",
+          related: [],
+          type: "",
+          progress: 0,
+          confidentiality: "",
+          integrity: "",
+          availability: "",
+          mitigationBrief: "",
+          mitigationLong: "",
+          relevance: "",
+          effectivenessRate: "",
+          impactLevel: "",
+          impactDescription: "",
+          severityCategoryCode: "",
+          severityCategoryScore: 0,
+          vulnerabilitySeverity: 0,
+          risk: "",
+          likelihood: "",
+          confImpactSystem: "",
+          integImpactSystem: "",
+          availImpactSystem: "",
+          impactScore: 0
+        };
+      }
 
     // what you see
     render() {
