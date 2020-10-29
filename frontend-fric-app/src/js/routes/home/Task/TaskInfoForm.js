@@ -22,12 +22,13 @@ class DetailedView extends Component {
 
     this.onChangeTaskTitle = this.onChangeTaskTitle.bind(this);
     this.onChangeTaskDescription = this.onChangeTaskDescription.bind(this);
-    // this.onChangeTaskDuedate = this.onChangeTaskDuedate.bind(this); BREAKS
+    this.onChangeTaskDueDate = this.onChangeTaskDueDate.bind(this);
     this.onChangeTaskSystem = this.onChangeTaskSystem.bind(this);
     this.onChangeTaskPriority = this.onChangeTaskPriority.bind(this);
     this.onChangeTaskAnalyst = this.onChangeTaskAnalyst.bind(this);
     this.onChangeTaskCollaborator = this.onChangeTaskCollaborator.bind(this);
     this.onChangeRelatedTasks = this.onChangeRelatedTasks.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       tasktitle: "",
@@ -117,7 +118,7 @@ class DetailedView extends Component {
       };
 
       axios
-      .post("http://localhost:4000/home/tasks/new", newTask) //double check this
+      .post("http://localhost:4000/home/tasks/new", newTask)
       .then((res) => console.log(res.data));
 
       axios
@@ -153,8 +154,12 @@ class DetailedView extends Component {
             <div class="form-group row">
               <label class="control-label  col-sm-2 ">Task Title</label>
               <div class=" col-sm-10 ">
-                <input type="text" class="form-control" value={this.state.tasktitle}
-                  onChange={this.onChangeTaskTitle} />
+                <input 
+                type="text" 
+                class="form-control" 
+                value={this.state.tasktitle}
+                onChange={this.onChangeTaskTitle} 
+                />
               </div>
             </div>
             {/* Task Description */}
@@ -169,7 +174,8 @@ class DetailedView extends Component {
             <div class="form-group row">
               <label class="control-label col-md-2 col-sm-2 ">Due date</label>
               <div class="col-md-10 col-sm-10 ">
-                <input type="text" class="form-control" />
+                <input type="text" class="form-control" value={this.state.taskduedate}
+                  onChange={this.onChangeTaskDueDate} />
               </div>
             </div>
             {/* System */}
@@ -219,7 +225,7 @@ class DetailedView extends Component {
             {/* Buttons */}
             <br />
             <div class="item form-group">
-              <button class="btn btn-primary" type="submit" value="Save Task">
+              <button class="btn btn-primary" type="submit" value="Save Task" onClick={() => window.location.reload(false)}>
                 Save
               </button>
               <button class="btn btn-danger" type="cancel">
