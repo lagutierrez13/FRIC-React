@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
 import EditSystemModal from "./EditSystemModal";
-import ProgressBar from "react-bootstrap/ProgressBar";
+import { ProgressBar } from "react-bootstrap";
 
 const System = (props) => (
   <tr>
