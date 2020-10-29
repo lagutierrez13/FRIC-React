@@ -52,11 +52,11 @@ class DetailedView extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/eventclassificationtable/get")
+      .get("http://localhost:4000/configuration/get/eventclassification")
       .then((response) => {
-        console.log(response.data[response.data.length - 1]);
+        console.log(response.data);
         this.setState({
-          valuesClassification: response.data[response.data.length - 1].values,
+          valuesClassification: response.data.values,
         });
       })
       .catch(function (error) {
@@ -64,11 +64,11 @@ class DetailedView extends Component {
       });
 
     axios
-      .get("http://localhost:4000/eventtypetable/get")
+      .get("http://localhost:4000/configuration/get/eventtype")
       .then((response) => {
-        console.log(response.data[response.data.length - 1]);
+        console.log(response.data);
         this.setState({
-          valuesType: response.data[response.data.length - 1].values,
+          valuesType: response.data.values,
         });
       })
       .catch(function (error) {
