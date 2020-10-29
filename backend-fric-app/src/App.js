@@ -11,6 +11,8 @@ const findingRoutes = require("./routes/FindingRoutes");
 const history = require("./routes/HistoryRoutes");
 const analyst = require("./routes/AnalystRoutes");
 const notification = require("./routes/NotificationRoutes");
+const taskRoutes = require("./routes/TaskRoute");
+const subtaskRoute = require("./routes/SubtaskRoute");
 
 
 //settings
@@ -31,7 +33,8 @@ app.use(history);
 app.use(analyst);
 app.use(findingRoutes);
 app.use(notification);
-
+app.use(taskRoutes);
+app.use(subtaskRoute);
 
 //Export
 module.exports = app;
