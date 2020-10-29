@@ -1,17 +1,27 @@
 //Imports
-const mongoose = require("mongoose");
+// const { Router } = require("express");
+const express = require('express');
+const router = express.Router();
+const {
+  getTasks,
+  // getSystemBySlug,
+  createTask,
+  deleteTask,
+  updateTask,
+  updateProgress,
+} = require("../controllers/TaskController");
 
-//DB connection
-const URL = 'mongodb://127.0.0.1:27017/fricdb';
+// const auth = require("../middlewares/auth");
 
-mongoose.connect(URL, {
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+//Routes
+router.get("/home/tasks/get", getTasks);
+// router.get("/systems/:slug", getSystemBySlug);
 
-//DB responses
-const connection = mongoose.connection;
+//Only admin
+router.post("/home/tasks/new", createTask);
+router.put("/home/tasks/update/:id", updateTask);
+router.put("/home/tasks/updateprogress/:id", updateProgress);
+router.delete("/home/tasks/delete/:id", deleteTask);
 
-connection.once("open", () => console.log("MongoDB database connection to " + URL +" established successfully"));
+//Export
+module.exports = router;
