@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
 import EventConfiguration from "./EventConfiguration";
+import FindingConfiguration from "./FindingConfiguration";
 
 class ConfigurationView extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class ConfigurationView extends Component {
         />
         <Clearfix />
         <EventConfiguration/>
+        <FindingConfiguration/>
       </div>
     );
   }
