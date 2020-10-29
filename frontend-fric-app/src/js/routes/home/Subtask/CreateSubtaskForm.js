@@ -28,6 +28,7 @@ class CreateSubtask extends Component {
     this.onChangeSubtaskCollaborator = this.onChangeSubtaskCollaborator.bind(this);
     this.onChangeSubtaskParenttask = this.onChangeSubtaskParenttask.bind(this);
     this.onChangeSubtaskRelatedsubtasks = this.onChangeSubtaskRelatedsubtasks.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       subtasktitle: "",
