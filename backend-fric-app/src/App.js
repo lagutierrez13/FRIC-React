@@ -11,7 +11,12 @@ const findingRoutes = require("./routes/FindingRoutes");
 const history = require("./routes/HistoryRoutes");
 const analyst = require("./routes/AnalystRoutes");
 const notification = require("./routes/NotificationRoutes");
+<<<<<<< HEAD
 const configuration = require("./routes/ConfigurationRoutes");
+=======
+const taskRoutes = require("./routes/TaskRoute");
+const subtaskRoute = require("./routes/SubtaskRoute");
+>>>>>>> beca10b90770e12d70695585ab8e922be9dcb2eb
 
 
 //settings
@@ -32,8 +37,13 @@ app.use(history);
 app.use(analyst);
 app.use(findingRoutes);
 app.use(notification);
+<<<<<<< HEAD
 app.use(configuration);
 
+=======
+app.use(taskRoutes);
+app.use(subtaskRoute);
+>>>>>>> beca10b90770e12d70695585ab8e922be9dcb2eb
 
 //Export
 module.exports = app;

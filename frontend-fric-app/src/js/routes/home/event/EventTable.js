@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
 import EditEventModal from "./EditEventModal";
-import ProgressBar from "react-bootstrap/ProgressBar"
+import { ProgressBar } from "react-bootstrap"
 
 const Event = (props) => (
   <tr>
