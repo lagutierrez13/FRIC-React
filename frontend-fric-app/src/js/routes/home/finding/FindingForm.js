@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { Multiselect } from 'multiselect-react-dropdown';
 
 const Tooltip = () => (
     <Popup trigger={<button>?</button>} position="right center">
@@ -197,7 +198,7 @@ class DetailedView extends Component {
             findingSystem: "",
             findingTask: "",
             findingSubtask: "",
-            findingAnalyst: "",
+            findingAnalyst: [],
             collaborator: "",
             posture: "",
             status: "",
@@ -231,11 +232,16 @@ class DetailedView extends Component {
             availabilityValues: [],
             impactLevelValues: [], //done
             postureValues: [], //done
-            relevanceValues: [] //done
+            relevanceValues: [], //done
+            analystValues: []
 
         };
     }
     componentDidMount() {
+        //For finding status values 
+
+        let analystList = []
+        
         axios
             .get("http://localhost:4000/configuration/get/findingstatus")
             .then((response) => {
@@ -247,12 +253,34 @@ class DetailedView extends Component {
                 console.log(error);
             });
 
+        //For finding type values 
         axios
             .get("http://localhost:4000/configuration/get/findingtype")
             .then((response) => {
                 this.setState({
                     typeValues: response.data.values
                 })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        // For Analyst values
+        axios
+            .get("http://localhost:4000/analyst/get")
+            .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    analystList.push({
+                        label: JSON.stringify(response.data[i].initials),
+                        value: JSON.stringify(response.data[i].initials)
+                    });
+                }
+                console.log("ANALYST VALUES: " + analystList[0].label)
+
+                this.setState({
+                    analystValues: analystList
+                })
+                console.log("ANALYST VALUES: " + this.state.analystValues)
             })
             .catch(function (error) {
                 console.log(error);
@@ -703,15 +731,17 @@ class DetailedView extends Component {
                                         <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
                                         <div class="col-md-6 col-sm-10 ">
                                             {
-                                                <select
-                                                    class="form-control"
-                                                // value={this.state.type}
-                                                // onChange={this.onChangeType}
+                                                <Multiselect
+                                                    // class="form-control"
+                                                    options={this.state.analystValues}
+                                                    onChange={this.onChangeAnalyst}
+                                                    onRemove={this.onRemoveAnalyst}
+                                                    placeholder="Analysts"
                                                 >
-                                                    {/* {this.state.valuesType.map((value) => (
-                                                    <option>{value}</option>
-                                                    ))} */}
-                                                </select>
+                                                    {this.state.analystValues.map((value)=> (
+                                                        <option> {value} </option>
+                                                    ))}
+                                                </Multiselect>
                                             }
                                         </div>
                                     </div>
