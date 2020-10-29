@@ -72,6 +72,40 @@ subtaskCtrl.updateSubtask = async (req, res) => {
     }); 
 };
 
+subtaskCtrl.updateProgress = async (req, res) => {
+    const body = req.body;
+    if (!body) {
+      return res.status(400).json({
+        success: false,
+        error: "You must provide a body to update",
+      });
+    }
+    Subtask.findOne({ _id: req.params.id }, (err, subtask) => {
+      if (err) {
+        return res.status(404).json({
+          err,
+          message: "Subtask not found!",
+        });
+      }
+      subtask.progress = body.progress;
+      subtask
+        .save()
+        .then(() => {
+          return res.status(200).json({
+            success: true,
+            id: subtask._id,
+            message: "Subtask updated!",
+          });
+        })
+        .catch((error) => {
+          return res.status(404).json({
+            error,
+            message: "Subtask not updated!",
+          });
+        });
+    });
+  };
+
 subtaskCtrl.deleteSubtask = async (req, res) => {
     try {
         await Subtask.findOneAndDelete({_id: req.params.id });
