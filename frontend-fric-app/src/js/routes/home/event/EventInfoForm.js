@@ -31,6 +31,7 @@ class DetailedView extends Component {
     this.onChangeClassification = this.onChangeClassification.bind(this);
     this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this); // declassification date
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
+    this.onChangeDerivedFrom = this.onChangeDerivedFrom.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -45,6 +46,7 @@ class DetailedView extends Component {
       declassificationdate: "",
       customername: "",
       progress: 0,
+      derivedfrom: "",
       valuesClassification: [],
       valuesType: [],
     };
@@ -136,6 +138,12 @@ class DetailedView extends Component {
     });
   }
 
+  onChangeDerivedFrom(e) {
+    this.setState({
+      derivedfrom: e.target.value,
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
 
@@ -171,7 +179,7 @@ class DetailedView extends Component {
     };
 
     axios
-      .post("http://localhost:4000/home/events/new", newEvent) //double check this
+      .post("http://localhost:4000/home/event/new", newEvent) //double check this
       .then((res) => console.log(res.data));
 
     axios
@@ -346,6 +354,20 @@ class DetailedView extends Component {
                   class="form-control"
                   value={this.state.customername}
                   onChange={this.onChangeCustomerName}
+                />
+              </div>
+            </div>
+            {/* Derived From */}
+            <div class="form-group row ">
+              <label class="control-label col-md-2 col-sm-2 ">
+                Derived From
+              </label>
+              <div class="col-md-10 col-sm-10 ">
+                <input
+                  type="text"
+                  class="form-control"
+                  value={this.state.derivedfrom}
+                  onChange={this.onChangeDerivedFrom}
                 />
               </div>
             </div>

@@ -17,6 +17,7 @@ class EditEventModal extends React.Component {
     this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
     this.onChangeOrganizationName = this.onChangeOrganizationName.bind(this);
     this.onChangeProgress = this.onChangeProgress.bind(this);
+    this.onChangeDerivedFrom = this.onChangeDerivedFrom.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -35,6 +36,7 @@ class EditEventModal extends React.Component {
       newCustomerName: props.event.customername,
       newOrganizationName: props.event.organizationname,
       newProgress: props.event.progress,
+      newDerivedFrom: props.event.derivedfrom,
       valuesClassification: [1, 2, 3],
       valuesType: [1, 2, 3],
     };
@@ -106,6 +108,12 @@ class EditEventModal extends React.Component {
     });
   }
 
+  onChangeDerivedFrom(e) {
+    this.setState({
+      newDerivedFrom: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
@@ -125,6 +133,7 @@ class EditEventModal extends React.Component {
       customername: this.state.newCustomerName,
       organizationname: this.state.newOrganizationName,
       progress: this.state.newProgress,
+      derivedfrom: this.state.newDerivedFrom
     };
 
     console.log(`Name: ${updatedEvent.name}`);
@@ -316,6 +325,20 @@ class EditEventModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.event.progress}
                     onChange={this.onChangeProgress}
+                  />
+                </div>
+              </div>
+              {/* Derived From */}
+              <div class="form-group row ">
+                <label class="control-label col-md-2 col-sm-2 ">
+                  Derived From
+                </label>
+                <div class="col-md-10 col-sm-10 ">
+                  <input
+                    type="text"
+                    class="form-control"
+                    defaultValue={this.state.event.derivedfrom}
+                    onChange={this.onChangeDerivedFrom}
                   />
                 </div>
               </div>
