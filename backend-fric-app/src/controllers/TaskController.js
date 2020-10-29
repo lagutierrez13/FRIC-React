@@ -72,6 +72,40 @@ taskCtrl.updateTask = async (req, res) => {
     });
 };
 
+taskCtrl.updateProgress = async (req, res) => {
+    const body = req.body;
+    if (!body) {
+      return res.status(400).json({
+        success: false,
+        error: "You must provide a body to update",
+      });
+    }
+    Task.findOne({ _id: req.params.id }, (err, task) => {
+      if (err) {
+        return res.status(404).json({
+          err,
+          message: "Task not found!",
+        });
+      }
+      task.progress = body.progress;
+      task
+        .save()
+        .then(() => {
+          return res.status(200).json({
+            success: true,
+            id: task._id,
+            message: "Task updated!",
+          });
+        })
+        .catch((error) => {
+          return res.status(404).json({
+            error,
+            message: "Task not updated!",
+          });
+        });
+    });
+  };
+
 taskCtrl.deleteTask = async (req, res) => {
     try {
         await Task.findOneAndDelete({_id: req.params.id });
