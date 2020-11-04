@@ -6,18 +6,14 @@ class EditSubtaskModal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeType = this.onChangeType.bind(this);
-    this.onChangeVersion = this.onChangeVersion.bind(this);
-    this.onChangeAssesDate = this.onChangeAssesDate.bind(this);
-    this.onChangeSCTG = this.onChangeSCTG.bind(this);
-    this.onChangeClassification = this.onChangeClassification.bind(this);
-    this.onChangeDeclassDate = this.onChangeDeclassDate.bind(this);
-    this.onChangeCustomerName = this.onChangeCustomerName.bind(this);
-    this.onChangeOrganizationName = this.onChangeOrganizationName.bind(this);
+    this.onChangeDueDate = this.onChangeDueDate.bind(this);
+    this.onChangeAnalyst = this.onChangeAnalyst.bind(this);
+    this.onChangeCollaborator = this.onChangeCollaborator.bind(this);
+    this.onChangeParent = this.onChangeParent.bind(this);
+    this.onChangeRelatedSubtask = this.onChangeRelatedSubtask.bind(this);
     this.onChangeProgress = this.onChangeProgress.bind(this);
-    this.onChangeDerivedFrom = this.onChangeDerivedFrom.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {

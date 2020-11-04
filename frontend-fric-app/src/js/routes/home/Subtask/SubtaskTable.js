@@ -1,20 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import EditSubtaskModal from "./EditSubtaskModal";
+import { ProgressBar } from "react-bootstrap";
 
 const Subtask = (props) => (
   <tr>
-    <td>
-      <input type="checkbox" type={props.subtask.subtaskID}></input>
-    </td>
     <td>{props.subtask.title}</td>
     <td>{props.subtask.parent}</td>
     <td>{props.subtask.analyst}</td>
-    <td>{props.subtask.progress}</td>
     <td>{props.subtask.no_of_findings}</td>
     <td>{props.subtask.duedate}</td>
-    <td></td>
+    <td><ProgressBar animated variant="info" now={props.subtask.progress}/></td>
     <td>
       <EditSubtaskModal subtask={props.subtask}/>
     </td>
@@ -56,16 +52,15 @@ class SubtaskTable extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th></th>
               <th>Title</th>
               <th>Task</th>
               <th>Analyst</th>
-              <th>Progress</th>
               <th>No. of Findings</th>
               <th>Due Date</th>
+              <th>Progress</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>{this.subtaskList()}</tbody>
         </table>
       </div>
     );
