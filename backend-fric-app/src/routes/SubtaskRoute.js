@@ -29,7 +29,7 @@ const {
 //Admin
 router.get("/home/subtasks/get", getSubtasks);
 router.post("/home/subtaks/new", createSubtask);
-router.put("/home/subtasks/new", updateSubtask);
+router.put("/home/subtasks/update/:id", updateSubtask);
 router.put("/home/subtasks/updateprogress/:id", updateProgress);
 router.delete("/home/subtasks/delete/:id", deleteSubtask);
 

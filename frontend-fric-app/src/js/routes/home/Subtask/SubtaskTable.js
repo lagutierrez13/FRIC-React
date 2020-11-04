@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import EditSubtaskModal from "./EditSubtaskModal";
 
 const Subtask = (props) => (
   <tr>
     <td>
       <input type="checkbox" type={props.subtask.subtaskID}></input>
     </td>
-    <td>{props.subtask.subtasktitle}</td>
-    <td>{props.subtask.parent_task}</td>
-    <td>{props.subtask.working_analyst}</td>
-    <td>{props.subtask.subtask_progress}</td>
+    <td>{props.subtask.title}</td>
+    <td>{props.subtask.parent}</td>
+    <td>{props.subtask.analyst}</td>
+    <td>{props.subtask.progress}</td>
     <td>{props.subtask.no_of_findings}</td>
-    <td>{props.subtask.due_date}</td>
+    <td>{props.subtask.duedate}</td>
     <td></td>
     <td>
-      <Link to={"/update/" + props.subtask._id}>Edit</Link>
+      <EditSubtaskModal subtask={props.subtask}/>
     </td>
   </tr>
 );
