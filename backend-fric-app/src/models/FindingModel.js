@@ -13,7 +13,7 @@ const findingSchema = new Schema(
       findingSystem: String, //select only system, task, or subtask. never more than one
       findingTask: String,
       findingSubtask: String,
-      findingAnalyst: String, //multiple selection
+      findingAnalyst: [String], //multiple selection
       collaborator: String, //multiple selection
       posture: String, //  {Insider, Insider-nearsider, Outsider, Nearsider, Nearsider-outsider}
       status: String, // {Open, Closed}
