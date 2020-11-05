@@ -2,14 +2,15 @@ const { Schema, model } = require("mongoose");
 
 let subtaskSchema = new Schema(
     {
-        subtasktitle: String,
-        subtaskdescription: String,
-        subtaskprogress: Number,
-        subtaskduedate: String,
-        subtaskanalyst: String,
-        subtaskcollaborator: String,
-        subtaskparenttask: String,
-        subtaskrelatedsubtasks: String,
+        title: String,
+        description: String,
+        duedate: String,
+        analyst: String,
+        collaborator: String,
+        parent: String,
+        relatedsubtask: String,
+        no_of_findings: Number,
+        progress: Number,
     },
     {
         timestamps: true,
