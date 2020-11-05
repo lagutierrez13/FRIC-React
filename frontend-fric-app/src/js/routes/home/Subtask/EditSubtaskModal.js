@@ -139,7 +139,7 @@ class EditSubtaskModal extends React.Component {
 
         <Modal show={this.state.showHide}>
           <Modal.Header closeButton onClick={() => this.handleModalShowHide()}>
-            <Modal.Title>Edit Event</Modal.Title>
+            <Modal.Title>Edit Subtask</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.onSubmit}>
