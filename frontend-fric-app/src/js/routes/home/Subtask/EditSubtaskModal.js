@@ -139,7 +139,7 @@ class EditSubtaskModal extends React.Component {
 
         <Modal show={this.state.showHide}>
           <Modal.Header closeButton onClick={() => this.handleModalShowHide()}>
-            <Modal.Title>Edit Event</Modal.Title>
+            <Modal.Title>Edit Subtask</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.onSubmit}>
@@ -174,11 +174,16 @@ class EditSubtaskModal extends React.Component {
                 <label class="control-label col-md-2 col-sm-2 ">Progress</label>
                 <div class="col-md-10 col-sm-10 ">
                   <input
-                    type="text"
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="10"
                     class="form-control"
                     defaultValue={this.state.subtask.progress}
                     onChange={this.onChangeProgress}
                   />
+                  <label for="progress">{this.state.newProgress}</label>
                 </div>
               </div>
               {/* Due Date */}

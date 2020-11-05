@@ -230,15 +230,20 @@ class EditSystemModal extends React.Component {
                 </div>
               </div>
               {/* Progress */}
-              <div class="form-group row">
-                <label class="control-label col-sm-2">Progress</label>
-                <div class=" col-sm-10">
+              <div class="form-group row ">
+                <label class="control-label col-md-2 col-sm-2 ">Progress</label>
+                <div class="col-md-10 col-sm-10 ">
                   <input
-                    type="text"
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="10"
                     class="form-control"
                     defaultValue={this.state.system.progress}
                     onChange={this.onChangeProgress}
-                  ></input>
+                  />
+                  <label for="progress">{this.state.newProgress}</label>
                 </div>
               </div>
               <button
