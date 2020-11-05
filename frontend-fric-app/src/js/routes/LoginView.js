@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../components";
-
+import Link from "react-router-dom/Link";
+import {Button} from "react-bootstrap";
 
 
 class LoginView extends Component {
@@ -23,7 +24,7 @@ class LoginView extends Component {
                         <XPanel visible={panelVisible} onHide={onHide}>
                             <XPanel.Title title="Login"></XPanel.Title>
                                 <XPanel.Content>
-                                    <form> 
+                                    <form>
                                         <Row>
                                             <Col md={6} sm={6} xs={12}>
                                                 <div class="form-group row">
@@ -32,16 +33,18 @@ class LoginView extends Component {
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            
+
                                                         />
                                                     </div>
                                                 </div>
                                             </Col>
                                         </Row>
                                         <div class="item form-group">
-                                            <button class="btn btn-primary" type="submit" value="Save Finding">
-                                                Login
-                                            </button>   
+                                          <Link to="/home">
+                                            <Button renderAs="button">
+                                              <span>Login</span>
+                                            </Button>
+                                          </Link>
                                         </div>
                                     </form>
                                 </XPanel.Content>

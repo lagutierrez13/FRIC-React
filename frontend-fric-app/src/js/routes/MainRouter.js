@@ -8,7 +8,7 @@ const MainRouter = () => {
     return (<div>
         <Switch>
             <Route path="/home" component={PageContent}/>
-            <Route path="/login" component={LoginView}/>
+            <Route path="/" component={LoginView}/>
         </Switch>
     </div>)
 }
