@@ -113,7 +113,7 @@ class DetailedView extends Component {
       };
 
       const newHistory = {
-        action: "Task Edited",
+        action: `Task ${this.state.title} Edited`,
         analyst: "",
       };
 

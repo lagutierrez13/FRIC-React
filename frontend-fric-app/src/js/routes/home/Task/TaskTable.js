@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import EditTaskModal from "./EditTaskModal";
 import { ProgressBar } from "react-bootstrap";
+
 
 
 const Task = (props) => (
@@ -16,7 +17,7 @@ const Task = (props) => (
     <td>{props.task.no_of_findings}</td>
     <td>{props.task.due_date}</td>
     <td>
-      <Link to={"/update/" + props.task._id}>Edit</Link>
+      <EditTaskModal  task={props.task} />
     </td>
   </tr>
 );
