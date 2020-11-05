@@ -3,11 +3,13 @@ import { Route } from "react-router";
 import Dashboard from "./dashboard-1/Dashboard";
 import HomeMenu from "./Menu";
 /* File imports */
+import AnalystProgressView from "./Analyst/AnalystProgressView";
 import EventView from "./event/EventView";
 import SystemView from "./System/SystemView.js";
 import TaskView from "./Task/TaskView.js";
 import SubtaskView from "./Subtask/SubtaskView";
-import AnalystProgressView from "./Analyst/AnalystProgressView";
+import FindingView from "./finding/FindingView"
+
 
 export default [
   /*<Route path="/configuration/dashboard-1" component={Dashboard} />,*/
@@ -21,8 +23,7 @@ export default [
   <Route path="/home/systems" component={SystemView} />,
   <Route path="/home/tasks" component={TaskView} />,
   <Route path="/home/subtasks" component={SubtaskView} />,
-  <Route path="/home/findings" component={Dashboard} />,
+  <Route path="/home/findings" component={FindingView} />,
   <Route path="/home/archive" component={Dashboard} />,
-
 ];
 export { HomeMenu };

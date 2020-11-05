@@ -32,7 +32,7 @@ class EventView extends Component {
         <Row>
           <Col md={12} sm={12} xs={12}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="">
+              <XPanel.Title title="Event Overview">
                 <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
                 <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
               </XPanel.Title>

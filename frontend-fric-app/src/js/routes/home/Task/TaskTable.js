@@ -1,11 +1,47 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ProgressBar } from "react-bootstrap";
+
+
+const Task = (props) => (
+  <tr>
+    
+    <td>{props.task.tasktitle}</td>
+    <td>{props.task.tasksystem}</td>
+    <td>{props.task.taskanalyst}</td>
+    <td>{props.task.priority}</td>
+    <td><ProgressBar animated variant="info" now={props.task.progress}/></td>
+    <td>{props.task.no_of_subtasks}</td>
+    <td>{props.task.no_of_findings}</td>
+    <td>{props.task.due_date}</td>
+    <td>
+      <Link to={"/update/" + props.task._id}>Edit</Link>
+    </td>
+  </tr>
+);
 
 class TaskTable extends Component {
   constructor(props) {
     super(props);
     this.state = { tasks: [] };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/home/tasks/get")
+      .then((response) => {
+        this.setState({ tasks: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  taskList() {
+    return this.state.tasks.map(function (currentTask, i) {
+      return <Task task={currentTask} key={i} />;
+    });
   }
 
   render() {
@@ -30,7 +66,7 @@ class TaskTable extends Component {
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>{this.taskList()}</tbody>
         </table>
       </div>
     );

@@ -1,30 +1,18 @@
-import { LoginForm } from "./routes/home/login/LoginForm";
+// import LoginView from "./routes/LoginView";
+
+import MainRouter from "./routes/MainRouter";
 
 export default function (
   React,
   Router,
   history,
-  Left,
-  Top,
-  Footer,
-  PageContent,
-  Menu
+ 
 ) {
   class App extends React.Component {
     render() {
       return (
         <Router history={history}>
-          <div>
-            <div className="container body">
-              <div className="main_container">
-                {/* <LoginForm /> */}
-                <Left>{Menu}</Left>
-                <Top />
-                <PageContent />
-                <Footer />
-              </div>
-            </div>
-          </div>
+          <MainRouter />
         </Router>
       );
     }

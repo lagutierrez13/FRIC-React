@@ -8,19 +8,21 @@ const {
   createEvent,
   deleteEvent,
   updateEvent,
+  updateProgress,
 } = require("../controllers/EventController");
 
 //used for user authentication
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/home/events/get", getEvents);
+router.get("/home/event/get", getEvents);
 // router.get("/events/:slug", getEventBySlug);
 
 //Only admin
-router.post("/home/events/new", createEvent);
-router.put("/home/events/update/:id", updateEvent);
-router.delete("/home/events/delete/:id", deleteEvent);
+router.post("/home/event/new", createEvent);
+router.put("/home/event/update/:id", updateEvent);
+router.put("/home/event/updateprogress/:id", updateProgress);
+router.delete("/home/event/delete/:id", deleteEvent);
 
 //Export
 module.exports = router;
