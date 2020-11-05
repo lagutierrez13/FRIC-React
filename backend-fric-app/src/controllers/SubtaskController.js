@@ -46,14 +46,15 @@ subtaskCtrl.updateSubtask = async (req, res) => {
       });
     }
 
-    subtask.title = body.subtasktitle;
-    subtask.description = body.subtaskdescription;
+    subtask.title = body.title;
+    subtask.description = body.description;
     subtask.duedate = body.duedate;
     subtask.analyst = body.analyst;
     subtask.collaborator = body.collaborator;
     subtask.parent = body.parent;
     subtask.relatedsubtask = body.relatedsubtask;
-    subtask.progress = body.subtaskprogreess;
+    subtask.no_of_findings = body.no_of_findings;
+    subtask.progress = body.progress;
     subtask
       .save()
       .then(() => {

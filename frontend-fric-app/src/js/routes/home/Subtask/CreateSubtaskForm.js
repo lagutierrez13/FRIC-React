@@ -46,6 +46,10 @@ class CreateSubtask extends Component {
       relatedsubtask: "",
       no_of_findings: 0,
       progress: 0,
+      analysts: ["1", "2", "3"],
+      collaborators: ["1", "2", "3"],
+      tasks: ["1", "2", "3"],
+      subtasks: ["1", "2", "3"],
     };
   }
 
@@ -139,11 +143,12 @@ class CreateSubtask extends Component {
       title: "",
       description: "",
       duedate: "",
-      progress: "",
       analyst: "",
       collaborator: "",
       parent: "",
       relatedsubtask: "",
+      no_of_findings: 0,
+      progress: 0,
     });
   }
 
@@ -212,7 +217,11 @@ class CreateSubtask extends Component {
                   class="form-control"
                   value={this.state.subtaskanalyst}
                   onChange={this.onChangeSubtaskAnalyst}
-                ></select>
+                >
+                  {this.state.analysts.map((value) => (
+                    <option>{value}</option>
+                  ))}
+                </select>
               </div>
             </div>
             {/* Collaborator*/}
@@ -225,7 +234,11 @@ class CreateSubtask extends Component {
                   class="form-control"
                   value={this.state.subtaskcollaborator}
                   onChange={this.onChangeSubtaskCollaborator}
-                ></select>
+                >
+                  {this.state.collaborators.map((value) => (
+                    <option>{value}</option>
+                  ))}
+                </select>
               </div>
             </div>
             {/* Tasks */}
@@ -236,7 +249,11 @@ class CreateSubtask extends Component {
                   class="form-control"
                   value={this.state.subtaskparenttask}
                   onChange={this.onChangeSubtaskParenttask}
-                ></select>
+                >
+                  {this.state.tasks.map((value) => (
+                    <option>{value}</option>
+                  ))}
+                </select>
               </div>
             </div>
             {/* Related Subtasks */}
@@ -247,7 +264,11 @@ class CreateSubtask extends Component {
                   class="form-control"
                   value={this.state.subtaskrelatedsubtasks}
                   onChange={this.onChangeSubtaskRelatedsubtasks}
-                ></select>
+                >
+                  {this.state.subtasks.map((value) => (
+                    <option>{value}</option>
+                  ))}
+                </select>
               </div>
             </div>
             {/* Buttons */}

@@ -30,10 +30,10 @@ class EditSubtaskModal extends React.Component {
       newParent: props.subtask.parent,
       newRelatedSubtask: props.subtask.relatedsubtask,
       newProgress: props.subtask.progress,
-      analysts: [1, 2, 3],
-      collaborators: [1, 2, 3],
-      tasks: [1, 2, 3],
-      subtasks: [1, 2, 3],
+      analysts: ["1", "2", "3"],
+      collaborators: ["1", "2", "3"],
+      tasks: ["1", "2", "3"],
+      subtasks: ["1", "2", "3"],
     };
   }
 
