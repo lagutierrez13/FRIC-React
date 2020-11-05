@@ -73,6 +73,7 @@ function Notification({ img, name, time, message }) {
         </span>
         <span className="message">{message}</span>
       </a>
+      <input type="button" value="OK" className="btn btn-primary"/>
     </li>
   );
 }

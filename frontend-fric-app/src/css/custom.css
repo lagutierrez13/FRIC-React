@@ -192,7 +192,7 @@
   min-height: 100%;
   width: 230px;
   padding: 0;
-  position: absolute;
+  position: fixed;
   display: flex;
   z-index: 1; }
 
@@ -671,6 +671,7 @@ a:hover, a:focus {
   line-height: 30px; }
 
 .main_menu_side {
+  position:fixed;
   padding: 0; }
 
 .bs-docs-sidebar .nav > li > a {
@@ -1609,7 +1610,7 @@ h4.graph_title {
   margin-right: 10px; }
 
 .main_menu .fa {
-  width: 26px;
+  width: 50px;
   opacity: .99;
   display: inline-block;
   font-family: FontAwesome;

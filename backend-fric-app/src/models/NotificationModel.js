@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 // const slugify = require("slugify");
 
-let eventTypeTableSchema = new Schema(
+let notificationSchema = new Schema(
     {
         required: Boolean,
         values: [String]
@@ -26,7 +26,7 @@ let eventTypeTableSchema = new Schema(
 //     next();
 // })
 
-const EventTypeTable = model("EventTypeTable", eventTypeTableSchema);
+const Notification = model("Notification", notificationSchema);
 
 //export
-module.exports = EventTypeTable;
+module.exports = Notification;

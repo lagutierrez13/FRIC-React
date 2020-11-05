@@ -6,9 +6,10 @@ let analystSchema = new Schema(
     initials: String,
     first: String,
     last: String,
+    title: String,
     ip: String,
     isLead: Boolean,
-    title: String,
+    progress: Number,
     tokens: [
       {
         token: {

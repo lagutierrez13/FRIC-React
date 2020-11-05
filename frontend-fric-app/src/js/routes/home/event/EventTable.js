@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import Popup from "reactjs-popup";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
+import EditEventModal from "./EditEventModal";
+import { ProgressBar } from "react-bootstrap"
 
 const Event = (props) => (
   <tr>
     <td>{props.event.name}</td>
     <td>{props.event.no_of_systems}</td>
     <td>{props.event.no_of_findings}</td>
-    <td></td>
+    <td><ProgressBar animated variant="info" now={props.event.progress}/></td>
     <td>
-      <Link to={"/update/" + props.event._id}>Edit</Link>
+      <EditEventModal event={props.event}/>
     </td>
   </tr>
 );
 
-const PopupExample = () => (
+const EventContentToolTip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
@@ -37,7 +38,7 @@ class EventTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/home/events/get")
+      .get("http://localhost:4000/home/event/get")
       .then((response) => {
         this.setState({ events: response.data });
       })
@@ -57,7 +58,7 @@ class EventTable extends Component {
       <div class="x_panel">
         <div class="x_title">
           <h2>
-            Event Contents Table <PopupExample />
+            Event Contents Table <EventContentToolTip />
           </h2>
 
           <div class="clearfix"></div>
@@ -70,6 +71,7 @@ class EventTable extends Component {
               <th>No. of Systems</th>
               <th>No. of Findings</th>
               <th>Progress</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>{this.eventList()}</tbody>

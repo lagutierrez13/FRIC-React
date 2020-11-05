@@ -3,19 +3,24 @@
 const express = require('express');
 const router = express.Router();
 const {
-  getEventClassificationTable,
-  createEventClassificationTable,
-  // getSystemBySlug,
-} = require("../../controllers/Configuration/EventClassificationTableController");
+  getFindings,
+  // getfindingBySlug,
+  createFinding,
+  deleteFinding,
+  updateFinding,
+} = require("../controllers/FindingController");
 
+//used for user authentication
 // const auth = require("../middlewares/auth");
 
 //Routes
-router.get("/eventclassificationtable/get", getEventClassificationTable);
-// router.get("/systems/:slug", getSystemBySlug);
+router.get("/home/findings/get", getFindings);
+// router.get("/findings/:slug", getfindingBySlug);
 
 //Only admin
-router.post("/eventclassificationtable/new", createEventClassificationTable);
+router.post("/home/findings/new", createFinding);
+router.put("/home/findings/update/:id", updateFinding);
+router.delete("/home/findings/delete/:id", deleteFinding);
 
 //Export
 module.exports = router;

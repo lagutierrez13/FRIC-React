@@ -24,12 +24,12 @@ class EventRulesTable extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/eventrulestable/get")
+      .get("http://localhost:4000/configuration/get/eventrules")
       .then((response) => {
-        console.log(response.data[response.data.length - 1]);
+        console.log(response.data);
         this.setState({
-          values: response.data[response.data.length - 1].values,
-          required: response.data[response.data.length - 1].required,
+          values: response.data.values,
+          required: response.data.required,
         });
       })
       .catch(function (error) {
@@ -44,7 +44,8 @@ class EventRulesTable extends Component {
     console.log(`Values in list: ${this.state.values}`);
     console.log(`Is required: ${this.state.required}`);
 
-    const newEventRulesTable = {
+    const newConfiguration = {
+      tablename: "eventrules",
       required: this.state.required,
       values: this.state.values,
     };
@@ -55,7 +56,10 @@ class EventRulesTable extends Component {
     };
 
     axios
-      .post("http://localhost:4000/eventrulestable/new", newEventRulesTable)
+      .put(
+        `http://localhost:4000/configuration/update/${newConfiguration.tablename}`,
+        newConfiguration
+      )
       .then((res) => console.log(res.data));
 
     axios
