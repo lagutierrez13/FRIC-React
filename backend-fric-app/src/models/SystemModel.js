@@ -12,6 +12,9 @@ let systemSchema = new Schema(
         testplan: String,
         no_of_findings: String,
         no_of_tasks: String,
+        confidentiality: String,
+        integrity: String,
+        availability: String,
         progress: String,
         // slug: {
         //     type: String,
