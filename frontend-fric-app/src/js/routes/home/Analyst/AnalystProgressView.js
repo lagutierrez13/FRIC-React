@@ -5,6 +5,7 @@ import TaskTable from "../Task/TaskTable";
 import SubtaskTable from "../Subtask/SubtaskTable";
 import FindingOverviewTable from "../findings/FindingOverviewTable";
 import SystemTable from "../System/SystemTable";
+import FindingTable from "../finding/FindingTable";
 
 class AnalystProgressView extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class AnalystProgressView extends Component {
             <XPanel visible={panelVisible} onHide={onHide}>
               <XPanel.Title title="Findings Overview Table"></XPanel.Title>
               <XPanel.Content>
-                <FindingOverviewTable />
+                <FindingTable />
               </XPanel.Content>
             </XPanel>
           </Col>
