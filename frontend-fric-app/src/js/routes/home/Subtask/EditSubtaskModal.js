@@ -21,6 +21,7 @@ class EditSubtaskModal extends React.Component {
       subtask: props.subtask,
       _id: props.subtask._id,
       progress: props.subtask.progress,
+      no_of_findings: props.subtask.no_of_findings,
       newTitle: props.subtask.title,
       newDescription: props.subtask.description,
       newDueDate: props.subtask.duedate,
@@ -29,6 +30,10 @@ class EditSubtaskModal extends React.Component {
       newParent: props.subtask.parent,
       newRelatedSubtask: props.subtask.relatedsubtask,
       newProgress: props.subtask.progress,
+      analysts: [1, 2, 3],
+      collaborators: [1, 2, 3],
+      tasks: [1, 2, 3],
+      subtasks: [1, 2, 3],
     };
   }
 
@@ -94,6 +99,7 @@ class EditSubtaskModal extends React.Component {
       collaborator: this.state.newCollaborator,
       parent: this.state.newParent,
       relatedsubtask: this.state.newRelatedSubtask,
+      no_of_findings: this.state.no_of_findings,
       progress: this.state.newProgress,
     };
 
@@ -103,6 +109,9 @@ class EditSubtaskModal extends React.Component {
     console.log(`Analyst: ${updatedSubtask.analyst}`);
     console.log(`Collaborator: ${updatedSubtask.collaborator}`);
     console.log(`Parent: ${updatedSubtask.parent}`);
+    console.log(`Related: ${updatedSubtask.relatedsubtask}`);
+    console.log(`Findings: ${updatedSubtask.no_of_findings}`);
+    console.log(`Progress: ${updatedSubtask.progress}`);
 
     const newHistory = {
       action: `Subtask: ${this.state.newTitle} was edited`,
@@ -187,7 +196,11 @@ class EditSubtaskModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.subtask.analyst}
                     onChange={this.onChangeAnalyst}
-                  ></select>
+                  >
+                    {this.state.analysts.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               {/* Collaborator*/}
@@ -200,7 +213,11 @@ class EditSubtaskModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.subtask.collaborator}
                     onChange={this.onChangeCollaborator}
-                  ></select>
+                  >
+                    {this.state.collaborators.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               {/* Tasks */}
@@ -211,7 +228,11 @@ class EditSubtaskModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.parent}
                     onChange={this.onChangeParent}
-                  ></select>
+                  >
+                    {this.state.tasks.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               {/* Related Subtasks */}
@@ -222,7 +243,11 @@ class EditSubtaskModal extends React.Component {
                     class="form-control"
                     defaultValue={this.state.subtask.relatedsubtask}
                     onChange={this.onChangeRelatedSubtask}
-                  ></select>
+                  >
+                    {this.state.subtasks.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <button
