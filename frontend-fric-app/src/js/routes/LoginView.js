@@ -5,6 +5,7 @@ import Link from "react-router-dom/Link";
 import {Button} from "react-bootstrap";
 
 
+
 class LoginView extends Component {
     constructor(props) {
         super(props);
@@ -40,9 +41,14 @@ class LoginView extends Component {
                                             </Col>
                                         </Row>
                                         <div class="item form-group">
-                                          <Link to="/home">
+                                          <Link to="home">
                                             <Button renderAs="button">
                                               <span>Login</span>
+                                            </Button>
+                                          </Link>
+                                          <Link to="createEvent">
+                                            <Button /*renderAs="button"*/ className="btn btn-default" type="submit">
+                                              <span>Create Event</span>
                                             </Button>
                                           </Link>
                                         </div>
