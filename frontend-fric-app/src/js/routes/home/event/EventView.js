@@ -6,6 +6,8 @@ import DetailedView from "./EventInfoForm";
 import EventTable from "./EventTable";
 import TeamInfo from "./EventTeamInfo";
 
+
+
 class EventView extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +63,7 @@ class EventView extends Component {
             </XPanel>
           </Col>
         </Row>
+
       </div>
     );
   }
