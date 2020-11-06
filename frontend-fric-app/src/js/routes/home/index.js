@@ -8,7 +8,8 @@ import EventView from "./event/EventView";
 import SystemView from "./System/SystemView.js";
 import TaskView from "./Task/TaskView.js";
 import SubtaskView from "./Subtask/SubtaskView";
-import FindingView from "./finding/FindingView"
+import FindingView from "./finding/FindingView";
+
 
 
 export default [
