@@ -5,6 +5,7 @@ import Item from './Item'
 import { bodyNextClick } from '../domUtils'
 
 class TopNavBar extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
