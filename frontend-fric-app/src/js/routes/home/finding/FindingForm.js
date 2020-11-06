@@ -18,29 +18,6 @@ const Tooltip = () => (
     </Popup>
 );
 
-const Mitigation = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Mitigation <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Brief Description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="2" type="text" class="form-control" >
-                </textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Long description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="4" type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-    </div>
-)
 const CounterMeasure = () => (
     <div class="x_panel tile">
         <div class="x_title">
@@ -112,6 +89,34 @@ const Risk = () => (
         </div>
     </div>
 )
+function Mitigation(props) {
+
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Mitigation <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Brief Description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="2" type="text" class="form-control" >
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Long description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="4" type="text" class="form-control" ></textarea>
+                </div>
+            </div>
+        </div>
+
+    );
+}
+
 
 const FindingSystemLevelImpact = () => (
     <div class="x_panel tile">
@@ -509,7 +514,7 @@ class DetailedView extends Component {
             progress: 0,
         });
     }
-
+    
     // what you see
     render() {
         return (
@@ -912,7 +917,7 @@ class DetailedView extends Component {
                     </Row>
 
                     <Row md={6} sm={6} xs={12}>
-                        <Mitigation />
+                        <this.Mitigation/>
                     </Row>
 
                     {/* Buttons */}
