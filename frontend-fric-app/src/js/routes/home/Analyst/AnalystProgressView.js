@@ -3,7 +3,7 @@ import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../../../components";
 import TaskTable from "../Task/TaskTable";
 import SubtaskTable from "../Subtask/SubtaskTable";
-import FindingTable from "../finding/FindingTable";
+import FindingOverviewTable from "../findings/FindingOverviewTable";
 import SystemTable from "../System/SystemTable";
 
 class AnalystProgressView extends Component {
@@ -51,7 +51,7 @@ class AnalystProgressView extends Component {
             <XPanel visible={panelVisible} onHide={onHide}>
               <XPanel.Title title="Findings Overview Table"></XPanel.Title>
               <XPanel.Content>
-                <FindingTable />
+                <FindingOverviewTable />
               </XPanel.Content>
             </XPanel>
           </Col>
