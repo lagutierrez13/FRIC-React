@@ -3,8 +3,8 @@
 
 ## In order to run FRIC you need: 
 
-- [Node.js] (https://nodejs.org/en/) 
-- [Git-repo] (https://github.com/lagutierrez13/FRIC-React)
+- [Node.js](https://nodejs.org/en/) 
+- [Git-repo](https://github.com/lagutierrez13/FRIC-React)
 
 ## After downloading and installing the next steps are:
 
