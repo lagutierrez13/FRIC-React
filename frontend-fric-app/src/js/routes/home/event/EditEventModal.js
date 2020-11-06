@@ -316,16 +316,19 @@ class EditEventModal extends React.Component {
               </div>
               {/* Progress */}
               <div class="form-group row ">
-                <label class="control-label col-md-2 col-sm-2 ">
-                  Progress
-                </label>
+                <label class="control-label col-md-2 col-sm-2 ">Progress</label>
                 <div class="col-md-10 col-sm-10 ">
                   <input
-                    type="text"
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="10"
                     class="form-control"
                     defaultValue={this.state.event.progress}
                     onChange={this.onChangeProgress}
                   />
+                  <label for="progress">{this.state.newProgress}</label>
                 </div>
               </div>
               {/* Derived From */}

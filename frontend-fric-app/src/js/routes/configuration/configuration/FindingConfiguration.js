@@ -28,7 +28,7 @@ class FindingConfiguration extends Component {
       <Row>
         <Col md={12} sm={12} xs={12}>
           <XPanel visible={panelVisible} onHide={onHide}>
-            <XPanel.Title title="Finding Configuration">
+            <XPanel.Title title="Finding/System Configuration">
               <XPanel.MenuItem>Settings 1</XPanel.MenuItem>
               <XPanel.MenuItem>Settings 2</XPanel.MenuItem>
             </XPanel.Title>
