@@ -8,9 +8,12 @@
 
 ## After downloading and installing the next steps are:
 
-- On the terminal navigate to FRIC-React/backend-fric-app and write the following commands
+- On the terminal navigate to FRIC-React/backend-fric-app and type the following command:
 ```
 npm install -g nodemon
-nodemon server
 
+```
+- After installing navigate to FRIC-React/backend-fric-app/src and type the following command:
+```
+nodemon index
 ```
