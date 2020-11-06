@@ -7,7 +7,7 @@ class Left extends Component {
       <div className="col-md-3 left_col">
         <div className="left_col scroll-view">
           <div className="navbar nav_title" style={{ border: 0 }}>
-            <a href="index.html" className="site_title">
+            <a href="./Analyst/" className="site_title">
               <i className="fa fa-shield"></i> <span>FRIC</span>
             </a>
           </div>
