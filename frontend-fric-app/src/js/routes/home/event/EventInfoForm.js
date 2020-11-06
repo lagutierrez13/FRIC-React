@@ -103,8 +103,9 @@ class DetailedView extends Component {
   }
 
   onChangeAssesDate(e) {
+    console.log(e.target.value.toString());
     this.setState({
-      assessdate: e.target.value,
+      assessdate: e.target.value.toString(),
     });
   }
 
@@ -147,17 +148,17 @@ class DetailedView extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    console.log("Event Submitted");
-    console.log("Name: ${this.state.name}");
-    console.log("Description: ${this.state.description}");
-    console.log("Type: ${this.state.type}");
-    console.log("Version: ${this.state.version}");
-    console.log("Assessment Date: ${this.state.assessdate}");
-    console.log("Organization Name: ${this.state.organizationname}");
-    console.log("SCTG: ${this.state.sctg}");
-    console.log("Event Classification: ${this.state.classification}");
-    console.log("Declassification Date: ${this.state.declassificationdate}");
-    console.log("Customer Name: ${this.state.customername}");
+    console.log(`Event Submitted`);
+    console.log(`Name: ${this.state.name}`);
+    console.log(`Description: ${this.state.description}`);
+    console.log(`Type: ${this.state.type}`);
+    console.log(`Version: ${this.state.version}`);
+    console.log(`Assessment Date: ${this.state.assessdate}`);
+    console.log(`Organization Name: ${this.state.organizationname}`);
+    console.log(`SCTG: ${this.state.sctg}`);
+    console.log(`Event Classification: ${this.state.classification}`);
+    console.log(`Declassification Date: ${this.state.declassificationdate}`);
+    console.log(`Customer Name: ${this.state.customername}`);
 
     const newEvent = {
       name: this.state.name,
@@ -277,7 +278,7 @@ class DetailedView extends Component {
               </label>
               <div class="col-md-10 col-sm-10 ">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   value={this.state.assessdate}
                   onChange={this.onChangeAssesDate}
