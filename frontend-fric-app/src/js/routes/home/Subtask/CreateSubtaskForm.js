@@ -274,7 +274,7 @@ class CreateSubtask extends Component {
             {/* Buttons */}
             <br />
             <div class="item form-group">
-              <button class="btn btn-primary" type="submit" value="Save Task">
+              <button class="btn btn-primary" type="submit" value="Save Task" onClick={() => window.location.reload(false)}>
                 Save
               </button>
               <button class="btn btn-danger" type="cancel">

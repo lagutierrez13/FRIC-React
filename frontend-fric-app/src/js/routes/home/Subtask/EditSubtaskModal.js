@@ -266,6 +266,7 @@ class EditSubtaskModal extends React.Component {
                 class="btn btn-primary"
                 type="submit"
                 onClick={() => this.handleModalShowHide()}
+                onClick={() => window.location.reload(false)}
               >
                 Save Changes
               </button>
