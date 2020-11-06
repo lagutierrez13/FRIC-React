@@ -45,16 +45,6 @@ class SystemView extends Component {
             </XPanel>
           </Col>
         </Row>
-        <Row>
-          <Col md={12} sm={12} xs={12}>
-            <XPanel visible={panelVisible} onHide={onHide}>
-              {/* <XPanel.Title title=""></XPanel.Title> */}
-              <XPanel.Content>
-                <Categorization />
-              </XPanel.Content>
-            </XPanel>
-          </Col>
-        </Row>
       </div>
     );
   }

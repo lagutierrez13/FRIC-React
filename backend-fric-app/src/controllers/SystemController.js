@@ -75,6 +75,7 @@ systemCtrl.updateSystem = async (req, res) => {
     system.eventrouter = body.eventrouter;
     system.eventswitch = body.eventswitch;
     system.testplan = body.testplan;
+    system.progress = body.progress;
     system
       .save()
       .then(() => {

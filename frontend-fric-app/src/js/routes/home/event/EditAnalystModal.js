@@ -11,6 +11,7 @@ class EditAnalystModal extends React.Component {
     this.onChangeLastName = this.onChangeLastName.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeIP = this.onChangeIP.bind(this);
+    this.onChangeProgress = this.onChangeProgress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -24,6 +25,7 @@ class EditAnalystModal extends React.Component {
       newLast: props.analyst.last,
       newTitle: props.analyst.title,
       newIP: props.analyst.ip,
+      newProgress: props.analyst.progress,
     };
   }
 
@@ -57,6 +59,12 @@ class EditAnalystModal extends React.Component {
     });
   }
 
+  onChangeProgress(e) {
+    this.setState({
+      newProgress: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
   }
@@ -71,7 +79,7 @@ class EditAnalystModal extends React.Component {
       title: this.state.newTitle,
       ip: this.state.newIP,
       isLead: this.state.isLead,
-      progress: this.state.progress,
+      progress: this.state.newProgress,
     };
 
     console.log(`Initials: ${updatedAnalyst.initials}`);
@@ -79,6 +87,7 @@ class EditAnalystModal extends React.Component {
     console.log(`Last: ${updatedAnalyst.last}`);
     console.log(`Title: ${updatedAnalyst.title}`);
     console.log(`IP: ${updatedAnalyst.ip}`);
+    console.log(`Progress: ${updatedAnalyst.progress}`);
 
     const newHistory = {
       action: `Analyst: ${this.state.newInitials} was edited`,
@@ -168,8 +177,24 @@ class EditAnalystModal extends React.Component {
                     type="text"
                     class="form-control"
                     defaultValue={this.state.analyst.ip}
-                    onChange={this.onChangeFirstName}
+                    onChange={this.onChangeIP}
                   />
+                </div>
+              </div>
+              <div class="form-group row ">
+                <label class="control-label col-md-2 col-sm-2 ">Progress</label>
+                <div class="col-md-10 col-sm-10 ">
+                  <input
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="10"
+                    class="form-control"
+                    defaultValue={this.state.analyst.progress}
+                    onChange={this.onChangeProgress}
+                  />
+                  <label for="progress">{this.state.newProgress}</label>
                 </div>
               </div>
               <button

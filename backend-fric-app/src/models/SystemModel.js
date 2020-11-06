@@ -10,8 +10,11 @@ let systemSchema = new Schema(
         eventrouter: String,
         eventswitch: String,
         testplan: String,
-        no_of_findings: String,
-        no_of_tasks: String,
+        no_of_findings: Number,
+        no_of_tasks: Number,
+        confidentiality: String,
+        integrity: String,
+        availability: String,
         progress: String,
         // slug: {
         //     type: String,

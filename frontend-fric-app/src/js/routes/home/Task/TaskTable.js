@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ProgressBar } from "react-bootstrap";
+
 
 const Task = (props) => (
   <tr>
-    <td>
-      <input type="checkbox" type={props.Task.taskID}></input>
-    </td>
-    <td>{props.task.task_title}</td>
-    <td>{props.task.system}</td>
-    <td>{props.task.working_analyst}</td>
+    
+    <td>{props.task.tasktitle}</td>
+    <td>{props.task.tasksystem}</td>
+    <td>{props.task.taskanalyst}</td>
     <td>{props.task.priority}</td>
-    <td>{props.task.task_progress}</td>
+    <td><ProgressBar animated variant="info" now={props.task.progress}/></td>
     <td>{props.task.no_of_subtasks}</td>
     <td>{props.task.no_of_findings}</td>
     <td>{props.task.due_date}</td>
-    <td></td>
     <td>
       <Link to={"/update/" + props.task._id}>Edit</Link>
     </td>
@@ -57,7 +56,6 @@ class TaskTable extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th></th>
               <th>Title</th>
               <th>System</th>
               <th>Analyst</th>
@@ -68,7 +66,7 @@ class TaskTable extends Component {
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>{this.taskList()}</tbody>
         </table>
       </div>
     );

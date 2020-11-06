@@ -13,12 +13,19 @@ class EditSystemModal extends React.Component {
     this.onChangeEventRouter = this.onChangeEventRouter.bind(this);
     this.onChangeEventSwitch = this.onChangeEventSwitch.bind(this);
     this.onChangeTestPlan = this.onChangeTestPlan.bind(this);
+    this.onChangeConfidentiality = this.onChangeConfidentiality.bind(this);
+    this.onChangeIntegrity = this.onChangeIntegrity.bind(this);
+    this.onChangeAvailability = this.onChangeAvailability.bind(this);
+    this.onChangeProgress = this.onChangeProgress.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       showHide: false,
       system: props.system,
       _id: props.system._id,
+      progress: props.system.progress,
+      no_of_findings: props.system.no_of_findings,
+      no_of_tasks: props.system.no_of_tasks,
       newSystemName: props.system.systemname,
       newSystemDescription: props.system.systemdescription,
       newAssessLocation: props.system.assesslocation,
@@ -26,6 +33,13 @@ class EditSystemModal extends React.Component {
       newEventRouter: props.system.eventrouter,
       newEventSwitch: props.system.eventswitch,
       newTestPlan: props.system.testplan,
+      newConfidentiality: props.system.confidentiality,
+      newIntegrity: props.system.integrity,
+      newAvailability: props.system.availability,
+      newProgress: props.system.progress,
+      valuesConfidentiality: [],
+      valuesIntegrity: [],
+      valuesAvailability: [],
     };
   }
 
@@ -71,8 +85,70 @@ class EditSystemModal extends React.Component {
     });
   }
 
+  onChangeConfidentiality(e) {
+    this.setState({
+      newConfidentiality: e.target.value,
+    });
+  }
+
+  onChangeIntegrity(e) {
+    this.setState({
+      newIntegrity: e.target.value,
+    });
+  }
+
+  onChangeAvailability(e) {
+    this.setState({
+      newAvailability: e.target.value,
+    });
+  }
+
+  onChangeProgress(e) {
+    this.setState({
+      newProgress: e.target.value,
+    });
+  }
+
   handleModalShowHide() {
     this.setState({ showHide: !this.state.showHide });
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:4000/configuration/get/confidentiality")
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          valuesConfidentiality: response.data.values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:4000/configuration/get/integrity")
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          valuesIntegrity: response.data.values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    axios
+      .get("http://localhost:4000/configuration/get/availability")
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          valuesAvailability: response.data.values,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   onSubmit(e) {
@@ -86,6 +162,12 @@ class EditSystemModal extends React.Component {
       eventrouter: this.state.newEventRouter,
       eventswitch: this.state.newEventSwitch,
       testplan: this.state.newTestPlan,
+      no_of_findings: this.state.no_of_findings,
+      no_of_tasks: this.state.no_of_tasks,
+      confidentiality: this.state.newConfidentiality,
+      integrity: this.state.newIntegrity,
+      availability: this.state.newAvailability,
+      progress: this.state.newProgress,
     };
 
     console.log(`Name: ${updatedSystem.systemname}`);
@@ -95,6 +177,7 @@ class EditSystemModal extends React.Component {
     console.log(`Event Router: ${updatedSystem.eventrouter}`);
     console.log(`Event Switch: ${updatedSystem.eventswitch}`);
     console.log(`Test Plan: ${updatedSystem.testplan}`);
+    console.log(`Test Plan: ${updatedSystem.progress}`);
 
     const newHistory = {
       action: `System: ${this.state.newSystemName} was edited`,
@@ -216,6 +299,68 @@ class EditSystemModal extends React.Component {
                     defaultValue={this.state.system.testplan}
                     onChange={this.onChangeTestPlan}
                   ></textarea>
+                </div>
+              </div>
+              {/* Confidentiality */}
+              <div class="form-group row">
+                <label class="control-label col-sm-2 ">Confidentiality</label>
+                <div class="col-sm-10 ">
+                  <select
+                    class="form-control"
+                    value={this.state.confidentiality}
+                    onChange={this.onChangeConfidentiality}
+                  >
+                    {this.state.valuesConfidentiality.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              {/* Integrity */}
+              <div class="form-group row">
+                <label class="control-label col-sm-2 ">Integrity</label>
+                <div class="col-sm-10 ">
+                  <select
+                    class="form-control"
+                    value={this.state.integrity}
+                    onChange={this.onChangeIntegrity}
+                  >
+                    {this.state.valuesIntegrity.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              {/* Availability */}
+              <div class="form-group row">
+                <label class="control-label col-sm-2 ">Availability</label>
+                <div class="col-sm-10 ">
+                  <select
+                    class="form-control"
+                    value={this.state.availability}
+                    onChange={this.onChangeAvailability}
+                  >
+                    {this.state.valuesAvailability.map((value) => (
+                      <option>{value}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              {/* Progress */}
+              <div class="form-group row ">
+                <label class="control-label col-md-2 col-sm-2 ">Progress</label>
+                <div class="col-md-10 col-sm-10 ">
+                  <input
+                    id="progress"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="10"
+                    class="form-control"
+                    defaultValue={this.state.system.progress}
+                    onChange={this.onChangeProgress}
+                  />
+                  <label for="progress">{this.state.newProgress}</label>
                 </div>
               </div>
               <button
