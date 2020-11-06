@@ -176,6 +176,7 @@ class DetailedView extends Component {
               <div class="col-md-10 col-sm-10 ">
                 <input type="text" class="form-control" value={this.state.taskduedate}
                   onChange={this.onChangeTaskDueDate} />
+
               </div>
             </div>
             {/* System */}

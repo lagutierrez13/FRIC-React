@@ -7,7 +7,6 @@ import { ProgressBar } from "react-bootstrap";
 
 const Task = (props) => (
   <tr>
-    
     <td>{props.task.tasktitle}</td>
     <td>{props.task.tasksystem}</td>
     <td>{props.task.taskanalyst}</td>
