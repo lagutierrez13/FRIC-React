@@ -7,7 +7,15 @@ const Tooltip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
-        Fill out Subtask Information
+        <p>Handle Task Assignments</p>
+        <p> Subtask Title: Title of a subtask </p>
+        <p> Subtask Description: Description of a subtask </p>
+        <p> Due Date: Due Date of a subtask </p>
+        <p> Progress: Progress of a subtask </p>
+        <p> Analyst: Analysts who are assigned to the subtask </p>
+        <p> Collaborator: Collaborators who are assigned to the subtask </p>
+        <p> Tasks: Name of a task </p>
+        <p> Subtasks: Association of other subtasks </p>
         <a className="close" onClick={close}>
           &times;
         </a>

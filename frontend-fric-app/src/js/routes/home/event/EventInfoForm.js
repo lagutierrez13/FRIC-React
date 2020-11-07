@@ -7,7 +7,17 @@ const Tooltip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
-        Fill out an Event Information
+        <p>Handle Event Assignments</p>
+        <p> Name: Name of the cyber engagement </p>
+        <p> Description: Description of a cyber engagement</p>
+        <p>Type: Type of a cyber engagement </p>
+        <p>Version: No. of times this cyber engagement is conducted </p>
+        <p> Assesment Date: Date of assessment </p>
+        <p>Org. Name: Name of the Organization </p>
+        <p> Security Classification Title Guide: Name of the instruction guide </p>
+        <p> Classification: Security classification of a cyber engagement </p>
+        <p> Dec. Date: Date of declassification </p>
+        <p> Customer Name: Name of a customer </p>
         <a className="close" onClick={close}>
           &times;
         </a>
@@ -336,7 +346,7 @@ class DetailedView extends Component {
               </label>
               <div class="col-md-10 col-sm-10 ">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   value={this.state.declassificationdate}
                   onChange={this.onChangeDeclassDate}

@@ -7,7 +7,13 @@ const PopupExample = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
-        Fill out System Information
+        <p>Handle Event Assignments</p>
+        <p> System Name: Name of a system </p>
+        <p> System Description: Description of a system</p>
+        <p> System's Assesment Location: Date of assessment location</p>
+        <p> Event Router: List of routers that are accessed </p>
+        <p> Event Switch: List of switchess that are accessed </p>
+        <p> Test Plan: Name of the test plan </p>
         <a className="close" onClick={close}>
           &times;
         </a>

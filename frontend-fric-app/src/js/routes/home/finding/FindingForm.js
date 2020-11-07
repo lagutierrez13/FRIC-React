@@ -9,7 +9,18 @@ const Tooltip = () => (
     <Popup trigger={<button>?</button>} position="right center">
         {(close) => (
             <div>
-                Fill out Finding Information
+        <p> ID: Unique identifier of a vulnerability/potential issue </p>
+        <p> Host Name: Host name of the vulnerability/potential issue resides</p>
+        <p>IP Port: IP port of the vulnerability/ potential issue resides </p>
+        <p>Description:Short description of a vulnerability/ potential issue</p>
+        <p> Long Description: Long description of a vulnerability/ potential issue </p>
+        <p> Status: Status that describes of the vulnerability </p>
+        <p> Type: Type of vulnerability/ potential issue </p>
+        <p>Classification: If the discovery is a vulnerability or potential issue </p>
+        <p> Related Findings: Relationship of a finding to another finding </p>
+        <p> System: Name of system /</p>
+        <p> Task: Name of task /</p>
+        <p> Subtask: Name of subtask /</p>
                 <a className="close" onClick={close}>
                     &times;
                 </a>
