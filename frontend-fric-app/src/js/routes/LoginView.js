@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import { XPanel, PageTitle } from "../components";
+import axios from "axios";
 import Link from "react-router-dom/Link";
 import {Button} from "react-bootstrap";
 
@@ -11,7 +12,24 @@ class LoginView extends Component {
         this.state = {
             panelVisible: true,
         };
+        this.state = {initials: ""}
     }
+
+  onChangeInitials(e){
+    this.setState({
+      initials: e.target.value
+    });
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+    console.log("Initials submitted");
+    const newInitials = {initials: this.state.initials,};
+    axios.post("http://localhost:4000/login/authenticate", newInitials).then((res) => console.log(res.data));
+    this.state({
+      initials: ""
+    });
+  }
 
     render() {
         const { panelVisible } = this.state;
@@ -31,9 +49,7 @@ class LoginView extends Component {
                     <div>
                     </div>
                     <div>
-
                     </div>
-
                     <div className="clearfix"></div>
                       <Link to="/home/Analyst">
                           <Button renderAs="button">
@@ -42,17 +58,14 @@ class LoginView extends Component {
                       </Link>
                     <div className="separator">
                       <p className="change_link">New Event?
-                        <Link to="/home/event">
+                        <Link to="/home/createEvent">
                           <Button /*renderAs="button"*/ className="btn btn-default" type="submit">
                             <span>Create Event</span>
                           </Button>
                         </Link>
-
                       </p>
-
                       <div className="clearfix"></div>
                       <br/>
-
                     </div>
                   </form>
                 </section>
