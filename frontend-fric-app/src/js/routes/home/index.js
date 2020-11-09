@@ -27,6 +27,6 @@ export default [
   <Route path="/home/subtasks" component={SubtaskView} />,
   <Route path="/home/findings" component={FindingView} />,
   <Route path="/home/archive" component={Dashboard} />,
-  <Route path="/home/createEvent" component={CreateEvent} />,
+
 ];
 export { HomeMenu };
