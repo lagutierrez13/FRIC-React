@@ -51,7 +51,7 @@ class AnalystProgressView extends Component {
 
         <Col md={3} sm={3} xs={3}>
           <XPanel visible={panelVisible} onHide={onHide}>
-            <XPanel.Title title="Task Progress"></XPanel.Title>
+            <XPanel.Title title="System Progress"></XPanel.Title>
             <XPanel.Content>
               <div style={{width: 200, height: 200}}>
                 <CircularProgressbar value={percentage2} text={`${percentage2}%`} />
@@ -65,7 +65,7 @@ class AnalystProgressView extends Component {
 
           <Col md={3} sm={3} xs={3}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Subtask Progress"></XPanel.Title>
+              <XPanel.Title title="Task Progress"></XPanel.Title>
               <XPanel.Content>
                 <div style={{width: 200, height: 200}}>
                   <CircularProgressbar value={percentage3} text={`${percentage3}%`} />
@@ -78,7 +78,7 @@ class AnalystProgressView extends Component {
 
           <Col md={3} sm={3} xs={3}>
             <XPanel visible={panelVisible} onHide={onHide}>
-              <XPanel.Title title="Systems Progress"></XPanel.Title>
+              <XPanel.Title title="Subtask Progress"></XPanel.Title>
               <XPanel.Content>
                 <div style={{width: 200, height: 200}}>
                   <CircularProgressbar value={percentage4} text={`${percentage4}%`} />

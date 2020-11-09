@@ -15,7 +15,7 @@ const notification = (img, name, name2, time, time2) => ({
 const notifications = [
 
   notification(
-    "/images/img.jpg",
+    "/images/alert.png",
     "Task:",
     "Subtask:",
     "Due Date:",
@@ -24,21 +24,21 @@ const notifications = [
 
   ),
   notification(
-    "/images/img.jpg",
+    "/images/alert.png",
     "Task:",
     "Subtask:",
     "Due Date:",
     "Due Date:"
   ),
   notification(
-    "/images/img.jpg",
+    "/images/alert.png",
     "Task:",
     "Subtask:",
     "Due Date:",
     "Due Date:",
   ),
   notification(
-    "/images/img.jpg",
+    "/images/alert.png",
     "Task",
     "Subtask:",
     "Due Date:",
