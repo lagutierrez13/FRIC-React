@@ -8,7 +8,9 @@ import EventView from "./event/EventView";
 import SystemView from "./System/SystemView.js";
 import TaskView from "./Task/TaskView.js";
 import SubtaskView from "./Subtask/SubtaskView";
-import FindingView from "./finding/FindingView"
+import FindingView from "./finding/FindingView";
+import CreateEvent from "./login/CreateEvent";
+
 
 
 export default [
@@ -25,5 +27,6 @@ export default [
   <Route path="/home/subtasks" component={SubtaskView} />,
   <Route path="/home/findings" component={FindingView} />,
   <Route path="/home/archive" component={Dashboard} />,
+
 ];
 export { HomeMenu };
