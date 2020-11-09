@@ -8,7 +8,7 @@ const Tooltip = () => (
     {(close) => (
       <div>
         <p>Handle Task Assignments</p>
-        <p> Task Title: Name of a task </p>
+        <p> Task Title: Title of a task </p>
         <p> Task Description: Description of a task </p>
         <p> Due Date: Due Date of a task </p>
         <p> System: Task belong to system </p>

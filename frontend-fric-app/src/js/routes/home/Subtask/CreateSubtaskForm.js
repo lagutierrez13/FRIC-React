@@ -7,7 +7,7 @@ const Tooltip = () => (
   <Popup trigger={<button>?</button>} position="right center">
     {(close) => (
       <div>
-        <p>Handle Task Assignments</p>
+        <p>Handle Subtask Assignments</p>
         <p> Subtask Title: Title of a subtask </p>
         <p> Subtask Description: Description of a subtask </p>
         <p> Due Date: Due Date of a subtask </p>
