@@ -48,9 +48,9 @@ function FindingInformation(props){
                     <input
                         type="text"
                         class="form-control"
-                        value={props.hostname}
+                        value={props.values.hostname}
                         name="hostname"
-                        // onChange={ handleOnChange}
+                        onChange={props.handleOnChange}
                     />
                 </div>
             </div>
@@ -61,9 +61,9 @@ function FindingInformation(props){
                     <input
                         type="text"
                         class="form-control"
-                        value={ props.ipPort}
+                        value={ props.values.ipPort}
                         name="ipPort"
-                        // onChange={handleOnChange}
+                        onChange={props.handleOnChange}
                     />
                 </div>
             </div>
@@ -75,9 +75,9 @@ function FindingInformation(props){
                         rows="2"
                         type="text"
                         class="form-control"
-                        value={props.description}
+                        value={props.values.description}
                         name="description"
-                        // onChange={handleOnChange}
+                        onChange={props.handleOnChange}
                     ></textarea>
                 </div>
             </div>
@@ -89,9 +89,9 @@ function FindingInformation(props){
                         rows="2"
                         type="text"
                         class="form-control"
-                        value={props.longDescription}
+                        value={props.values.longDescription}
                         name="longDescription"
-                        // onChange={handleOnChange}
+                        onChange={props.handleOnChange}
                     ></textarea>
                 </div>
             </div>
@@ -100,16 +100,16 @@ function FindingInformation(props){
                 <label class="control-label col-md-2 col-sm-2 ">Status</label>
                 <div class="col-md-10 col-sm-10 ">
                     {
-                        <select
+                         <select
                             class="form-control"
-                            value={props.status}
+                            value={props.values.status}
                             name="status"
-                            // onChange={handleOnChange}
+                            onChange={props.handleOnChange}
                         >
-                            {/* {state.statusValues.map((value) => (
-                                <option>{value}</option>
-                            ))} */}
-                        </select>
+                         {props.statusValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
+                     </select>
                     }
                 </div>
             </div>
@@ -122,7 +122,7 @@ function FindingInformation(props){
                             class="form-control"
                             value={props.type}
                             name="type"
-                            // onChange={handleOnChange}
+                            onChange={props.handleOnChange}
                         >
                             {/* {state.typeValues.map((value) => (
                                 <option>{value}</option>
@@ -140,7 +140,7 @@ function FindingInformation(props){
                             class="form-control"
                             value={props.type}
                             name="classification"
-                            // onChange={handleOnChange}
+                            onChange={props.handleOnChange}
                         >
                             {/* {state.classificationValues.map((value) => (
                                 <option>{value}</option>
@@ -158,7 +158,7 @@ function FindingInformation(props){
                             class="form-control"
                             value={props.related}
                             name="related"
-                            // onChange={handleOnChange}
+                            onChange={props.handleOnChange}
                         >
                             {/* {state.valuesType.map((value) => (
                                 <option>{value}</option>))} */}
@@ -177,7 +177,7 @@ function FindingInformation(props){
                                 <select
                                     class="form-control"
                                 // value={state.type}
-                                // onChange={handleOnChange}
+                                    onChange={props.handleOnChange}
                                 >
                                     {/* {state.valuesType.map((value) => (
                                     <option>{value}</option>
@@ -196,7 +196,7 @@ function FindingInformation(props){
                                 <select
                                     class="form-control"
                                 // value={state.type}
-                                // onChange={handleOnChange}
+                                onChange={props.handleOnChange}
                                 >
                                     {/* {state.valuesType.map((value) => (
                     <option>{value}</option>
@@ -215,7 +215,7 @@ function FindingInformation(props){
                                 <select
                                     class="form-control"
                                 // value={state.type}
-                                // onChange={onChangeType}
+                                    onChange={props.handleOnChange}
                                 >
                                     {/* {state.valuesType.map((value) => (
                     <option>{value}</option>
@@ -606,6 +606,9 @@ class DetailedView extends Component {
         };
     }
     componentDidMount() {
+        this.setState({
+            statusValues: ["Open","Closed"]
+        })
         //For finding status values 
         let analystList = []
         // axios
@@ -680,6 +683,7 @@ class DetailedView extends Component {
         const newFinding = {
             findingID: this.state.findingID,
             findingAnalyst: this.state.findingAnalyst,
+            status: this.state.status,
             hostname: this.state.hostname,
             ipPort: this.state.ipPort,
             description: this.state.description,
@@ -723,7 +727,7 @@ class DetailedView extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Row>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingInformation values={this.props} handleOnChange={this.handleOnChange} />
+                            <FindingInformation values={this.props} statusValues={this.state.statusValues} handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <AnalystInformation values={this.state.analystValues} onMultiSelect={this.onMultiSelect} />
