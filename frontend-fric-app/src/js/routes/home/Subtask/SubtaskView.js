@@ -20,7 +20,7 @@ class SubtaskView extends Component {
       <div>
         <PageTitle
           showSearch
-          title="Task"
+          title="Subtasks"
           onSearch={(text) => console.log(text)}
         />
 
