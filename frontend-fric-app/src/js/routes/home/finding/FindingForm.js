@@ -154,15 +154,12 @@ function FindingInformation(props){
                 <label class="control-label col-sm-2 ">Related Finding(s)</label>
                 <div class="col-md-10 col-sm-10 ">
                     {
-                        <select
-                            class="form-control"
-                            value={props.related}
+                        <Multiselect
+                            options={props.relatedValues}
+                            displayValue="value"
+                            onSelect={props.onMultiSelect}
                             name="related"
-                            onChange={props.handleOnChange}
-                        >
-                            {/* {state.valuesType.map((value) => (
-                                <option>{value}</option>))} */}
-                        </select>
+                        />
                     }
                 </div>
             </div>
@@ -602,19 +599,21 @@ class DetailedView extends Component {
             impactLevelValues: [], //done
             postureValues: [], //done
             relevanceValues: [], //done
-            analystValues: []
+            analystValues: [],
+            relatedValues: [],
         };
     }
     componentDidMount() {
         this.setState({
-            statusValues: ["Open","Closed"],
-            classificationValues: ["Vulnerability","Information"],
-            typeValues: ["Credentials Complexity","Manufacturer Default","Creds","Lack of Authentication","Plain Text Protocols","Plain Text Web Login",
+            statusValues: [" ","Open","Closed"],
+            classificationValues: [" ","Vulnerability","Information"],
+            typeValues: [" ","Credentials Complexity","Manufacturer Default","Creds","Lack of Authentication","Plain Text Protocols","Plain Text Web Login",
                 "Encryption","Authentication Bypass","Port Security","Access Control","Least Privilege","Privilege Escalation","Missing Patches",
                 "Physical Security","Information Disclosure"]
         })
         //For finding status values 
         let analystList = []
+        let findingList = []
         // axios
         //     .get("http://localhost:4000/configuration/get/findingstatus")
         //     .then((response) => {
@@ -646,8 +645,6 @@ class DetailedView extends Component {
                         name: "findingAnalyst"
                     });
                 }
-                console.log("ANALYST VALUES: " + analystList[0].label)
-
                 this.setState({
                     analystValues: analystList
                 })
@@ -656,6 +653,20 @@ class DetailedView extends Component {
         //     .catch(function (error) {
         //         console.log(error);
         //     });
+        //For related findings
+        axios
+        .get("http://localhost:4000/home/findings/get")
+        .then((response) => {
+            for (var i = 0; i < response.data.length; i++) {
+                findingList.push({
+                    value: response.data[i].findingID,
+                    name: "related"
+                });
+            }
+            this.setState({
+                relatedValues: findingList
+            })
+        })
     }
     handleOnChange = (e) => {
         const { value, name } = e.target
@@ -680,6 +691,8 @@ class DetailedView extends Component {
             findingID: this.state.findingID,
             findingAnalyst: this.state.findingAnalyst,
             status: this.state.status,
+            type: this.state.type,
+            classification: this.state.classification,
             hostname: this.state.hostname,
             ipPort: this.state.ipPort,
             description: this.state.description,
@@ -727,6 +740,7 @@ class DetailedView extends Component {
                                                 statusValues={this.state.statusValues}
                                                 classificationValues={this.state.classificationValues}
                                                 typeValues={this.state.typeValues}
+                                                relatedValues={this.state.relatedValues}
                                                 handleOnChange={this.handleOnChange} 
                             />
                         </Col>
