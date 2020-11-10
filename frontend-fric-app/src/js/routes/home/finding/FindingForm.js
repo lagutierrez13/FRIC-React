@@ -120,13 +120,13 @@ function FindingInformation(props){
                     {
                         <select
                             class="form-control"
-                            value={props.type}
+                            value={props.values.type}
                             name="type"
                             onChange={props.handleOnChange}
                         >
-                            {/* {state.typeValues.map((value) => (
-                                <option>{value}</option>
-                            ))} */}
+                            {props.typeValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
                         </select>
                     }
                 </div>
@@ -142,9 +142,9 @@ function FindingInformation(props){
                             name="classification"
                             onChange={props.handleOnChange}
                         >
-                            {/* {state.classificationValues.map((value) => (
-                                <option>{value}</option>
-                            ))} */}
+                            {props.classificationValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
                         </select>
                     }
                 </div>
@@ -607,7 +607,11 @@ class DetailedView extends Component {
     }
     componentDidMount() {
         this.setState({
-            statusValues: ["Open","Closed"]
+            statusValues: ["Open","Closed"],
+            classificationValues: ["Vulnerability","Information"],
+            typeValues: ["Credentials Complexity","Manufacturer Default","Creds","Lack of Authentication","Plain Text Protocols","Plain Text Web Login",
+                "Encryption","Authentication Bypass","Port Security","Access Control","Least Privilege","Privilege Escalation","Missing Patches",
+                "Physical Security","Information Disclosure"]
         })
         //For finding status values 
         let analystList = []
@@ -658,16 +662,8 @@ class DetailedView extends Component {
         this.setState({ [name] : value })
     }
     onMultiSelect = (option) => {
-       
         let objList = option.map(a => a.value + " ");
-        
         this.setState({ [option[0].name]: objList})
-       
-    }
-    onRemove = (option) => {
-        this.setState({
-
-        })
     }
     onSubmit(e) {
         e.preventDefault();
@@ -727,7 +723,12 @@ class DetailedView extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Row>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingInformation values={this.props} statusValues={this.state.statusValues} handleOnChange={this.handleOnChange} />
+                            <FindingInformation values={this.props} 
+                                                statusValues={this.state.statusValues}
+                                                classificationValues={this.state.classificationValues}
+                                                typeValues={this.state.typeValues}
+                                                handleOnChange={this.handleOnChange} 
+                            />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <AnalystInformation values={this.state.analystValues} onMultiSelect={this.onMultiSelect} />
