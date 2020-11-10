@@ -18,6 +18,7 @@ const Tooltip = () => (
     </Popup>
 );
 function FindingInformation(props){
+    console.log("Finding id: " + props.values.findingID)
     return(
         <div class="x_panel tile">
             {/* Finding information */}
@@ -230,6 +231,7 @@ function FindingInformation(props){
     );
 }
 function AnalystInformation(props){
+    
     return(
         <div class="x_panel tile">
             <div class="x_title">
@@ -242,16 +244,13 @@ function AnalystInformation(props){
                     <div class="col-md-6 col-sm-10 ">
                         {
                             <Multiselect
-                                class="form-control"
-                                // options={this.state.analystValues}
-                                // onChange={this.onChangeAnalyst}
-                                // onRemove={this.onRemoveAnalyst}
-                                placeholder="Analysts"
-                            >
-                                {/* {this.state.analystValues.map((value)=> (
-                                    <option> {value} </option>
-                                ))} */}
-                            </Multiselect>
+                                
+                                options={props.values}
+                                displayValue="value"
+                                onSelect={props.onMultiSelect}
+                                //onRemove={this.onMultiRemove}
+                                name="findingAnalyst"
+                            />
                         }
                     </div>
                 </div>
@@ -556,6 +555,7 @@ class DetailedView extends Component {
     constructor(props) {
         super(props);
         this.handleOnChange = this.handleOnChange.bind(this);
+        this.onMultiSelect = this.onMultiSelect.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.state = {
             findingID: "",
@@ -608,35 +608,35 @@ class DetailedView extends Component {
     componentDidMount() {
         //For finding status values 
         let analystList = []
-        axios
-            .get("http://localhost:4000/configuration/get/findingstatus")
-            .then((response) => {
-                this.setState({
-                    statusValues: response.data.values
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axios
+        //     .get("http://localhost:4000/configuration/get/findingstatus")
+        //     .then((response) => {
+        //         this.setState({
+        //             statusValues: response.data.values
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
         //For finding type values 
-        axios
-            .get("http://localhost:4000/configuration/get/findingtype")
-            .then((response) => {
-                this.setState({
-                    typeValues: response.data.values
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        // axios
+        //     .get("http://localhost:4000/configuration/get/findingtype")
+        //     .then((response) => {
+        //         this.setState({
+        //             typeValues: response.data.values
+        //         })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
         // For Analyst values
         axios
             .get("http://localhost:4000/analyst/get")
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
                     analystList.push({
-                        label: JSON.stringify(response.data[i].initials),
-                        value: JSON.stringify(response.data[i].initials)
+                        value: response.data[i].initials,
+                        name: "findingAnalyst"
                     });
                 }
                 console.log("ANALYST VALUES: " + analystList[0].label)
@@ -646,13 +646,25 @@ class DetailedView extends Component {
                 })
                 console.log("ANALYST VALUES: " + this.state.analystValues)
             })
-            .catch(function (error) {
-                console.log(error);
-            });
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
     }
     handleOnChange = (e) => {
         const { value, name } = e.target
         this.setState({ [name] : value })
+    }
+    onMultiSelect = (option) => {
+       
+        let objList = option.map(a => a.value + " ");
+        
+        this.setState({ [option[0].name]: objList})
+       
+    }
+    onRemove = (option) => {
+        this.setState({
+
+        })
     }
     onSubmit(e) {
         e.preventDefault();
@@ -663,9 +675,11 @@ class DetailedView extends Component {
         console.log("IP Port: ${this.state.ipPort}");
         console.log("Description: ${this.state.description}");
         console.log("Description long: ${this.state.longDescription}");
+        console.log("Finding Analyst: ${this.state.findingAnalyst}")
 
         const newFinding = {
             findingID: this.state.findingID,
+            findingAnalyst: this.state.findingAnalyst,
             hostname: this.state.hostname,
             ipPort: this.state.ipPort,
             description: this.state.description,
@@ -701,6 +715,7 @@ class DetailedView extends Component {
     }
     // what you see
     render() {
+        
         return (
             // x_panel is container
             <div class="x_panel" >
@@ -711,7 +726,7 @@ class DetailedView extends Component {
                             <FindingInformation values={this.props} handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <AnalystInformation />
+                            <AnalystInformation values={this.state.analystValues} onMultiSelect={this.onMultiSelect} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <FindingImpact />
