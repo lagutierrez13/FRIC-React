@@ -17,7 +17,6 @@ const Tooltip = () => (
         )}
     </Popup>
 );
-
 function FindingInformation(props){
     return(
         <div class="x_panel tile">
@@ -230,6 +229,159 @@ function FindingInformation(props){
         </div>
     );
 }
+function AnalystInformation(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Analyst Information <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <Row>
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <Multiselect
+                                class="form-control"
+                                // options={this.state.analystValues}
+                                // onChange={this.onChangeAnalyst}
+                                // onRemove={this.onRemoveAnalyst}
+                                placeholder="Analysts"
+                            >
+                                {/* {this.state.analystValues.map((value)=> (
+                                    <option> {value} </option>
+                                ))} */}
+                            </Multiselect>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                            // value={this.state.type}
+                            // onChange={this.onChangeType}
+                            >
+                                {/* {this.state.valuesType.map((value) => (
+                                <option>{value}</option>
+                                ))} */}
+                            </select>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Posture</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                // value={this.state.posture}
+                                // onChange={this.onChangePosture}
+                            >
+                                {/* {this.state.postureValues.map((value) => (
+                                    <option>{value}</option>
+                                ))} */}
+                            </select>
+                        }
+                    </div>
+                </div>
+            </Row>
+        </div>
+    )
+}
+function FindingImpact(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Finding Impact <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <Row>
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                // value={this.state.confidentiality}
+                                // onChange={this.onChangeConfidentiality}
+                            >
+                                {/* {this.state.confidentialityValues.map((value) => (
+                                    <option>{value}</option>
+                                ))} */}
+                            </select>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                // value={this.state.integrity}
+                                // onChange={this.onChangeIntegrity}
+                            >
+                                {/* {this.state.integrityValues.map((value) => (
+                                    <option>{value}</option>
+                                ))} */}
+                            </select>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Availability</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                // value={this.state.availability}
+                                // onChange={this.onChangeAvailability}
+                            >
+                                {/* {this.state.availabilityValues.map((value) => (
+                                    <option>{value}</option>
+                                ))} */}
+                            </select>
+                        }
+                    </div>
+                </div>
+            </Row>
+        </div>
+
+    )
+}
+function ThreatRelevance(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Threat Relevance <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
+                <div class="col-md-6 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            // value={this.state.relevance}
+                            // onChange={this.onChangeRelevance}
+                        >
+                            {/* {this.state.relevanceValues.map((value) => (
+                                <option>{value}</option>
+                            ))} */}
+                        </select>
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
 function CounterMeasure(props) {
     return(
         <div class="x_panel tile">
@@ -256,7 +408,39 @@ function CounterMeasure(props) {
         </div>
     );
 }
-
+function Impact(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Impact <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            // value={this.state.impactLevel}
+                            // onChange={this.onChangeImpactLevel}
+                        >
+                            {/* {this.state.impactLevelValues.map((value) => (
+                                <option>{value}</option>
+                            ))} */}
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-3 ">Impact description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="3" type="text" class="form-control" ></textarea>
+                </div>
+            </div>
+        </div>
+    )
+}
 function Severity(props) {
     return(
         <div class="x_panel tile">
@@ -285,7 +469,6 @@ function Severity(props) {
         </div>
     );
 }
-
 function Risk(props){
     return(
         <div class="x_panel tile">
@@ -308,8 +491,7 @@ function Risk(props){
         </div>
 
     );
-}
-    
+} 
 function Mitigation(props) {
     return(
         <div class="x_panel tile">
@@ -336,8 +518,6 @@ function Mitigation(props) {
 
     );
 }
-
-
 function FindingSystemLevelImpact(props) {
     return(
         <div class="x_panel tile">
@@ -372,16 +552,11 @@ function FindingSystemLevelImpact(props) {
         </div>
     );
 } 
-
-
 class DetailedView extends Component {
     constructor(props) {
         super(props);
-
         this.handleOnChange = this.handleOnChange.bind(this);
-
         this.onSubmit = this.onSubmit.bind(this);
-
         this.state = {
             findingID: "",
             hostname: "",
@@ -428,13 +603,11 @@ class DetailedView extends Component {
             postureValues: [], //done
             relevanceValues: [], //done
             analystValues: []
-
         };
     }
     componentDidMount() {
         //For finding status values 
         let analystList = []
-        
         axios
             .get("http://localhost:4000/configuration/get/findingstatus")
             .then((response) => {
@@ -445,7 +618,6 @@ class DetailedView extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-
         //For finding type values 
         axios
             .get("http://localhost:4000/configuration/get/findingtype")
@@ -457,7 +629,6 @@ class DetailedView extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-
         // For Analyst values
         axios
             .get("http://localhost:4000/analyst/get")
@@ -479,12 +650,10 @@ class DetailedView extends Component {
                 console.log(error);
             });
     }
-
     handleOnChange = (e) => {
         const { value, name } = e.target
         this.setState({ [name] : value })
     }
-
     onSubmit(e) {
         e.preventDefault();
 
@@ -530,7 +699,6 @@ class DetailedView extends Component {
             progress: 0,
         });
     }
-    
     // what you see
     render() {
         return (
@@ -543,184 +711,19 @@ class DetailedView extends Component {
                             <FindingInformation values={this.props} handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Analyst Information <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <Row>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <Multiselect
-                                                    // class="form-control"
-                                                    options={this.state.analystValues}
-                                                    onChange={this.onChangeAnalyst}
-                                                    onRemove={this.onRemoveAnalyst}
-                                                    placeholder="Analysts"
-                                                >
-                                                    {this.state.analystValues.map((value)=> (
-                                                        <option> {value} </option>
-                                                    ))}
-                                                </Multiselect>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                // value={this.state.type}
-                                                // onChange={this.onChangeType}
-                                                >
-                                                    {/* {this.state.valuesType.map((value) => (
-                                                    <option>{value}</option>
-                                                    ))} */}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Posture</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.posture}
-                                                    onChange={this.onChangePosture}
-                                                >
-                                                    {this.state.postureValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-                                </Row>
-                            </div>
+                            <AnalystInformation />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Finding Impact <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <Row>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.confidentiality}
-                                                    onChange={this.onChangeConfidentiality}
-                                                >
-                                                    {this.state.confidentialityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.integrity}
-                                                    onChange={this.onChangeIntegrity}
-                                                >
-                                                    {this.state.integrityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Availability</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.availability}
-                                                    onChange={this.onChangeAvailability}
-                                                >
-                                                    {this.state.availabilityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-                                </Row>
-                            </div>
+                            <FindingImpact />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Threat Relevance <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
-                                    <div class="col-md-6 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.relevance}
-                                                onChange={this.onChangeRelevance}
-                                            >
-                                                {this.state.relevanceValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                            <ThreatRelevance />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <CounterMeasure />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Impact <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.impactLevel}
-                                                onChange={this.onChangeImpactLevel}
-                                            >
-                                                {this.state.impactLevelValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-3 ">Impact description</label>
-                                    <div class=" col-sm-10 ">
-                                        <textarea
-                                            rows="3" type="text" class="form-control" ></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            <Impact />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <Severity />
@@ -732,11 +735,9 @@ class DetailedView extends Component {
                             <FindingSystemLevelImpact />
                         </Col>
                     </Row>
-
                     <Row md={6} sm={6} xs={12}>
                         <Mitigation/>
                     </Row>
-
                     {/* Buttons */}
                     <br />
                     <div class="item form-group">
