@@ -57,7 +57,7 @@ class LoginView extends Component {
                           </Button>
                       </Link>
                     <div className="separator">
-                      <p className="change_link">New Event?
+                      <p className="change_link">New Event? <span></span>
                         <Link to="/home/event">
                           <Button /*renderAs="button"*/ className="btn btn-default" type="submit">
                             <span>Create Event</span>

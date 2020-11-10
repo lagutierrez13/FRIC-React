@@ -9,7 +9,7 @@ const taskCtrl = {};
 taskCtrl.getTasks = async (req, res) => {
     try {
         const tasks = await Task.find();
-        if (systems) {
+        if (tasks) {
             res.json(tasks);
         } else {
             res.status(404).send({ error: "Notes not found"});
