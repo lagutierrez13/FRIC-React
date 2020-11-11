@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const analystRoutes = require("./routes/AnalystRoutes");
 const systemRoutes = require("./routes/SystemRoutes");
 const eventRoutes = require("./routes/EventRoutes");
 const findingRoutes = require("./routes/FindingRoutes");
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Routes
+app.use(analystRoutes)
 app.use(systemRoutes);
 app.use(eventRoutes);
 app.use(history);
