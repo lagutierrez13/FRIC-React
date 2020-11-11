@@ -10,6 +10,7 @@ let taskSchema = new Schema(
         taskanalyst: String,
         taskcollaborator: String,
         relatedtasks: String,
+        progress: Number,
     },
     {
         timestamps: true,
@@ -18,5 +19,4 @@ let taskSchema = new Schema(
 
 const Task = model("Task", taskSchema);
 
-//export
 module.exports = Task;

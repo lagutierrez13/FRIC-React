@@ -308,6 +308,7 @@ class TeamInfo extends Component {
                     class="btn btn-primary"
                     type="submit"
                     value="Save Event"
+                    onClick={() => window.location.reload(false)}
                   >
                     Save
                   </button>
@@ -402,6 +403,7 @@ class TeamInfo extends Component {
                     class="btn btn-primary"
                     type="submit"
                     value="Save Event"
+                    onClick={() => window.location.reload(false)}
                   >
                     Save
                   </button>
