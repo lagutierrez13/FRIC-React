@@ -673,6 +673,7 @@ class DetailedView extends Component {
         this.setState({ [name] : value })
     }
     onMultiSelect = (option) => {
+        console.log("Option: " + option[0].name)
         let objList = option.map(a => a.value + " ");
         this.setState({ [option[0].name]: objList})
     }
@@ -691,6 +692,7 @@ class DetailedView extends Component {
             findingID: this.state.findingID,
             findingAnalyst: this.state.findingAnalyst,
             status: this.state.status,
+            related: this.state.related,
             type: this.state.type,
             classification: this.state.classification,
             hostname: this.state.hostname,
@@ -742,6 +744,7 @@ class DetailedView extends Component {
                                                 typeValues={this.state.typeValues}
                                                 relatedValues={this.state.relatedValues}
                                                 handleOnChange={this.handleOnChange} 
+                                                onMultiSelect={this.onMultiSelect}
                             />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
