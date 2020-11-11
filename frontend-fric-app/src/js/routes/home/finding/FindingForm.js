@@ -5,26 +5,29 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Multiselect } from 'multiselect-react-dropdown';
 
-const Tooltip = () => (
-    <Popup trigger={<button>?</button>} position="right center">
-        {(close) => (
-            <div>
-                Fill out Finding Information
-                <a className="close" onClick={close}>
-                    &times;
-                </a>
-            </div>
-        )}
-    </Popup>
-);
+function Tooltip(props){
+    return(
+        <Popup trigger={<button>?</button>} position="right center">
+            {(close) => (
+                <div>
+                    {props.description}
+                    <a className="close" onClick={close}>
+                        &times;
+                    </a>
+                </div>
+            )}
+        </Popup>
+    )
+}
 function FindingInformation(props){
     console.log("Finding id: " + props.values.findingID)
+    let ex = "hello :)"
     return(
         <div class="x_panel tile">
             {/* Finding information */}
             <div class="x_title">
                 <h2>
-                    Finding Information <Tooltip />
+                    Finding Information <Tooltip description={ex} />
                 </h2>
                 <div class="clearfix"></div>
             </div>
@@ -368,12 +371,13 @@ function ThreatRelevance(props){
                     {
                         <select
                             class="form-control"
-                            // value={this.state.relevance}
-                            // onChange={this.onChangeRelevance}
+                            value={props.relevance}
+                            name="relevance"
+                            onChange={props.handleOnChange}
                         >
-                            {/* {this.state.relevanceValues.map((value) => (
+                            {props.relevanceValues.map((value) => (
                                 <option>{value}</option>
-                            ))} */}
+                            ))}
                         </select>
                     }
                 </div>
@@ -394,12 +398,12 @@ function CounterMeasure(props) {
                     {
                         <select
                             class="form-control"
-                        // value={this.state.type}
-                        // onChange={this.onChangeType}
+                            name="effectivenessRate"
+                            onChange={props.handleOnChange}
                         >
-                            {/* {this.state.valuesType.map((value) => (
+                            {props.counterMeasureValues.map((value) => (
                             <option>{value}</option>
-                            ))} */}
+                            ))}
                         </select>
                     }
                 </div>
@@ -420,12 +424,12 @@ function Impact(props){
                     {
                         <select
                             class="form-control"
-                            // value={this.state.impactLevel}
-                            // onChange={this.onChangeImpactLevel}
+                            name="impactLevel"
+                            onChange={props.handleOnChange}
                         >
-                            {/* {this.state.impactLevelValues.map((value) => (
+                            {props.impactLevelValues.map((value) => (
                                 <option>{value}</option>
-                            ))} */}
+                            ))}
                         </select>
                     }
                 </div>
@@ -434,7 +438,14 @@ function Impact(props){
                 <label class="control-label  col-sm-3 ">Impact description</label>
                 <div class=" col-sm-10 ">
                     <textarea
-                        rows="3" type="text" class="form-control" ></textarea>
+                        rows="3" 
+                        type="text" 
+                        class="form-control" 
+                        value={props.impactDescription}
+                        name="impactDescription"
+                        onChange={props.handleOnChange}>
+
+                        </textarea>
                 </div>
             </div>
         </div>
@@ -448,21 +459,37 @@ function Severity(props) {
                 <div class="clearfix"></div>
             </div>
             <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Severity Category Code</label>
+                <div class="col-md-6 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="severityCategoryCode"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.catValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Severity Category Score</label>
                 <div class=" col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Vulnerability Severity</label>
                 <div class="col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Quantitative Vulnerability Severity</label>
                 <div class=" col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
         </div>
@@ -478,13 +505,13 @@ function Risk(props){
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Risk</label>
                 <div class=" col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Likelihood</label>
                 <div class="col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
         </div>
@@ -502,7 +529,13 @@ function Mitigation(props) {
                 <label class="control-label  col-sm-2 ">Brief Description</label>
                 <div class=" col-sm-10 ">
                     <textarea
-                        rows="2" type="text" class="form-control" >
+                        rows="2" 
+                        type="text" 
+                        class="form-control"
+                        value={props.values.mitigationBrief}
+                        name="mitigationBrief"
+                        onChange={props.handleOnChange}
+                         >
                     </textarea>
                 </div>
             </div>
@@ -510,7 +543,14 @@ function Mitigation(props) {
                 <label class="control-label  col-sm-2 ">Long description</label>
                 <div class=" col-sm-10 ">
                     <textarea
-                        rows="4" type="text" class="form-control" ></textarea>
+                        rows="2" 
+                        type="text" 
+                        class="form-control"
+                        value={props.values.mitigationLong}
+                        name="mitigationLong"
+                        onChange={props.handleOnChange}
+                         >
+                    </textarea>
                 </div>
             </div>
         </div>
@@ -527,25 +567,25 @@ function FindingSystemLevelImpact(props) {
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Confidentiality Finding Impact on System</label>
                 <div class=" col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true}/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Integrity Finding Impact on System</label>
                 <div class="col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Availability Finding Impact on System</label>
                 <div class="col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="control-label col-md-3 col-sm-3 ">Impact Score</label>
                 <div class="col-md-6 col-sm-10">
-                    <input type="text" class="form-control" />
+                    <input type="text" class="form-control" readOnly={true} />
                 </div>
             </div>
         </div>
@@ -587,24 +627,26 @@ class DetailedView extends Component {
             impactLevel: "",
             impactDescription: "",
             severityCategoryCode: "",
-            severityCategoryScore: 0,
-            vulnerabilitySeverity: 0,
-            risk: "",
-            likelihood: "",
-            confImpactSystem: "",
-            integImpactSystem: "",
-            availImpactSystem: "",
+            severityCategoryScore: 0, //derived
+            vulnerabilitySeverity: 0, //derived
+            risk: "", //derived
+            likelihood: "", //derived
+            confImpactSystem: "", //derived but idk how need to ask
+            integImpactSystem: "", //derived but idk how need to ask
+            availImpactSystem: "", //derived but idk how need to ask
             impactScore: 0,
-            statusValues: [], //done
-            typeValues: [], //done
-            classificationValues: [], //done
+            statusValues: [],
+            typeValues: [], 
+            classificationValues: [],
             ciaValues: [],
-            impactLevelValues: [], //done
-            postureValues: [], //done
-            relevanceValues: [], //done
+            impactLevelValues: [], 
+            postureValues: [], 
+            relevanceValues: [],
+            counterMeasureValues: [],
             analystValues: [],
             collaboratorValues: [],
             relatedValues: [],
+            catValues: []
         };
     }
     setSingleValuesFromDatabase(request,tempList,valueArray){
@@ -640,8 +682,12 @@ class DetailedView extends Component {
     componentDidMount() {
         this.setState({
             classificationValues: [" ","Vulnerability","Information"],
-            postureValues: [" ","Insider","Outsider"],
-            ciaValues: [" ", "Low ", "Medium", "High", "Information"]
+            postureValues: [" ","Insider","Insider-nearsider","Outsider","Nearsider","Nearsider-outsider"],
+            ciaValues: [" ", "Low ", "Medium", "High", "Information"],
+            relevanceValues: [" ", "Confirmed", "Expected", "Anticipated", "Predicted", "Possible"],
+            counterMeasureValues: [" ", "Very High-10","High-9","High-8","High-7","Moderate-6","Moderate-5","Moderate-4","Low-3","Low-2", "Low-1"],
+            impactLevelValues: [" ", "VH", "H", "M", "L", "VL","Information"],
+            catValues: [" ", "I", "II", "III"]
         })
         //For finding status values 
         let analystList = []
@@ -698,7 +744,14 @@ class DetailedView extends Component {
             longDescription: this.state.longDescription,
             confidentiality: this.state.confidentiality,
             integrity: this.state.integrity,
-            availability: this.state.availability
+            availability: this.state.availability,
+            mitigationBrief: this.state.mitigationBrief,
+            mitigationLong: this.state.mitigationLong,
+            effectivenessRate: this.state.effectivenessRate,
+            relevance: this.state.relevance,
+            impactDescription: this.state.impactDescription,
+            impactLevel: this.state.impactLevel,
+            severityCategoryCode:this.state.severityCategoryCode
         };
 
         const newHistory = {
@@ -760,16 +813,23 @@ class DetailedView extends Component {
                                         handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <ThreatRelevance />
+                            <ThreatRelevance values={this.props}
+                                             relevanceValues={this.state.relevanceValues}
+                                             handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <CounterMeasure />
+                            <CounterMeasure values={this.props}
+                                            counterMeasureValues={this.state.counterMeasureValues}
+                                            handleOnChange={this.handleOnChange}  />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Impact />
+                            <Impact  impactLevelValues={this.state.impactLevelValues}
+                                     impactDescription={this.props.impactDescription}
+                                     handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Severity />
+                            <Severity catValues={this.state.catValues}
+                                        handleOnChange={this.handleOnChange}/>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <Risk />
@@ -779,7 +839,8 @@ class DetailedView extends Component {
                         </Col>
                     </Row>
                     <Row md={6} sm={6} xs={12}>
-                        <Mitigation/>
+                        <Mitigation values={this.props}
+                                    handleOnChange={this.handleOnChange} />
                     </Row>
                     {/* Buttons */}
                     <br />
