@@ -155,6 +155,7 @@ function FindingInformation(props){
                 <div class="col-md-10 col-sm-10 ">
                     {
                         <Multiselect
+                            class="form-control"
                             options={props.relatedValues}
                             displayValue="value"
                             onSelect={props.onMultiSelect}
@@ -242,12 +243,11 @@ function AnalystInformation(props){
                     <div class="col-md-6 col-sm-10 ">
                         {
                             <Multiselect
-                                
-                                options={props.values}
+                                class="form-control"
+                                options={props.analystValues}
                                 displayValue="value"
                                 onSelect={props.onMultiSelect}
                                 //onRemove={this.onMultiRemove}
-                                name="findingAnalyst"
                             />
                         }
                     </div>
@@ -257,15 +257,13 @@ function AnalystInformation(props){
                     <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
                     <div class="col-md-6 col-sm-10 ">
                         {
-                            <select
+                             <Multiselect
                                 class="form-control"
-                            // value={this.state.type}
-                            // onChange={this.onChangeType}
-                            >
-                                {/* {this.state.valuesType.map((value) => (
-                                <option>{value}</option>
-                                ))} */}
-                            </select>
+                                options={props.collaboratorValues}
+                                displayValue="value"
+                                onSelect={props.onMultiSelect}
+                                //onRemove={this.onMultiRemove}
+                         />
                         }
                     </div>
                 </div>
@@ -274,14 +272,15 @@ function AnalystInformation(props){
                     <label class="control-label col-md-3 col-sm-3 ">Posture</label>
                     <div class="col-md-6 col-sm-10 ">
                         {
-                            <select
+                             <select
                                 class="form-control"
-                                // value={this.state.posture}
-                                // onChange={this.onChangePosture}
+                                value={props.posture}
+                                name="posture"
+                                onChange={props.handleOnChange}
                             >
-                                {/* {this.state.postureValues.map((value) => (
-                                    <option>{value}</option>
-                                ))} */}
+                             {props.postureValues.map((value) => (
+                                <option>{value}</option>
+                                ))}
                             </select>
                         }
                     </div>
@@ -304,12 +303,13 @@ function FindingImpact(props){
                         {
                             <select
                                 class="form-control"
-                                // value={this.state.confidentiality}
-                                // onChange={this.onChangeConfidentiality}
+                                value={props.confidentiality}
+                                name="confidentiality"
+                                onChange={props.handleOnChange}
                             >
-                                {/* {this.state.confidentialityValues.map((value) => (
-                                    <option>{value}</option>
-                                ))} */}
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
                             </select>
                         }
                     </div>
@@ -321,12 +321,13 @@ function FindingImpact(props){
                         {
                             <select
                                 class="form-control"
-                                // value={this.state.integrity}
-                                // onChange={this.onChangeIntegrity}
+                                value={props.integrity}
+                                name="integrity"
+                                onChange={props.handleOnChange}
                             >
-                                {/* {this.state.integrityValues.map((value) => (
-                                    <option>{value}</option>
-                                ))} */}
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
                             </select>
                         }
                     </div>
@@ -338,12 +339,13 @@ function FindingImpact(props){
                         {
                             <select
                                 class="form-control"
-                                // value={this.state.availability}
-                                // onChange={this.onChangeAvailability}
+                                value={props.availability}
+                                name="availability"
+                                onChange={props.handleOnChange}
                             >
-                                {/* {this.state.availabilityValues.map((value) => (
-                                    <option>{value}</option>
-                                ))} */}
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
                             </select>
                         }
                     </div>
@@ -568,7 +570,7 @@ class DetailedView extends Component {
             findingTask: "",
             findingSubtask: "",
             findingAnalyst: [],
-            collaborator: "",
+            collaborator: [],
             posture: "",
             status: "",
             classification: "",
@@ -596,13 +598,12 @@ class DetailedView extends Component {
             statusValues: [], //done
             typeValues: [], //done
             classificationValues: [], //done
-            confidentialityValues: [],
-            integrityValues: [],
-            availabilityValues: [],
+            ciaValues: [],
             impactLevelValues: [], //done
             postureValues: [], //done
             relevanceValues: [], //done
             analystValues: [],
+            collaboratorValues: [],
             relatedValues: [],
         };
     }
@@ -639,20 +640,30 @@ class DetailedView extends Component {
     componentDidMount() {
         this.setState({
             classificationValues: [" ","Vulnerability","Information"],
+            postureValues: [" ","Insider","Outsider"],
+            ciaValues: [" ", "Low ", "Medium", "High", "Information"]
         })
         //For finding status values 
         let analystList = []
+        let collaboratorList = []
+        let postureList = []
         let findingList = []
         let statusList = [" "]
         let typeList = [" "]
-        let classifcationList = [" "]
+        let classificationList = [" "]
         
         //For finding status
         this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingstatus",statusList,"statusValues")
         //For finding type values 
         this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingtype",typeList,"typeValues")
+        //For posture values
+        // this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/posture",postureList,"postureValues")
+        //For classification values
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingclassification",classificationList,"classificationValues")
         // For Analyst values 
         this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",analystList,"initials","findingAnalyst","analystValues")
+        //For collaborator values
+        this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",collaboratorList,"initials","collaborator","collaboratorValues")
         //For related values
         this.setMultiValuesFromDatabase("http://localhost:4000/home/findings/get",findingList,"findingID","related","relatedValues")
         
@@ -671,16 +682,13 @@ class DetailedView extends Component {
 
         console.log("Finding Submitted");
         console.log("Finding ID: ${this.state.findingID}");
-        console.log("Host name: ${this.state.hostname}");
-        console.log("IP Port: ${this.state.ipPort}");
-        console.log("Description: ${this.state.description}");
-        console.log("Description long: ${this.state.longDescription}");
-        console.log("Finding Analyst: ${this.state.findingAnalyst}")
 
         const newFinding = {
             findingID: this.state.findingID,
             findingAnalyst: this.state.findingAnalyst,
+            collaborator: this.state.collaborator,
             status: this.state.status,
+            posture: this.state.posture,
             related: this.state.related,
             type: this.state.type,
             classification: this.state.classification,
@@ -688,6 +696,9 @@ class DetailedView extends Component {
             ipPort: this.state.ipPort,
             description: this.state.description,
             longDescription: this.state.longDescription,
+            confidentiality: this.state.confidentiality,
+            integrity: this.state.integrity,
+            availability: this.state.availability
         };
 
         const newHistory = {
@@ -737,10 +748,16 @@ class DetailedView extends Component {
                             />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <AnalystInformation values={this.state.analystValues} onMultiSelect={this.onMultiSelect} />
+                            <AnalystInformation values={this.props}
+                                                analystValues={this.state.analystValues} 
+                                                collaboratorValues={this.state.collaboratorValues}
+                                                postureValues={this.state.postureValues}
+                                                onMultiSelect={this.onMultiSelect}
+                                                handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingImpact />
+                            <FindingImpact ciaValues={this.state.ciaValues}
+                                        handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
                             <ThreatRelevance />
