@@ -11,13 +11,14 @@
 // //Server listen
 // main();
 
-const express = require("express");
+//const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const analystRoutes = require("./routes/AnalystRoutes");
 
-const app = express();
+//const app = express();
+const app = require("./App");
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
