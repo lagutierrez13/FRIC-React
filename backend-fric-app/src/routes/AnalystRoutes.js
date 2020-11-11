@@ -72,7 +72,7 @@ router.post("/analyst/login", (req, res) => {
   Analyst.findOne({ initials }).then((analyst) => {
     // Check if user exists
     if (!analyst) {
-      return res.status(404).json({ initialsnotfound: "Email not found" });
+      return res.status(404).json({ initialsnotfound: "Initials not found" });
     }
     // Check password
     bcrypt.compare(password, analyst.initials).then((isMatch) => {
