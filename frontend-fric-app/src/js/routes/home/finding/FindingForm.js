@@ -161,6 +161,7 @@ function FindingInformation(props){
                             name="related"
                         />
                     }
+                    <br></br>
                 </div>
             </div>
                    
@@ -554,6 +555,8 @@ class DetailedView extends Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.onMultiSelect = this.onMultiSelect.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.setSingleValuesFromDatabase = this.setSingleValuesFromDatabase.bind(this);
+        this.setMultiValuesFromDatabase = this.setMultiValuesFromDatabase.bind(this);
         this.state = {
             findingID: "",
             hostname: "",
@@ -603,70 +606,56 @@ class DetailedView extends Component {
             relatedValues: [],
         };
     }
+    setSingleValuesFromDatabase(request,tempList,valueArray){
+        axios
+            .get(request)
+            .then((response) => {
+                for (var i = 0; i < response.data.values.length; i++) {
+                    tempList.push(response.data.values[i]);
+                }
+                this.setState({
+                    [valueArray] : tempList
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    setMultiValuesFromDatabase(request,tempList,valueToGet,setName,valueArray){
+        axios
+            .get(request)
+            .then((response) => {
+                for (var i = 0; i < response.data.length; i++) {
+                    tempList.push({
+                        value: response.data[i][valueToGet],
+                        name: setName
+                    });
+                }
+                this.setState({
+                    [valueArray]: tempList
+                })
+            })
+    }
     componentDidMount() {
         this.setState({
-            statusValues: [" ","Open","Closed"],
             classificationValues: [" ","Vulnerability","Information"],
-            typeValues: [" ","Credentials Complexity","Manufacturer Default","Creds","Lack of Authentication","Plain Text Protocols","Plain Text Web Login",
-                "Encryption","Authentication Bypass","Port Security","Access Control","Least Privilege","Privilege Escalation","Missing Patches",
-                "Physical Security","Information Disclosure"]
         })
         //For finding status values 
         let analystList = []
         let findingList = []
-        // axios
-        //     .get("http://localhost:4000/configuration/get/findingstatus")
-        //     .then((response) => {
-        //         this.setState({
-        //             statusValues: response.data.values
-        //         })
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+        let statusList = [" "]
+        let typeList = [" "]
+        let classifcationList = [" "]
+        
+        //For finding status
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingstatus",statusList,"statusValues")
         //For finding type values 
-        // axios
-        //     .get("http://localhost:4000/configuration/get/findingtype")
-        //     .then((response) => {
-        //         this.setState({
-        //             typeValues: response.data.values
-        //         })
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // For Analyst values
-        axios
-            .get("http://localhost:4000/analyst/get")
-            .then((response) => {
-                for (var i = 0; i < response.data.length; i++) {
-                    analystList.push({
-                        value: response.data[i].initials,
-                        name: "findingAnalyst"
-                    });
-                }
-                this.setState({
-                    analystValues: analystList
-                })
-                console.log("ANALYST VALUES: " + this.state.analystValues)
-            })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        //For related findings
-        axios
-        .get("http://localhost:4000/home/findings/get")
-        .then((response) => {
-            for (var i = 0; i < response.data.length; i++) {
-                findingList.push({
-                    value: response.data[i].findingID,
-                    name: "related"
-                });
-            }
-            this.setState({
-                relatedValues: findingList
-            })
-        })
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingtype",typeList,"typeValues")
+        // For Analyst values 
+        this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",analystList,"initials","findingAnalyst","analystValues")
+        //For related values
+        this.setMultiValuesFromDatabase("http://localhost:4000/home/findings/get",findingList,"findingID","related","relatedValues")
+        
     }
     handleOnChange = (e) => {
         const { value, name } = e.target
