@@ -15,7 +15,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const analystRoutes = require("./models/AnalystModel");
+const analystRoutes = require("./routes/AnalystRoutes");
 
 const app = express();
 // Bodyparser middleware
