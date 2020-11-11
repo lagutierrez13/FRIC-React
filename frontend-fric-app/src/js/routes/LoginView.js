@@ -12,6 +12,11 @@ class LoginView extends Component {
         };
     }
 
+    onSubmit(e) {
+        e.preventDefault();
+    
+    }
+
     render() {
         const { panelVisible } = this.state;
         const onHide = (e) => this.setState({ panelVisible: !panelVisible });
@@ -39,7 +44,7 @@ class LoginView extends Component {
                                             </Col>
                                         </Row>
                                         <div class="item form-group">
-                                            <button class="btn btn-primary" type="submit" value="Save Finding">
+                                            <button class="btn btn-primary" type="submit">
                                                 Login
                                             </button>   
                                         </div>

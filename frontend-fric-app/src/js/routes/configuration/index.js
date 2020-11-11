@@ -5,8 +5,8 @@ import ConfigurationView from "./configuration/ConfigurationView";
 import HelpView from "./help/HelpView";
 
 export default [
-  <Route path="/configuration/configuration" component={ConfigurationView} />,
-  <Route path="/configuration/help" component={HelpView} />,
+  <Route path="/home/configuration/configuration" component={ConfigurationView} />,
+  <Route path="/home/configuration/help" component={HelpView} />,
 ];
 
 export { ConfigurationMenu };
