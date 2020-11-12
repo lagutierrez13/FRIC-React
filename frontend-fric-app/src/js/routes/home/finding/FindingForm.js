@@ -5,189 +5,628 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { Multiselect } from 'multiselect-react-dropdown';
 
-const Tooltip = () => (
-    <Popup trigger={<button>?</button>} position="right center">
-        {(close) => (
-            <div>
-                Fill out Finding Information
-                <a className="close" onClick={close}>
-                    &times;
-                </a>
+function Tooltip(props){
+    return(
+        <Popup trigger={<button>?</button>} position="right center">
+            {(close) => (
+                <div>
+                    {props.description}
+                    <a className="close" onClick={close}>
+                        &times;
+                    </a>
+                </div>
+            )}
+        </Popup>
+    )
+}
+function FindingInformation(props){
+    return(
+        <div class="x_panel tile">
+            {/* Finding information */}
+            <div class="x_title">
+                <h2>
+                    Finding Information <Tooltip description="" />
+                </h2>
+                <div class="clearfix"></div>
             </div>
-        )}
-    </Popup>
-);
-
-const Mitigation = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Mitigation <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Brief Description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="2" type="text" class="form-control" >
-                </textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label  col-sm-2 ">Long description</label>
-            <div class=" col-sm-10 ">
-                <textarea
-                    rows="4" type="text" class="form-control" ></textarea>
-            </div>
-        </div>
-    </div>
-)
-const CounterMeasure = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Countermeasure <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Effectiveness Rating</label>
-            <div class="col-md-6 col-sm-10 ">
-                {
-                    <select
+            {/* ID */}
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">ID</label>
+                <div class=" col-sm-10 ">
+                    <input
+                        type="text"
                         class="form-control"
-                    // value={this.state.type}
-                    // onChange={this.onChangeType}
-                    >
-                        {/* {this.state.valuesType.map((value) => (
-                        <option>{value}</option>
-                        ))} */}
-                    </select>
-                }
+                        name="findingID"
+                        onChange={props.handleOnChange}
+                    />
+                </div>
             </div>
-        </div>
-    </div>
-)
-const Severity = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Severity <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Severity Category Score</label>
-            <div class=" col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
+            {/*  Host Name */}
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Host Name</label>
+                <div class=" col-sm-10 ">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="hostname"
+                        onChange={props.handleOnChange}
+                    />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Vulnerability Severity</label>
-            <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
+            {/* IP port */}
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">IP Port</label>
+                <div class=" col-sm-10 ">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="ipPort"
+                        onChange={props.handleOnChange}
+                    />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Quantitative Vulnerability Severity</label>
-            <div class=" col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
+            {/* Description */}
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="2"
+                        type="text"
+                        class="form-control"
+                        name="description"
+                        onChange={props.handleOnChange}
+                    ></textarea>
+                </div>
             </div>
+            {/* Long description */}
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Long description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="2"
+                        type="text"
+                        class="form-control"
+                        name="longDescription"
+                        onChange={props.handleOnChange}
+                    ></textarea>
+                </div>
+            </div>
+            {/* Status */}
+            <div class="form-group row">
+                <label class="control-label col-md-2 col-sm-2 ">Status</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                         <select
+                            class="form-control"
+                            name="status"
+                            onChange={props.handleOnChange}
+                        >
+                         {props.statusValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
+                     </select>
+                    }
+                </div>
+            </div>
+            {/* Type */}
+            <div class="form-group row">
+                <label class="control-label col-md-2 col-sm-2 ">Type</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="type"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.typeValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
+                        </select>
+                    }
+                </div>
+            </div>
+            {/* Classification */}
+            <div class="form-group row">
+                <label class="control-label col-md-2 col-sm-2 ">Classification</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="classification"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.classificationValues.map((value) => (
+                             <option>{value}</option>
+                         ))}
+                        </select>
+                    }
+                </div>
+            </div>
+            {/* Related findings */}
+            <div class="form-group row">
+                <label class="control-label col-sm-2 ">Related Finding(s)</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                        <Multiselect
+                            class="form-control"
+                            options={props.relatedValues}
+                            displayValue="value"
+                            onSelect={props.onMultiSelect}
+                            name="related"
+                        />
+                    }
+                    <br></br>
+                </div>
+            </div>
+                   
+            <Row>
+                <Col md={4} sm={2} xs={12}>
+                    {/* System */}
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 col-sm-2 ">System</label>
+                        <div class="pull-right">
+                            <label>OR</label>
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            {
+                                <select
+                                    class="form-control"
+                                    name="findingSystem"
+                                    onChange={props.handleOnChange}
+                                >
+                                    {props.systemValues.map((value) => (
+                                        <option>{value.value}</option>
+                                    ))}
+                                </select>
+                            }
+                        </div>
+                    </div>
+                </Col>
+                <Col md={4} sm={2} xs={12}>
+                    {/* Task */}
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 col-sm-2 ">Task</label>
+                        <div class="pull-right">
+                            <label>OR</label>
+                        </div>
+                        <div class="col-md-10 col-sm-10 ">
+                            {
+                                <select
+                                    class="form-control"
+                                    name="findingTask"
+                                    onChange={props.handleOnChange}
+                                >
+                                    {props.taskValues.map((value) => (
+                                        <option>{value.value}</option>
+                                    ))}
+                                </select>
+                            }
+                        </div>
+                    </div>
+                </Col>
+                <Col md={4} sm={2} xs={12}>
+                    {/* Subtask */}
+                    <div class="form-group row">
+                        <label class="control-label col-md-4 col-sm-2 ">Subtask</label>
+                        <div class="col-md-10 col-sm-10 ">
+                            {
+                                <select
+                                    class="form-control"
+                                    name="findingSubtask"
+                                    onChange={props.handleOnChange}
+                                >
+                                    {props.subtaskValues.map((value) => (
+                                        <option>{value.value}</option>
+                                    ))}
+                                </select>
+                            }
+                        </div>
+                    </div>
+                </Col>
+            </Row>
         </div>
-    </div>
-)
+    );
+}
+function AnalystInformation(props){
+    
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Analyst Information <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <Row>
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <Multiselect
+                                class="form-control"
+                                options={props.analystValues}
+                                displayValue="value"
+                                onSelect={props.onMultiSelect}
+                                //onRemove={this.onMultiRemove}
+                            />
+                        }
+                    </div>
+                </div>
 
-const Risk = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Risk <Tooltip /></h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Risk</label>
-            <div class=" col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Likelihood</label>
-            <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-    </div>
-)
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                             <Multiselect
+                                class="form-control"
+                                options={props.collaboratorValues}
+                                displayValue="value"
+                                onSelect={props.onMultiSelect}
+                                //onRemove={this.onMultiRemove}
+                         />
+                        }
+                    </div>
+                </div>
 
-const FindingSystemLevelImpact = () => (
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2> Finding System Level Impact <Tooltip /></h2>
-            <div class="clearfix"></div>
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Posture</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                             <select
+                                class="form-control"
+                                value={props.posture}
+                                name="posture"
+                                onChange={props.handleOnChange}
+                            >
+                             {props.postureValues.map((value) => (
+                                <option>{value}</option>
+                                ))}
+                            </select>
+                        }
+                    </div>
+                </div>
+            </Row>
         </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Confidentiality Finding Impact on System</label>
-            <div class=" col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
+    )
+}
+function FindingImpact(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Finding Impact <Tooltip /></h2>
+                <div class="clearfix"></div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Integrity Finding Impact on System</label>
-            <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Availability Finding Impact on System</label>
-            <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="control-label col-md-3 col-sm-3 ">Impact Score</label>
-            <div class="col-md-6 col-sm-10">
-                <input type="text" class="form-control" />
-            </div>
-        </div>
-    </div>
-)
+            <Row>
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                value={props.confidentiality}
+                                name="confidentiality"
+                                onChange={props.handleOnChange}
+                            >
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                            </select>
+                        }
+                    </div>
+                </div>
 
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                value={props.integrity}
+                                name="integrity"
+                                onChange={props.handleOnChange}
+                            >
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                            </select>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3 col-sm-3 ">Availability</label>
+                    <div class="col-md-6 col-sm-10 ">
+                        {
+                            <select
+                                class="form-control"
+                                value={props.availability}
+                                name="availability"
+                                onChange={props.handleOnChange}
+                            >
+                            {props.ciaValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                            </select>
+                        }
+                    </div>
+                </div>
+            </Row>
+        </div>
+
+    )
+}
+function ThreatRelevance(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Threat Relevance <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
+                <div class="col-md-6 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            value={props.relevance}
+                            name="relevance"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.relevanceValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                        </select>
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}
+function CounterMeasure(props) {
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Countermeasure <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Effectiveness Rating</label>
+                <div class="col-md-6 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="effectivenessRate"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.counterMeasureValues.map((value) => (
+                            <option>{value}</option>
+                            ))}
+                        </select>
+                    }
+                </div>
+            </div>
+        </div>
+    );
+}
+function Impact(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Impact <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
+                <div class="col-md-10 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="impactLevel"
+                            onChange={props.handleOnChange}
+                        >
+                            {props.impactLevelValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-3 ">Impact description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="3" 
+                        type="text" 
+                        class="form-control" 
+                        value={props.impactDescription}
+                        name="impactDescription"
+                        onChange={props.handleOnChange}>
+
+                        </textarea>
+                </div>
+            </div>
+        </div>
+    )
+}
+function Severity(props) {
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Severity <Tooltip description="Vulnerability Severity needs the values of Severity Category Score, Impact Score, and Effectiveness rating to be calculated.
+                                                    Qualitative Vulnerability Severity needs the value of Vulnerability Severity to be calculated. " /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Severity Category Code</label>
+                <div class="col-md-6 col-sm-10 ">
+                    {
+                        <select
+                            class="form-control"
+                            name="severityCategoryCode"
+                            onChange={props.changeCatScore}
+                        >
+                            {props.catValues.map((value) => (
+                                <option>{value}</option>
+                            ))}
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Severity Category Score</label>
+                <div class=" col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} placeholder={props.severityCategoryScore} />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Vulnerability Severity</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} placeholder={props.vulnerabilitySeverity} />
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" onClick={props.changeVulnerabilitySeverity}> Calculate </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Qualitative Vulnerability Severity</label>
+                <div class=" col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true}  placeholder={props.qualitativeVS} />
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="button" onClick={props.changeQualitativeVS}> Calculate </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+function Risk(props){
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Risk 
+                    <Tooltip description="Calculate Likelihood first, then Risk.
+                                         Likelihood needs the values of Vulnerability Severity and Relevance of Threat to be calculated.
+                                         Risk needs the values of Likelihood and Impact Level to be calculated.
+                                             "/>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Likelihood</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} placeholder={props.likelihood} />
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary" type="button" onClick={props.changeLikeliHood}> Calculate </button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Risk</label>
+                <div class=" col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} placeholder={props.risk} />
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-primary" type="button" onClick={props.changeRisk}> Calculate </button>
+                </div>
+            </div>
+        </div>
+
+    );
+} 
+function Mitigation(props) {
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Mitigation <Tooltip /></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Brief Description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="2" 
+                        type="text" 
+                        class="form-control"
+                        value={props.values.mitigationBrief}
+                        name="mitigationBrief"
+                        onChange={props.handleOnChange}
+                         >
+                    </textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label  col-sm-2 ">Long description</label>
+                <div class=" col-sm-10 ">
+                    <textarea
+                        rows="2" 
+                        type="text" 
+                        class="form-control"
+                        value={props.values.mitigationLong}
+                        name="mitigationLong"
+                        onChange={props.handleOnChange}
+                         >
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+    );
+}
+function FindingSystemLevelImpact(props) {
+    return(
+        <div class="x_panel tile">
+            <div class="x_title">
+                <h2> Finding System Level Impact 
+                    <Tooltip />
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Confidentiality Finding Impact on System</label>
+                <div class=" col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true}/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Integrity Finding Impact on System</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Availability Finding Impact on System</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" readOnly={true} />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="control-label col-md-3 col-sm-3 ">Impact Score</label>
+                <div class="col-md-6 col-sm-10">
+                    <input 
+                        type="number"  
+                        min={1}
+                        max={10}
+                        class="form-control"
+                        name="impactScore"
+                        onChange={props.handleOnChange}>
+                    </input>
+                </div>
+            </div>
+        </div>
+    );
+} 
 class DetailedView extends Component {
     constructor(props) {
         super(props);
-
-        this.onChangeFindingID = this.onChangeFindingID.bind(this);
-        this.onChangeHostname = this.onChangeHostname.bind(this);
-        this.onChangeIP = this.onChangeIP.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeLongDescription = this.onChangeLongDescription.bind(this); //assessment date
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onChangeSystem = this.onChangeSystem.bind(this); //security classification title guide
-        this.onChangeTask = this.onChangeTask.bind(this);
-        this.onChangeSubtask = this.onChangeTask.bind(this);
-        this.onChangeAnalyst = this.onChangeAnalyst.bind(this); // declassification date
-        this.onChangeCollaborator = this.onChangeCollaborator.bind(this);
-        this.onChangePosture = this.onChangePosture.bind(this);
-        this.onChangeStatus = this.onChangeStatus.bind(this);
-        this.onChangeClassification = this.onChangeClassification.bind(this);
-        this.onChangeRelated = this.onChangeRelated.bind(this);
-        this.onChangeType = this.onChangeType.bind(this);
-        this.onChangeProgress = this.onChangeProgress.bind(this);
-        this.onChangeConfidentiality = this.onChangeConfidentiality.bind(this);
-        this.onChangeIntegrity = this.onChangeIntegrity.bind(this);
-        this.onChangeAvailability = this.onChangeAvailability.bind(this);
-        this.onChangeMitigationBrief = this.onChangeMitigationBrief.bind(this);
-        this.onChangeMitigationLong = this.onChangeMitigationLong.bind(this);
-        this.onChangeRelevance = this.onChangeRelevance.bind(this);
-        this.onChangeEffectiveness = this.onChangeEffectiveness.bind(this);
-        this.onChangeImpactLevel = this.onChangeImpactLevel.bind(this);
-        this.onChangeImpactDescription = this.onChangeImpactDescription.bind(this);
-        this.onChangeSeverityCategoryCode = this.onChangeSeverityCategoryCode.bind(this);
-        this.onChangeSeverityCategoryScore = this.onChangeSeverityCategoryScore.bind(this);
-        this.onChangeVulnerabilitySeverity = this.onChangeVulnerabilitySeverity.bind(this);
-        this.onChangeRisk = this.onChangeRisk.bind(this);
-        this.onChangeLikelihood = this.onChangeLikelihood.bind(this);
-        this.onChangeConfImpactSystem = this.onChangeConfImpactSystem.bind(this);
-        this.onChangeIntegImpactSystem = this.onChangeIntegImpactSystem.bind(this);
-        this.onChangeAvailImpactSystem = this.onChangeAvailImpactSystem.bind(this);
-        this.onChangeImpactScore = this.onChangeImpactScore.bind(this);
-
+        this.getCatScore = this.getCatScore.bind(this)
+        this.changeCatScore = this.changeCatScore.bind(this);
+        this.getNumberCounterMeasure = this.getNumberCounterMeasure.bind(this);
+        this.changeVulnerabilitySeverity = this.changeVulnerabilitySeverity.bind(this);
+        this.getQualitativeVS = this.getQualitativeVS.bind(this)
+        this.changeQualitativeVS = this.changeQualitativeVS.bind(this)
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.onMultiSelect = this.onMultiSelect.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
+        this.setSingleValuesFromDatabase = this.setSingleValuesFromDatabase.bind(this);
+        this.setMultiValuesFromDatabase = this.setMultiValuesFromDatabase.bind(this);
         this.state = {
             findingID: "",
             hostname: "",
@@ -199,287 +638,192 @@ class DetailedView extends Component {
             findingTask: "",
             findingSubtask: "",
             findingAnalyst: [],
-            collaborator: "",
-            posture: "",
-            status: "",
-            classification: "",
+            collaborator: [],
+            posture: " ",
+            status: " ",
+            classification: " ",
             related: [],
-            type: "",
+            type: " ",
             progress: 0,
-            confidentiality: "",
-            integrity: "",
-            availability: "",
-            mitigationBrief: "",
-            mitigationLong: "",
-            relevance: "",
-            effectivenessRate: "",
-            impactLevel: "",
-            impactDescription: "",
-            severityCategoryCode: "",
-            severityCategoryScore: 0,
-            vulnerabilitySeverity: 0,
-            risk: "",
-            likelihood: "",
-            confImpactSystem: "",
-            integImpactSystem: "",
-            availImpactSystem: "",
+            confidentiality: " ",
+            integrity: " ",
+            availability: " ",
+            mitigationBrief: " ",
+            mitigationLong: " ",
+            relevance: " ",
+            effectivenessRate: " ",
+            impactLevel: " ",
+            impactDescription: " ",
+            severityCategoryCode: " ",
+            severityCategoryScore: 0, //derived
+            vulnerabilitySeverity: 0, //derived
+            qualitativeVS: " ",
+            risk: " ", //derived
+            likelihood: " ", //derived
+            confImpactSystem: "", //derived but idk how need to ask
+            integImpactSystem: "", //derived but idk how need to ask
+            availImpactSystem: "", //derived but idk how need to ask
             impactScore: 0,
-            statusValues: [], //done
-            typeValues: [], //done
-            classificationValues: [], //done
-            confidentialityValues: [],
-            integrityValues: [],
-            availabilityValues: [],
-            impactLevelValues: [], //done
-            postureValues: [], //done
-            relevanceValues: [], //done
-            analystValues: []
-
+            statusValues: [],
+            typeValues: [], 
+            classificationValues: [],
+            ciaValues: [],
+            impactLevelValues: [], 
+            postureValues: [], 
+            relevanceValues: [],
+            counterMeasureValues: [],
+            analystValues: [],
+            collaboratorValues: [],
+            relatedValues: [],
+            catValues: [],
+            systemValues: [],
+            taskValues: [],
+            subtaskValues: [],
+            likelihoodMap: new Map(),
+            riskMap: new Map()
         };
     }
-    componentDidMount() {
-        //For finding status values 
-
-        let analystList = []
-        
+    setSingleValuesFromDatabase(request,tempList,valueArray){
         axios
-            .get("http://localhost:4000/configuration/get/findingstatus")
+            .get(request)
             .then((response) => {
+                for (var i = 0; i < response.data.values.length; i++) {
+                    tempList.push(response.data.values[i]);
+                }
                 this.setState({
-                    statusValues: response.data.values
+                    [valueArray] : tempList
                 })
             })
             .catch(function (error) {
                 console.log(error);
             });
-
-        //For finding type values 
+    }
+    setMultiValuesFromDatabase(request,tempList,valueToGet,setName,valueArray){
         axios
-            .get("http://localhost:4000/configuration/get/findingtype")
-            .then((response) => {
-                this.setState({
-                    typeValues: response.data.values
-                })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-        // For Analyst values
-        axios
-            .get("http://localhost:4000/analyst/get")
+            .get(request)
             .then((response) => {
                 for (var i = 0; i < response.data.length; i++) {
-                    analystList.push({
-                        label: JSON.stringify(response.data[i].initials),
-                        value: JSON.stringify(response.data[i].initials)
+                    tempList.push({
+                        value: response.data[i][valueToGet],
+                        name: setName
                     });
                 }
-                console.log("ANALYST VALUES: " + analystList[0].label)
-
                 this.setState({
-                    analystValues: analystList
+                    [valueArray]: tempList
                 })
-                console.log("ANALYST VALUES: " + this.state.analystValues)
             })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
-
-    onChangeFindingID(e) {
+    componentDidMount() {
         this.setState({
-            findingID: e.target.value,
-        });
-    }
-    onChangeHostname(e) {
-        this.setState({
-            hostname: e.target.value,
-        });
-
-    }
-    onChangeIP(e) {
-        this.setState({
-            ipPort: e.target.value,
-        });
-    }
-    onChangeDescription(e) {
-        this.setState({
-            description: e.target.value,
-        });
-    }
-
-    onChangeLongDescription(e) {
-        this.setState({
-            longDescription: e.target.value,
-        });
-    }
-    onChangeTitle(e) {
-        this.setState({
-            title: e.target.value,
-        });
-    }
-    onChangeSystem(e) {
-        this.setState({
-            findingSystem: e.target.value,
-        });
-    }
-    onChangeTask(e) {
-        this.setState({
-            findingTask: e.target.value,
-        });
-    }
-    onChangeSubtask(e) {
-        this.setState({
-            findingTask: e.target.value,
-        });
-    }
-    onChangeAnalyst(e) {
-        this.setState({
-            findingAnalyst: e.target.value,
-        });
-    }
-    onChangeCollaborator(e) {
-        this.setState({
-            collaborator: e.target.value,
-        });
-    }
-    onChangePosture(e) {
-        this.setState({
-            posture: e.target.value,
-        });
-    }
-    onChangeStatus(e) {
-        this.setState({
-            status: e.target.value,
-        });
-    }
-    onChangeClassification(e) {
-        this.setState({
-            classification: e.target.value
+            ciaValues: [" ", "Low ", "Medium", "High", "Information"],
+            catValues: [" ", "I", "II", "III"],
+            likelihoodMap: new Map([
+                ["ConfirmedVL","VL"],["ConfirmedL","L"],["ConfirmedM","M"],["ConfirmedH","H"],["ConfirmedVH","VH"],
+                ["ExpectedVL","VL"],["ExpectedL","L"],["ExpectedM","M"],["ExpectedH","H"],["ExpectedVH","VH"],
+                ["AnticipatedVL","VL"],["AnticipatedL","L"],["AnticipatedM","M"],["AnticipatedH","M"],["AnticipatedVH","H"],
+                ["PredictedVL","VL"],["PredictedL","L"],["PredictedM","L"],["PredictedH","L"],["PredictedVH","M"],
+                ["PossibleVL","VL"],["PossibleL","VL"],["PossibleM","L"],["PossibleH","L"],["PossibleVH","L"]
+    
+            ]),
+            riskMap: new Map([
+                ["VHVL","VL"],["VHL","L"],["VHM","M"],["VHH","H"],["VHVH","VH"],
+                ["HVL","VL"],["HL","L"],["HM","M"],["HH","H"],["VHVH","VH"],
+                ["MVL","VL"],["ML","L"],["MM","M"],["MH","M"],["MVH","H"],
+                ["LVL","VL"],["LL","L"],["LM","L"],["LH","L"],["LVH","M"],
+                ["VLVL","VL"],["VLL","VL"],["VLM","L"],["VLH","L"],["VLVH","L"]
+    
+            ])
         })
+        //For finding status values 
+        let analystList = []
+        let collaboratorList = []
+        let postureList = []
+        let findingList = []
+        let statusList = [" "]
+        let typeList = [" "]
+        let classificationList = [" "]
+        let systemList = [" "]
+        let taskList = [" "]
+        let subtaskList = [" "]
+        let impactLevelList = [ " "]
+        let countermeasureList = [" "]
+        let relevanceList = [" "]
+        //For system
+        this.setMultiValuesFromDatabase("http://localhost:4000/home/systems/get",systemList,"systemname","findingSystem","systemValues")
+        // //For task
+        this.setMultiValuesFromDatabase("http://localhost:4000/home/tasks/get",taskList,"tasktitle","findingTask","taskValues")
+        // //For subtask
+        this.setMultiValuesFromDatabase("http://localhost:4000/home/subtasks/get",subtaskList,"title","findingSubtask","subtaskValues")
+        //For finding status
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingstatus",statusList,"statusValues")
+        //For finding impact level
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingimpactlevel",impactLevelList,"impactLevelValues")
+        //For relevance
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/relevance", relevanceList, "relevanceValues")
+        //For countermeasure
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/effectivenessrating",countermeasureList,"counterMeasureValues")
+        //For finding type values 
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingtype",typeList,"typeValues")
+        //For finding classification values 
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingclassification",classificationList,"classificationValues")
+        //For posture values
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/posture",postureList,"postureValues")
+        //For classification values
+        this.setSingleValuesFromDatabase("http://localhost:4000/configuration/get/findingclassification",classificationList,"classificationValues")
+        // For Analyst values 
+        this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",analystList,"initials","findingAnalyst","analystValues")
+        //For collaborator values
+        this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",collaboratorList,"initials","collaborator","collaboratorValues")
+        //For related values
+        this.setMultiValuesFromDatabase("http://localhost:4000/home/findings/get",findingList,"findingID","related","relatedValues")
     }
-    onChangeRelated(e) {
-        this.setState({
-            related: e.target.value
-        })
+    handleOnChange = (e) => {
+        const { value, name } = e.target
+        this.setState({ [name] : value })
     }
-    onChangeType(e) {
-        this.setState({
-            type: e.target.value
-        })
-    }
-    onChangeProgress(e) {
-        this.setState({
-            progress: e.target.value
-        })
-    }
-    onChangeConfidentiality(e) {
-        this.setState({
-            confidentiality: e.target.value
-        })
-    }
-    onChangeIntegrity(e) {
-        this.setState({
-            integrity: e.target.value
-        })
-    }
-    onChangeAvailability(e) {
-        this.setState({
-            availability: e.target.value
-        })
-    }
-    onChangeMitigationBrief(e) {
-        this.setState({
-            mitigationBrief: e.target.value
-        })
-    }
-    onChangeMitigationLong(e) {
-        this.setState({
-            mitigationLong: e.target.value
-        })
-    }
-    onChangeRelevance(e) {
-        this.setState({
-            relevance: e.target.value
-        })
-    }
-    onChangeEffectiveness(e) {
-        this.setState({
-            effectivenessRate: e.target.value
-        })
-    }
-    onChangeImpactLevel(e) {
-        this.setState({
-            impactLevel: e.target.value
-        })
-    }
-    onChangeImpactDescription(e) {
-        this.setState({
-            impactDescription: e.target.value
-        })
-    }
-    onChangeSeverityCategoryCode(e) {
-        this.setState({
-            severityCategoryCode: e.target.value
-        })
-    }
-    onChangeSeverityCategoryScore(e) {
-        this.setState({
-            severityCategoryScore: e.target.value
-        })
-    }
-    onChangeVulnerabilitySeverity(e) {
-        this.setState({
-            vulnerabilitySeverity: e.target.value
-        })
-    }
-    onChangeRisk(e) {
-        this.setState({
-            risk: e.target.value
-        })
-    }
-    onChangeLikelihood(e) {
-        this.setState({
-            likelihood: e.target.value
-        })
-    }
-    onChangeConfImpactSystem(e) {
-        this.setState({
-            confImpactSystem: e.target.value
-        })
-    }
-    onChangeIntegImpactSystem(e) {
-        this.setState({
-            integImpactSystem: e.target.value
-        })
-    }
-    onChangeAvailImpactSystem(e) {
-        this.setState({
-            availImpactSystem: e.target.value
-        })
-    }
-    onChangeImpactScore(e) {
-        this.setState({
-            impactScore: e.target.value
-        })
+    onMultiSelect = (option) => {
+        let objList = option.map(a => a.value + " ");
+        this.setState({ [option[0].name]: objList})
     }
     onSubmit(e) {
         e.preventDefault();
 
         console.log("Finding Submitted");
         console.log("Finding ID: ${this.state.findingID}");
-        console.log("Host name: ${this.state.hostname}");
-        console.log("IP Port: ${this.state.ipPort}");
-        console.log("Description: ${this.state.description}");
-        console.log("Description long: ${this.state.longDescription}");
 
         const newFinding = {
             findingID: this.state.findingID,
+            findingAnalyst: this.state.findingAnalyst,
+            collaborator: this.state.collaborator,
+            status: this.state.status,
+            posture: this.state.posture,
+            related: this.state.related,
+            type: this.state.type,
+            classification: this.state.classification,
             hostname: this.state.hostname,
             ipPort: this.state.ipPort,
             description: this.state.description,
             longDescription: this.state.longDescription,
+            confidentiality: this.state.confidentiality,
+            integrity: this.state.integrity,
+            availability: this.state.availability,
+            mitigationBrief: this.state.mitigationBrief,
+            mitigationLong: this.state.mitigationLong,
+            effectivenessRate: this.state.effectivenessRate,
+            relevance: this.state.relevance,
+            impactDescription: this.state.impactDescription,
+            impactLevel: this.state.impactLevel,
+            severityCategoryCode:this.state.severityCategoryCode,
+            severityCategoryScore:this.state.severityCategoryScore,
+            vulnerabilitySeverity:this.state.vulnerabilitySeverity,
+            qualitativeVS:this.state.qualitativeVS,
+            impactScore:this.state.impactScore,
+            findingSystem: this.state.findingSystem,
+            findingTask: this.state.findingTask,
+            findingSubtask: this.state.findingSubtask,
+            likelihood: this.state.likelihood,
+            risk: this.state.risk
+
         };
 
         const newHistory = {
@@ -509,9 +853,90 @@ class DetailedView extends Component {
             progress: 0,
         });
     }
-
-    // what you see
+     // Derived values section start
+    getCatScore = (val) =>{
+        switch(val) {
+            case "I":
+                return 10;
+            case "II":
+                return 7;
+            case "III":
+                return 4;
+            default:
+                return 0;
+        }
+    }
+    //a.k.a Severity Category Code
+    changeCatScore = (e) => {
+        let value  = e.target.value
+        this.setState({
+            severityCategoryCode: value,
+            severityCategoryScore : this.getCatScore(value)
+        })
+    }
+    //For countermeasure a.k.a effectivenessRate
+    getNumberCounterMeasure = (val) => {
+        let newVal = 0
+        if(val !== " "){
+            let arrVal = val.split('-')
+            newVal = arrVal[1]
+        }
+        return newVal
+    }
+    //changes vs and qualitativevs
+    changeVulnerabilitySeverity = () => {
+        let countermeasure = this.getNumberCounterMeasure(this.state.effectivenessRate)
+        let val = ((this.state.severityCategoryScore * countermeasure * this.state.impactScore)/10)
+        this.setState({
+            vulnerabilitySeverity : val
+        })
+    }
+    getQualitativeVS = () => {
+        let vs = parseInt(this.state.vulnerabilitySeverity,10)
+        if(vs >= 95 && vs <= 100){
+            return "VH"
+        }
+        else if(vs >= 80 && vs < 95){
+            return "H"
+        }
+        else if(vs >= 20 && vs < 80){
+            return "M"
+        }
+        else if(vs >= 5 && vs < 20){
+            return "L"
+        }
+        else if(vs >= 0 && vs < 5){
+            return "VL"
+        }
+        else{
+            return "INFO"
+        }
+    }
+    changeQualitativeVS = () => {
+        this.setState({
+            qualitativeVS : this.getQualitativeVS()
+        })
+    }
+    changeLikeliHood = () =>{
+        let vs = this.state.qualitativeVS
+        let relevance = this.state.relevance
+        console.log("CHECK LIKELIHOOD: " + relevance.concat(vs))
+        this.setState({
+            likelihood : this.state.likelihoodMap.get(relevance.concat(vs))
+        })
+    }
+    changeRisk = () =>{
+        let impact = this.state.impactLevel
+        let lh = this.state.likelihood
+        console.log("CHECK RISK: " + lh.concat(impact))
+        this.setState({
+            risk : this.state.riskMap.get(lh.concat(impact))
+        })
+    }
+    
+    //Derived values end
     render() {
+        
         return (
             // x_panel is container
             <div class="x_panel" >
@@ -519,409 +944,78 @@ class DetailedView extends Component {
                 <form onSubmit={this.onSubmit}>
                     <Row>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                {/* Finding information */}
-                                <div class="x_title">
-                                    <h2>
-                                        Finding Information <Tooltip />
-                                    </h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                {/* ID */}
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-2 ">ID</label>
-                                    <div class=" col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            value={this.findingID}
-                                            onChange={this.onChangeFindingID}
-                                        />
-                                    </div>
-                                </div>
-                                {/*  Host Name */}
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-2 ">Host Name</label>
-                                    <div class=" col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            value={this.hostname}
-                                            onChange={this.onChangeHostname}
-                                        />
-                                    </div>
-                                </div>
-                                {/* IP port */}
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-2 ">IP Port</label>
-                                    <div class=" col-sm-10 ">
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            value={this.ipPort}
-                                            onChange={this.onChangeIP}
-                                        />
-                                    </div>
-                                </div>
-                                {/* Description */}
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-2 ">Description</label>
-                                    <div class=" col-sm-10 ">
-                                        <textarea
-                                            rows="2"
-                                            type="text"
-                                            class="form-control"
-                                            value={this.description}
-                                            onChange={this.onChangeDescription}
-                                        ></textarea>
-                                    </div>
-                                </div>
-                                {/* Long description */}
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-2 ">Long description</label>
-                                    <div class=" col-sm-10 ">
-                                        <textarea
-                                            rows="2"
-                                            type="text"
-                                            class="form-control"
-                                            value={this.longDescription}
-                                            onChange={this.onChangeLongDescription}
-                                        ></textarea>
-                                    </div>
-                                </div>
-                                {/* Status */}
-                                <div class="form-group row">
-                                    <label class="control-label col-md-2 col-sm-2 ">Status</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.status}
-                                                onChange={this.onChangeStatus}
-                                            >
-                                                {this.state.statusValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                                {/* Type */}
-                                <div class="form-group row">
-                                    <label class="control-label col-md-2 col-sm-2 ">Type</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.type}
-                                                onChange={this.onChangeType}
-                                            >
-                                                {this.state.typeValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                                {/* Classification */}
-                                <div class="form-group row">
-                                    <label class="control-label col-md-2 col-sm-2 ">Classification</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.type}
-                                                onChange={this.onChangeType}
-                                            >
-                                                {this.state.classificationValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                                {/* Related findings */}
-                                <div class="form-group row">
-                                    <label class="control-label col-sm-2 ">Related Finding(s)</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.related}
-                                                onChange={this.onChangeRelated}
-                                            >
-                                                {/* {this.state.valuesType.map((value) => (
-                                                    <option>{value}</option>))} */}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-
-                                <Row>
-                                    <Col md={4} sm={2} xs={12}>
-                                        {/* System */}
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-4 col-sm-2 ">System</label>
-                                            <div class="col-md-10 col-sm-10 ">
-                                                {
-                                                    <select
-                                                        class="form-control"
-                                                    // value={this.state.type}
-                                                    // onChange={this.onChangeType}
-                                                    >
-                                                        {/* {this.state.valuesType.map((value) => (
-                                                        <option>{value}</option>
-                                                        ))} */}
-                                                    </select>
-                                                }
-                                            </div>
-                                        </div>
-
-                                    </Col>
-                                    <Col md={4} sm={2} xs={12}>
-                                        {/* Task */}
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-4 col-sm-2 ">Task</label>
-                                            <div class="col-md-10 col-sm-10 ">
-                                                {
-                                                    <select
-                                                        class="form-control"
-                                                    // value={this.state.type}
-                                                    // onChange={this.onChangeType}
-                                                    >
-                                                        {/* {this.state.valuesType.map((value) => (
-                                        <option>{value}</option>
-                                        ))} */}
-                                                    </select>
-                                                }
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col md={4} sm={2} xs={12}>
-                                        {/* Subtask */}
-                                        <div class="form-group row">
-                                            <label class="control-label col-md-4 col-sm-2 ">Subtask</label>
-                                            <div class="col-md-10 col-sm-10 ">
-                                                {
-                                                    <select
-                                                        class="form-control"
-                                                    // value={this.state.type}
-                                                    // onChange={this.onChangeType}
-                                                    >
-                                                        {/* {this.state.valuesType.map((value) => (
-                                        <option>{value}</option>
-                                        ))} */}
-                                                    </select>
-
-                                                }
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
-                            </div>
+                            <FindingInformation values={this.props} 
+                                                statusValues={this.state.statusValues}
+                                                classificationValues={this.state.classificationValues}
+                                                typeValues={this.state.typeValues}
+                                                relatedValues={this.state.relatedValues}
+                                                systemValues={this.state.systemValues}
+                                                taskValues={this.state.taskValues}
+                                                subtaskValues={this.state.subtaskValues}
+                                                handleOnChange={this.handleOnChange} 
+                                                onMultiSelect={this.onMultiSelect}
+                            />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Analyst Information <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <Row>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Analyst</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <Multiselect
-                                                    // class="form-control"
-                                                    options={this.state.analystValues}
-                                                    onChange={this.onChangeAnalyst}
-                                                    onRemove={this.onRemoveAnalyst}
-                                                    placeholder="Analysts"
-                                                >
-                                                    {this.state.analystValues.map((value)=> (
-                                                        <option> {value} </option>
-                                                    ))}
-                                                </Multiselect>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Collaborator</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                // value={this.state.type}
-                                                // onChange={this.onChangeType}
-                                                >
-                                                    {/* {this.state.valuesType.map((value) => (
-                                                    <option>{value}</option>
-                                                    ))} */}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Posture</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.posture}
-                                                    onChange={this.onChangePosture}
-                                                >
-                                                    {this.state.postureValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-                                </Row>
-                            </div>
+                            <AnalystInformation values={this.props}
+                                                analystValues={this.state.analystValues} 
+                                                collaboratorValues={this.state.collaboratorValues}
+                                                postureValues={this.state.postureValues}
+                                                onMultiSelect={this.onMultiSelect}
+                                                handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Finding Impact <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <Row>
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Confidentiality </label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.confidentiality}
-                                                    onChange={this.onChangeConfidentiality}
-                                                >
-                                                    {this.state.confidentialityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Integrity</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.integrity}
-                                                    onChange={this.onChangeIntegrity}
-                                                >
-                                                    {this.state.integrityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label class="control-label col-md-3 col-sm-3 ">Availability</label>
-                                        <div class="col-md-6 col-sm-10 ">
-                                            {
-                                                <select
-                                                    class="form-control"
-                                                    value={this.state.availability}
-                                                    onChange={this.onChangeAvailability}
-                                                >
-                                                    {this.state.availabilityValues.map((value) => (
-                                                        <option>{value}</option>
-                                                    ))}
-                                                </select>
-                                            }
-                                        </div>
-                                    </div>
-                                </Row>
-                            </div>
+                            <FindingImpact ciaValues={this.state.ciaValues}
+                                        handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Threat Relevance <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 ">Relevance</label>
-                                    <div class="col-md-6 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.relevance}
-                                                onChange={this.onChangeRelevance}
-                                            >
-                                                {this.state.relevanceValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                            <ThreatRelevance values={this.props}
+                                             relevanceValues={this.state.relevanceValues}
+                                             handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <CounterMeasure />
+                            <CounterMeasure values={this.props}
+                                            counterMeasureValues={this.state.counterMeasureValues}
+                                            handleOnChange={this.handleOnChange}  />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <div class="x_panel tile">
-                                <div class="x_title">
-                                    <h2> Impact <Tooltip /></h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label col-md-3 col-sm-3 ">Impact Level</label>
-                                    <div class="col-md-10 col-sm-10 ">
-                                        {
-                                            <select
-                                                class="form-control"
-                                                value={this.state.impactLevel}
-                                                onChange={this.onChangeImpactLevel}
-                                            >
-                                                {this.state.impactLevelValues.map((value) => (
-                                                    <option>{value}</option>
-                                                ))}
-                                            </select>
-                                        }
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="control-label  col-sm-3 ">Impact description</label>
-                                    <div class=" col-sm-10 ">
-                                        <textarea
-                                            rows="3" type="text" class="form-control" ></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                            <Impact  impactLevelValues={this.state.impactLevelValues}
+                                     impactDescription={this.props.impactDescription}
+                                     handleOnChange={this.handleOnChange} />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Severity />
+                            <Severity   severityCategoryScore={this.state.severityCategoryScore}
+                                        vulnerabilitySeverity={this.state.vulnerabilitySeverity}
+                                        qualitativeVS={this.state.qualitativeVS}
+                                        catValues={this.state.catValues}
+                                        handleOnChange={this.handleOnChange}
+                                        changeCatScore={this.changeCatScore}
+                                        changeVulnerabilitySeverity={this.changeVulnerabilitySeverity}
+                                        changeQualitativeVS={this.changeQualitativeVS}
+                            />
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <Risk />
+                            <Risk 
+                                risk={this.state.risk}
+                                likelihood={this.state.likelihood}
+                                changeRisk={this.changeRisk}
+                                changeLikeliHood={this.changeLikeliHood}/>
                         </Col>
                         <Col md={6} sm={6} xs={12}>
-                            <FindingSystemLevelImpact />
+                            <FindingSystemLevelImpact handleOnChange={this.handleOnChange} />
                         </Col>
                     </Row>
-
                     <Row md={6} sm={6} xs={12}>
-                        <Mitigation />
+                        <Mitigation values={this.props}
+                                    handleOnChange={this.handleOnChange} />
                     </Row>
-
                     {/* Buttons */}
                     <br />
                     <div class="item form-group">
                         <button onClick={() => window.location.reload(false)} class="btn btn-primary" type="submit" value="Save Finding">
                             Save
                         </button>
-                        <button onClick={() => window.location.reload(false)} class="btn btn-danger" type="cancel">
+                        <button onClick={() => window.location.reload(false)} class="btn btn-danger" type="button">
                             Cancel
                         </button>
                     </div>
