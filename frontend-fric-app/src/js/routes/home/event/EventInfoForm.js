@@ -25,7 +25,7 @@ class DetailedView extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangeVersion = this.onChangeVersion.bind(this);
-    this.onChangeAssessDate = this.onChangeAssesDate.bind(this); //assessment date
+    this.onChangeAssessDate = this.onChangeAssessDate.bind(this); //assessment date
     this.onChangeOrganizationName = this.onChangeOrganizationName.bind(this);
     this.onChangeSCTG = this.onChangeSCTG.bind(this); //security classification title guide
     this.onChangeClassification = this.onChangeClassification.bind(this);
@@ -102,10 +102,9 @@ class DetailedView extends Component {
     });
   }
 
-  onChangeAssesDate(e) {
-    console.log(e.target.value.toString());
+  onChangeAssessDate(e) {
     this.setState({
-      assessdate: e.target.value.toString(),
+      assessdate: e.target.value,
     });
   }
 
@@ -180,7 +179,7 @@ class DetailedView extends Component {
     };
 
     axios
-      .post("http://localhost:4000/home/event/new", newEvent) //double check this
+      .post("http://localhost:4000/home/event/new", newEvent)
       .then((res) => console.log(res.data));
 
     axios
@@ -281,7 +280,7 @@ class DetailedView extends Component {
                   type="date"
                   class="form-control"
                   value={this.state.assessdate}
-                  onChange={this.onChangeAssesDate}
+                  onChange={this.onChangeAssessDate}
                 />
               </div>
             </div>
@@ -313,7 +312,7 @@ class DetailedView extends Component {
                 />
               </div>
             </div>
-            {/* Event Classificatrion */}
+            {/* Event Classification */}
             <div class="form-group row">
               <label class="control-label col-md-2 col-sm-2 ">
                 Event Classification
@@ -337,7 +336,7 @@ class DetailedView extends Component {
               </label>
               <div class="col-md-10 col-sm-10 ">
                 <input
-                  type="text"
+                  type="date"
                   class="form-control"
                   value={this.state.declassificationdate}
                   onChange={this.onChangeDeclassDate}

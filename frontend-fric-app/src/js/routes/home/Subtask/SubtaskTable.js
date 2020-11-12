@@ -10,9 +10,11 @@ const Subtask = (props) => (
     <td>{props.subtask.analyst}</td>
     <td>{props.subtask.no_of_findings}</td>
     <td>{props.subtask.duedate}</td>
-    <td><ProgressBar animated variant="info" now={props.subtask.progress}/></td>
     <td>
-      <EditSubtaskModal subtask={props.subtask}/>
+      <ProgressBar striped variant="info" now={props.subtask.progress} />
+    </td>
+    <td>
+      <EditSubtaskModal subtask={props.subtask} />
     </td>
   </tr>
 );
