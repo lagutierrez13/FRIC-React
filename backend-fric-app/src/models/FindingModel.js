@@ -14,13 +14,12 @@ const findingSchema = new Schema(
       findingTask: String,
       findingSubtask: String,
       findingAnalyst: [String], //multiple selection
-      collaborator: String, //multiple selection
+      collaborator: [String], //multiple selection
       posture: String, //  {Insider, Insider-nearsider, Outsider, Nearsider, Nearsider-outsider}
       status: String, // {Open, Closed}
       classification: String, //Vulnerability,information
       related: [String], //multiple selection for related findings
       type: String, //{Credentials Complexity, Manufacturer Default, Creds, Lack of Authentication, Plain Text Protocols, Plain Text Web Login, Encryption, Authentication Bypass, Port Security, Access Control, Least Privilege, Privilege Escalation, Missing Patches, Physical Security, Information Disclosure}
-      progress: Number,
       confidentiality: String, //{Low, Medium, High, Information
       integrity: String, //{Low, Medium, High, Information
       availability: String, //{Low, Medium, High, Information
@@ -33,7 +32,7 @@ const findingSchema = new Schema(
       severityCategoryCode: String, //; {I, II, III}
       severityCategoryScore: Number, //derived
       vulnerabilitySeverity: Number, //derived. The system shall return the following: 10 if the severity category code is I; 7 if the severity category code is II; 4 if the severity category code is III. (See Table 21)
-      quantitativeVulnerability: String, //derived
+      qualitativeVS: String, //derived
       risk: String, //derived. The system shall return the following: If impact score = 0, risk is Info. Otherwise, if impact score != 0, determine risk using likelihood and impact level (See Table 24)
       likelihood: String, //derived.  The system shall return the following: If impact score = 0, likelihood is Info. Otherwise, if impact score != 0 and determine the likelihood using relevance of threat and quantitative vulnerability severity (See Table 25)
       confImpactSystem: String, //derived
