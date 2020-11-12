@@ -3,6 +3,8 @@ import Popup from "reactjs-popup";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "reactjs-popup/dist/index.css";
+import EditFindingModal from "./EditFindingModal";
+import { PromiseProvider } from "mongoose";
 
 
 const Finding = (props) => (
@@ -19,7 +21,7 @@ const Finding = (props) => (
     <td>{props.finding.type}</td>
     <td>{props.finding.risk}</td>
     <td>
-      <Link to={"/update/" + props.finding._id}><span class="glyphicon glyphicon-edit"></span></Link>
+      <EditFindingModal finding={props.finding}/>
     </td>
   </tr>
 );
