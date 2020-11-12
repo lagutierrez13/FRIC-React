@@ -10,14 +10,14 @@ let analystSchema = new Schema(
     ip: String,
     isLead: Boolean,
     progress: Number,
-    tokens: [
-      {
-        token: {
-          type: String,
-          require: true,
-        },
-      },
-    ],
+    // tokens: [
+    //   {
+    //     token: {
+    //       type: String,
+    //       require: true,
+    //     },
+    //   },
+    // ],
     // description: String,
     // no_of_findings: String
     // slug: {
