@@ -9,7 +9,9 @@ const System = (props) => (
     <td>{props.system.systemname}</td>
     <td>{props.system.no_of_tasks}</td>
     <td>{props.system.no_of_findings}</td>
-    <td><ProgressBar animated variant="info" now={props.system.progress}/></td>
+    <td>
+      <ProgressBar striped variant="info" now={props.system.progress} />
+    </td>
     <td>
       <EditSystemModal system={props.system} />
     </td>
