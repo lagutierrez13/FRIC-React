@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col } from "react-bootstrap";
 import axios from "axios";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
-import { Multiselect } from 'multiselect-react-dropdown';
+import { Multiselect } from "multiselect-react-dropdown";
 import { Button, Modal } from "react-bootstrap";
 
 function Tooltip(props) {
@@ -1013,42 +1013,42 @@ class EditFindingModal extends React.Component {
     console.log("Finding ID: ${this.state.findingID}");
 
     const newFinding = {
-        findingID: this.state.findingID,
-        hostname: this.state.hostname,
-        ipPort: this.state.ipPort,
-        description: this.state.description,
-        longDescription: this.state.longDescription,
-        title: this.state.title,
-        findingSystem: this.state.findingSystem,
-        findingTask: this.state.findingTask,
-        findingSubtask: this.state.findingSubtask,
-        findingAnalyst: this.state.findingAnalyst,
-        collaborator: this.state.collaborator,
-        posture: this.state.posture,
-        status: this.state.status,
-        classification: this.state.classification,
-        related: this.state.related,
-        type: this.state.type,
-        progress: this.state.progress,
-        confidentiality: this.state.confidentiality,
-        integrity: this.state.integrity,
-        availability: this.state.availability,
-        mitigationBrief: this.state.mitigationBrief,
-        mitigationLong: this.state.mitigationLong,
-        relevance: this.state.relevance,
-        effectivenessRate: this.state.effectivenessRate,
-        impactLevel: this.state.impactLevel,
-        impactDescription: this.state.impactDescription,
-        severityCategoryCode: this.state.severityCategoryCode,
-        severityCategoryScore: this.state.severityCategoryScore, //derived
-        vulnerabilitySeverity: this.state.vulnerabilitySeverity, //derived
-        qualitativeVS: this.state.qualitativeVS,
-        risk: this.state.risk, //derived
-        likelihood: this.state.likelihood, //derived
-        confImpactSystem: this.state.confImpactSystem, //derived but idk how need to ask
-        integImpactSystem: this.state.integImpactSystem, //derived but idk how need to ask
-        availImpactSystem: this.state.availImpactSystem, //derived but idk how need to ask
-        impactScore: this.state.impactScore,
+      findingID: this.state.findingID,
+      hostname: this.state.hostname,
+      ipPort: this.state.ipPort,
+      description: this.state.description,
+      longDescription: this.state.longDescription,
+      title: this.state.title,
+      findingSystem: this.state.findingSystem,
+      findingTask: this.state.findingTask,
+      findingSubtask: this.state.findingSubtask,
+      findingAnalyst: this.state.findingAnalyst,
+      collaborator: this.state.collaborator,
+      posture: this.state.posture,
+      status: this.state.status,
+      classification: this.state.classification,
+      related: this.state.related,
+      type: this.state.type,
+      progress: this.state.progress,
+      confidentiality: this.state.confidentiality,
+      integrity: this.state.integrity,
+      availability: this.state.availability,
+      mitigationBrief: this.state.mitigationBrief,
+      mitigationLong: this.state.mitigationLong,
+      relevance: this.state.relevance,
+      effectivenessRate: this.state.effectivenessRate,
+      impactLevel: this.state.impactLevel,
+      impactDescription: this.state.impactDescription,
+      severityCategoryCode: this.state.severityCategoryCode,
+      severityCategoryScore: this.state.severityCategoryScore, //derived
+      vulnerabilitySeverity: this.state.vulnerabilitySeverity, //derived
+      qualitativeVS: this.state.qualitativeVS,
+      risk: this.state.risk, //derived
+      likelihood: this.state.likelihood, //derived
+      confImpactSystem: this.state.confImpactSystem, //derived but idk how need to ask
+      integImpactSystem: this.state.integImpactSystem, //derived but idk how need to ask
+      availImpactSystem: this.state.availImpactSystem, //derived but idk how need to ask
+      impactScore: this.state.impactScore,
     };
 
     const newHistory = {
@@ -1057,26 +1057,71 @@ class EditFindingModal extends React.Component {
     };
 
     axios
-      .post("http://localhost:4000/home/findings/new", newFinding) //double check this
+      .put(
+        `http://localhost:4000/home/findings/update/${this.state._id}`,
+        newFinding
+      ) //double check this
       .then((res) => console.log(res.data));
 
     axios
       .post("http://localhost:4000/history/new", newHistory)
       .then((res) => console.log(res.data));
 
-    this.setState({
-      name: "",
+    this.state = {
+      findingID: "",
+      hostname: "",
+      ipPort: "",
       description: "",
-      type: "",
-      version: "",
-      assessdate: "",
-      organizationname: "",
-      sctg: "",
-      classification: "",
-      declassificationdate: "",
-      customername: "",
+      longDescription: "",
+      title: "",
+      findingSystem: "",
+      findingTask: "",
+      findingSubtask: "",
+      findingAnalyst: [],
+      collaborator: [],
+      posture: " ",
+      status: " ",
+      classification: " ",
+      related: [],
+      type: " ",
       progress: 0,
-    });
+      confidentiality: " ",
+      integrity: " ",
+      availability: " ",
+      mitigationBrief: " ",
+      mitigationLong: " ",
+      relevance: " ",
+      effectivenessRate: " ",
+      impactLevel: " ",
+      impactDescription: " ",
+      severityCategoryCode: " ",
+      severityCategoryScore: 0, //derived
+      vulnerabilitySeverity: 0, //derived
+      qualitativeVS: " ",
+      risk: " ", //derived
+      likelihood: " ", //derived
+      confImpactSystem: "", //derived but idk how need to ask
+      integImpactSystem: "", //derived but idk how need to ask
+      availImpactSystem: "", //derived but idk how need to ask
+      impactScore: 0,
+      statusValues: [],
+      typeValues: [],
+      classificationValues: [],
+      ciaValues: [],
+      impactLevelValues: [],
+      postureValues: [],
+      relevanceValues: [],
+      counterMeasureValues: [],
+      analystValues: [],
+      collaboratorValues: [],
+      relatedValues: [],
+      catValues: [],
+      systemValues: [],
+      taskValues: [],
+      subtaskValues: [],
+      likelihoodMap: new Map(),
+      riskMap: new Map(),
+    };
   }
 
   // Derived values section start
@@ -1180,85 +1225,113 @@ class EditFindingModal extends React.Component {
             <Modal.Title>Edit Finding</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <form onSubmit={this.onSubmit}>
-                    <Row>
-                        <Col md={6} sm={6} xs={12}>
-                            <FindingInformation values={this.props} 
-                                                statusValues={this.state.statusValues}
-                                                classificationValues={this.state.classificationValues}
-                                                typeValues={this.state.typeValues}
-                                                relatedValues={this.state.relatedValues}
-                                                systemValues={this.state.systemValues}
-                                                taskValues={this.state.taskValues}
-                                                subtaskValues={this.state.subtaskValues}
-                                                handleOnChange={this.handleOnChange} 
-                                                onMultiSelect={this.onMultiSelect}
-                            />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <AnalystInformation values={this.props}
-                                                analystValues={this.state.analystValues} 
-                                                collaboratorValues={this.state.collaboratorValues}
-                                                postureValues={this.state.postureValues}
-                                                onMultiSelect={this.onMultiSelect}
-                                                handleOnChange={this.handleOnChange} />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <FindingImpact ciaValues={this.state.ciaValues}
-                                        handleOnChange={this.handleOnChange} />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <ThreatRelevance values={this.props}
-                                             relevanceValues={this.state.relevanceValues}
-                                             handleOnChange={this.handleOnChange} />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <CounterMeasure values={this.props}
-                                            counterMeasureValues={this.state.counterMeasureValues}
-                                            handleOnChange={this.handleOnChange}  />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <Impact  impactLevelValues={this.state.impactLevelValues}
-                                     impactDescription={this.props.impactDescription}
-                                     handleOnChange={this.handleOnChange} />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <Severity   severityCategoryScore={this.state.severityCategoryScore}
-                                        vulnerabilitySeverity={this.state.vulnerabilitySeverity}
-                                        qualitativeVS={this.state.qualitativeVS}
-                                        catValues={this.state.catValues}
-                                        handleOnChange={this.handleOnChange}
-                                        changeCatScore={this.changeCatScore}
-                                        changeVulnerabilitySeverity={this.changeVulnerabilitySeverity}
-                                        changeQualitativeVS={this.changeQualitativeVS}
-                            />
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <Risk 
-                                risk={this.state.risk}
-                                likelihood={this.state.likelihood}
-                                changeRisk={this.changeRisk}
-                                changeLikeliHood={this.changeLikeliHood}/>
-                        </Col>
-                        <Col md={6} sm={6} xs={12}>
-                            <FindingSystemLevelImpact handleOnChange={this.handleOnChange} />
-                        </Col>
-                    </Row>
-                    <Row md={6} sm={6} xs={12}>
-                        <Mitigation values={this.props}
-                                    handleOnChange={this.handleOnChange} />
-                    </Row>
-                    {/* Buttons */}
-                    <br />
-                    <div class="item form-group">
-                        <button onClick={() => window.location.reload(false)} class="btn btn-primary" type="submit" value="Save Finding">
-                            Save
-                        </button>
-                        <button onClick={() => window.location.reload(false)} class="btn btn-danger" type="button">
-                            Cancel
-                        </button>
-                    </div>
-                </form>
+            <form onSubmit={this.onSubmit}>
+              <Row>
+                <Col md={6} sm={6} xs={12}>
+                  <FindingInformation
+                    values={this.props}
+                    statusValues={this.state.statusValues}
+                    classificationValues={this.state.classificationValues}
+                    typeValues={this.state.typeValues}
+                    relatedValues={this.state.relatedValues}
+                    systemValues={this.state.systemValues}
+                    taskValues={this.state.taskValues}
+                    subtaskValues={this.state.subtaskValues}
+                    handleOnChange={this.handleOnChange}
+                    onMultiSelect={this.onMultiSelect}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <AnalystInformation
+                    values={this.props}
+                    analystValues={this.state.analystValues}
+                    collaboratorValues={this.state.collaboratorValues}
+                    postureValues={this.state.postureValues}
+                    onMultiSelect={this.onMultiSelect}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <FindingImpact
+                    ciaValues={this.state.ciaValues}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <ThreatRelevance
+                    values={this.props}
+                    relevanceValues={this.state.relevanceValues}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <CounterMeasure
+                    values={this.props}
+                    counterMeasureValues={this.state.counterMeasureValues}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <Impact
+                    impactLevelValues={this.state.impactLevelValues}
+                    impactDescription={this.props.impactDescription}
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <Severity
+                    severityCategoryScore={this.state.severityCategoryScore}
+                    vulnerabilitySeverity={this.state.vulnerabilitySeverity}
+                    qualitativeVS={this.state.qualitativeVS}
+                    catValues={this.state.catValues}
+                    handleOnChange={this.handleOnChange}
+                    changeCatScore={this.changeCatScore}
+                    changeVulnerabilitySeverity={
+                      this.changeVulnerabilitySeverity
+                    }
+                    changeQualitativeVS={this.changeQualitativeVS}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <Risk
+                    risk={this.state.risk}
+                    likelihood={this.state.likelihood}
+                    changeRisk={this.changeRisk}
+                    changeLikeliHood={this.changeLikeliHood}
+                  />
+                </Col>
+                <Col md={6} sm={6} xs={12}>
+                  <FindingSystemLevelImpact
+                    handleOnChange={this.handleOnChange}
+                  />
+                </Col>
+              </Row>
+              <Row md={6} sm={6} xs={12}>
+                <Mitigation
+                  values={this.props}
+                  handleOnChange={this.handleOnChange}
+                />
+              </Row>
+              {/* Buttons */}
+              <br />
+              <div class="item form-group">
+                <button
+                  onClick={() => window.location.reload(false)}
+                  class="btn btn-primary"
+                  type="submit"
+                  value="Save Finding"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={() => window.location.reload(false)}
+                  class="btn btn-danger"
+                  type="button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </Modal.Body>
         </Modal>
       </div>
