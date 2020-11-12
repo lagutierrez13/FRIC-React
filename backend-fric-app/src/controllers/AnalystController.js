@@ -1,8 +1,85 @@
 //Imports
 const Analyst = require("../models/AnalystModel");
+const validateRegisterInput = require("../validation/register");
+const validateLoginInput = require("../validation/login");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 
 //Object
 const analystCtrl = {};
+
+//Authentication
+analystCtrl.registerAnalyst = async (req, res) => {
+  // Form validation
+  const { errors, isValid } = validateRegisterInput(req.body);
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  try {
+    const analyst = await Analyst.findOne({ initials: req.body.initials });
+    if (analyst) {
+      return res.status(400).json({ initials: "Initials already exist" });
+    } else {
+      const newAnalyst = new Analyst({
+        initials: req.body.initials,
+        first: "",
+        last: "",
+        title: "",
+        ip: "",
+        isLead: false,
+        progress: 0,
+      });
+      try {
+        await newAnalyst.save();
+        res.json("create analyst!");
+        res.status(200).send({ message: "Analyst Created" });
+      } catch (error) {
+        res.status(500).send(error);
+      }
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+analystCtrl.loginAnalyst = async (req, res) => {
+  // Form validation
+  const { errors, isValid } = validateLoginInput(req.body);
+  // Check validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+  try {
+    const analyst = await Analyst.findOne({ initials: req.body.initials });
+    // Check if user exists
+    if (!analyst) {
+      return res.status(404).json({ initialsnotfound: "Initials not found" });
+    }
+    // User matched
+    // Create JWT Payload
+    const payload = {
+      id: analyst._id,
+      name: analyst.initials,
+    };
+    // Sign token
+    jwt.sign(
+      payload,
+      keys.secretOrKey,
+      {
+        expiresIn: 31556926, // 1 year in seconds
+      },
+      (err, token) => {
+        res.json({
+          success: true,
+          token: "Bearer " + token,
+        });
+      }
+    );
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 //Functions
 analystCtrl.getAnalysts = async (req, res) => {
@@ -33,36 +110,6 @@ analystCtrl.getAnalyst = async (initials, res) => {
   }
 };
 
-// analystCtrl.authenticateAnalyst = async (initials) => {
-//   const analyst = await Analyst.findOne({
-//     initials,
-//   });
-//   if (analyst) {
-//     const isMatched = await bcrypt.compare(initials, analyst.initials);
-//     if (isMatched) {
-//       return analyst;
-//     } else {
-//       throw new Error("unable to log in");
-//     }
-//   } else {
-//     throw new Error({
-//       error: "unable to log in",
-//     });
-//   }
-// };
-
-//Login user endpoint
-analystCtrl.authenticateAnalyst = async (req, res) => {
-  const { initials } = req.body.initials;
-  try {
-    const analyst = await Analyst.findByCredentials(initials);
-    const token = await analyst.generateAuthToken();
-    res.status(200).send({ token });
-  } catch (error) {
-    res.status(400).send({ error });
-  }
-};
-
 analystCtrl.createAnalyst = async (req, res) => {
   const newAnalyst = new Analyst(req.body);
   try {
@@ -73,25 +120,6 @@ analystCtrl.createAnalyst = async (req, res) => {
     res.status(500).send(error);
   }
 };
-
-// systemCtrl.getSystemBySlug = async (req, res) => {
-//   try {
-//     const system = await System.findOne({slug: req.params.slug});
-//     res.status(200).send(post);
-//   } catch (err) {
-//     res.status(404).send(err);
-//   }
-// };
-
-// analystCtrl.updateAnalyst = async (req, res) => {
-//   const { initials } = req.body;
-//   try {
-//     await Analyst.findOneAndUpdate({ _id: req.params.id }, { initials });
-//     res.status(200).send({ message: "Analyst update successfully" });
-//   } catch (error) {
-//     res.status(500).send(error);
-//   }
-// };
 
 analystCtrl.updateAnalyst = async (req, res) => {
   const body = req.body;
