@@ -2,12 +2,6 @@
 // const { Router } = require("express");
 const express = require("express");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const keys = require("../config/keys");
-const Analyst = require("../models/AnalystModel");
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
 const {
   registerAnalyst,
   loginAnalyst,
