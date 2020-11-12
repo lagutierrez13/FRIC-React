@@ -20,14 +20,14 @@ class EditTaskModal extends React.Component {
       showHide: false,
       task: props.task,
       _id: props.task._id,
-      newTitle: props.task.title,
-      newDescription: props.task.description,
-      newDuedate: props.task.duedate,
-      newSystem: props.task.system,
-      newPriority: props.task.priority,
-      newAnalyst: props.task.analyst,
-      newCollaboratos: props.task.collaborator,
-      newRelatedtask: props.task.relatedtask,
+      newTitle: props.task.taskitle,
+      newDescription: props.task.taskdescription,
+      newDuedate: props.task.taskduedate,
+      newSystem: props.task.tasksystem,
+      newPriority: props.task.taskpriority,
+      newAnalyst: props.task.taskanalyst,
+      newCollaboratos: props.task.taskcollaborator,
+      newRelatedtask: props.task.relatedtasks,
     };
   }
   onChangeTaskTitle(e) {
@@ -164,7 +164,7 @@ class EditTaskModal extends React.Component {
                 <label class="control-label col-md-2 col-sm-2 ">Due date</label>
                 <div class="col-md-10 col-sm-10 ">
                   <input
-                    type="text"
+                    type="date"
                     class="form-control"
                     value={this.state.taskduedate}
                     onChange={this.onChangeTaskDueDate}

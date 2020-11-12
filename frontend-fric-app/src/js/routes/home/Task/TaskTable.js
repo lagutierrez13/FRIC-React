@@ -3,20 +3,20 @@ import axios from "axios";
 import EditTaskModal from "./EditTaskModal";
 import { ProgressBar } from "react-bootstrap";
 
-
-
 const Task = (props) => (
   <tr>
     <td>{props.task.tasktitle}</td>
     <td>{props.task.tasksystem}</td>
     <td>{props.task.taskanalyst}</td>
     <td>{props.task.priority}</td>
-    <td><ProgressBar animated variant="info" now={props.task.progress}/></td>
+    <td>
+      <ProgressBar striped variant="info" now={props.task.progress} />
+    </td>
     <td>{props.task.no_of_subtasks}</td>
     <td>{props.task.no_of_findings}</td>
     <td>{props.task.due_date}</td>
     <td>
-      <EditTaskModal  task={props.task} />
+      <EditTaskModal task={props.task} />
     </td>
   </tr>
 );

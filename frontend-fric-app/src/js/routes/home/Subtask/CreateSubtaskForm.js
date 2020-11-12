@@ -25,7 +25,7 @@ class CreateSubtask extends Component {
       this
     );
     this.onChangeSubtaskProgress = this.onChangeSubtaskProgress.bind(this);
-    // this.onChangeSubtaskDuedate = this.onChangeSubtaskDuedate.bind(this); BREAKS
+    this.onChangeSubtaskDuedate = this.onChangeSubtaskDuedate.bind(this);
     this.onChangeSubtaskAnalyst = this.onChangeSubtaskAnalyst.bind(this);
     this.onChangeSubtaskCollaborator = this.onChangeSubtaskCollaborator.bind(
       this
@@ -132,7 +132,7 @@ class CreateSubtask extends Component {
     };
 
     axios
-      .post("http://localhost:4000/home/subtasks/new", newSubtask) //double check this
+      .post("http://localhost:4000/home/subtasks/new", newSubtask)
       .then((res) => console.log(res.data));
 
     axios
@@ -206,7 +206,12 @@ class CreateSubtask extends Component {
             <div class="form-group row">
               <label class="control-label col-md-2 col-sm-2 ">Due date</label>
               <div class="col-md-10 col-sm-10 ">
-                <input type="text" class="form-control" />
+                <input
+                  type="date"
+                  class="form-control"
+                  value={this.state.duedate}
+                  onChange={this.onChangeSubtaskDuedate}
+                />
               </div>
             </div>
             {/* Analyst*/}
@@ -243,7 +248,9 @@ class CreateSubtask extends Component {
             </div>
             {/* Tasks */}
             <div class="form-group row">
-              <label class="control-label col-md-2 col-sm-2 ">Tasks</label>
+              <label class="control-label col-md-2 col-sm-2 ">
+                Parent Task
+              </label>
               <div class="col-md-10 col-sm-10 ">
                 <select
                   class="form-control"
@@ -258,7 +265,9 @@ class CreateSubtask extends Component {
             </div>
             {/* Related Subtasks */}
             <div class="form-group row">
-              <label class="control-label col-md-2 col-sm-2 ">Subtasks</label>
+              <label class="control-label col-md-2 col-sm-2 ">
+                Associate to Subtask
+              </label>
               <div class="col-md-10 col-sm-10 ">
                 <select
                   class="form-control"
@@ -274,7 +283,12 @@ class CreateSubtask extends Component {
             {/* Buttons */}
             <br />
             <div class="item form-group">
-              <button class="btn btn-primary" type="submit" value="Save Task" onClick={() => window.location.reload(false)}>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                value="Save Task"
+                onClick={() => window.location.reload(false)}
+              >
                 Save
               </button>
               <button class="btn btn-danger" type="cancel">
