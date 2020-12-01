@@ -1,7 +1,9 @@
+const syncController = require('./controllers/SyncController');
 //Imports
 const express = require("express");
 const socketIo = require("socket.io");
 const cors = require("cors");
+//Sync controller
 //Routes
 const analystRoutes = require("./routes/AnalystRoutes");
 const systemRoutes = require("./routes/SystemRoutes");
@@ -13,6 +15,7 @@ const notification = require("./routes/NotificationRoutes");
 const configuration = require("./routes/ConfigurationRoutes");
 const taskRoutes = require("./routes/TaskRoute");
 const subtaskRoute = require("./routes/SubtaskRoute");
+
 
 const app = express();
 
@@ -68,18 +71,12 @@ const io = socketIo(server, {
     credentials: true
   }
 });
-
 io.on('connection', (socket) => {
-
     console.log('made socket connection', socket.id);
-
-    // Handle chat event
-    socket.on('chat', function(data){
-        console.log(data);
-        //io.sockets.emit('chat', data);
-    });
-
+    // Handle finding event
+    socket.on('addFinding', function(data){
+      data.info.forEach(finding => syncController.addFinding(io, finding));
+  });
 });
-
 //Export
 module.exports = app;

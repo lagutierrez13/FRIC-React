@@ -39,7 +39,6 @@ class SyncView extends Component {
                 [arr]: response.data
             })
         })
-
     }
     componentDidMount() {
         let analystList = []
@@ -55,20 +54,14 @@ class SyncView extends Component {
         var recieverIP = this.state.recieverIP;
         var senderIP = this.state.senderIP;
         const findings = this.state.findings;
-
-        console.log("Hello reciever ip: " + recieverIP);
-        console.log("Hello sender ip: " + senderIP);
-
-        console.log(findings);
         
         var socket = openSocket("http://" + recieverIP +":4000", {
              withCredentials: true,
         });  
         socket.emit('addFinding', {
             type: "finding",
-            data: findings,
+            info: findings,
         });
-       
     }
     render(){
         return (
