@@ -2,7 +2,22 @@ import React, { Component, useEffect, useState} from "react";
 import { Row, Col, Clearfix } from "react-bootstrap";
 import openSocket from 'socket.io-client';
 import axios from "axios";
+//import SyncLogic from "./SyncLogic.js";
 
+function SyncLogic(props){
+    var senderInitial = props.senderInitial;
+    var senderIP = props.senderIP;
+    var recieverInitial = props.recieverInitial;
+    var recieverIP = props.recieverIP;
+
+    var socket = openSocket("http://" + recieverIP +":4000", {
+            withCredentials: true,
+          
+    });  
+    socket.emit('chat', {
+        message: "Hello from the other side my ip is " + senderIP,
+    });
+}
 class SyncView extends Component {
 
     constructor(props){
@@ -33,7 +48,6 @@ class SyncView extends Component {
                 })
             })
     }
-
     componentDidMount() {
         let analystList = []
         this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",analystList,"initials","analystInitials","analystInitials")
@@ -42,15 +56,12 @@ class SyncView extends Component {
         const { value, name } = e.target
         this.setState({ [name] : value }) 
     }
-    connectSocket(){
-        console.log("Sync Activated")
-        var socket = openSocket("http://" + this.state.recieverIP +":4000", {
-            withCredentials: true,
-          
-        });
-    }
-    sendSocket(){
-       // socket.emit('chat message', 'demo')
+    startSync(){
+        <SyncLogic senderInitial = {this.state.senderInitial}
+                   senderIP = {this.state.senderIP}
+                   recieverInitial = {this.state.recieverInitial}
+                   recieverIP = {this.state.recieverIP} 
+        />
     }
     render(){
         return (
@@ -119,11 +130,9 @@ class SyncView extends Component {
                         </div>
                     </Row>
                 </Col>
-                
                 <div class="form-group row">
-                    
                     <div class="col-md-2 col-sm-5">
-                        <button id="connect" class="btn btn-primary" onClick={this.connectSocket}>Sync</button>
+                        <button id="connect" class="btn btn-primary" onClick={this.startSync}>Sync</button>
                     </div>
                 </div>
             </div>
