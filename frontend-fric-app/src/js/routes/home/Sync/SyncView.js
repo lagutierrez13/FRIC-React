@@ -4,64 +4,71 @@ import openSocket from 'socket.io-client';
 import axios from "axios";
 //import SyncLogic from "./SyncLogic.js";
 
-function SyncLogic(props){
-    var senderInitial = props.senderInitial;
-    var senderIP = props.senderIP;
-    var recieverInitial = props.recieverInitial;
-    var recieverIP = props.recieverIP;
-
-    var socket = openSocket("http://" + recieverIP +":4000", {
-            withCredentials: true,
-          
-    });  
-    socket.emit('chat', {
-        message: "Hello from the other side my ip is " + senderIP,
-    });
-}
 class SyncView extends Component {
 
     constructor(props){
         super(props);
-        this.sendSocket = this.sendSocket.bind(this);
-        this.connectSocket = this.connectSocket.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.setMultiValuesFromDatabase = this.setMultiValuesFromDatabase.bind(this);
+        this.setArrayFromDatabase = this.setArrayFromDatabase.bind(this);
+        this.startSync = this.startSync.bind(this);
         this.state = {
             senderInitial: "",
             senderIP: "",
             recieverInitial: "",
             recieverIP: "",
-            analystInitials: []
+            analystInitials: [],
+            findings: []
         }
     }
     setMultiValuesFromDatabase(request,tempList,valueToGet,setName,valueArray){
-        axios
-            .get(request)
-            .then((response) => {
-                for (var i = 0; i < response.data.length; i++) {
-                    tempList.push(
-                        response.data[i][valueToGet]
-                    );
-                }
-                this.setState({
-                    [valueArray]: tempList
-                })
+        axios.get(request).then((response) => {
+            for (var i = 0; i < response.data.length; i++) {
+                tempList.push(
+                    response.data[i][valueToGet]
+                );
+            }
+            this.setState({
+                [valueArray]: tempList
             })
+        })
+    }
+    setArrayFromDatabase(request,arr){
+        axios.get(request).then((response) => {
+            this.setState({
+                [arr]: response.data
+            })
+        })
+
     }
     componentDidMount() {
         let analystList = []
+        let findingList = []
         this.setMultiValuesFromDatabase("http://localhost:4000/analyst/get",analystList,"initials","analystInitials","analystInitials")
+        this.setArrayFromDatabase("http://localhost:4000/home/findings/get","findings")
     }
     handleOnChange = (e) => {
         const { value, name } = e.target
         this.setState({ [name] : value }) 
     }
     startSync(){
-        <SyncLogic senderInitial = {this.state.senderInitial}
-                   senderIP = {this.state.senderIP}
-                   recieverInitial = {this.state.recieverInitial}
-                   recieverIP = {this.state.recieverIP} 
-        />
+        var recieverIP = this.state.recieverIP;
+        var senderIP = this.state.senderIP;
+        const findings = this.state.findings;
+
+        console.log("Hello reciever ip: " + recieverIP);
+        console.log("Hello sender ip: " + senderIP);
+
+        console.log(findings);
+        
+        var socket = openSocket("http://" + recieverIP +":4000", {
+             withCredentials: true,
+        });  
+        socket.emit('addFinding', {
+            type: "finding",
+            data: findings,
+        });
+       
     }
     render(){
         return (
