@@ -44,7 +44,7 @@ class SyncView extends Component {
     }
     connectSocket(){
         console.log("Sync Activated")
-        var socket = openSocket("http://172.19.224.59:4000", {
+        var socket = openSocket("http://" + this.state.recieverIP +":4000", {
             withCredentials: true,
           
         });
