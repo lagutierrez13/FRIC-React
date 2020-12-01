@@ -125,7 +125,7 @@ class SyncView extends Component {
                         <div class="form-group row">
                             <label class="control-label col-md-3 col-sm-3 ">IP Address</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input id="recieverIP" name="recieverIp" class="form-control" type="text" onChange={this.handleOnChange} placeholder="Reciever IP" />
+                                <input id="recieverIP" name="recieverIP" class="form-control" type="text" onChange={this.handleOnChange} placeholder="Reciever IP" />
                             </div>
                         </div>
                     </Row>
