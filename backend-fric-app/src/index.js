@@ -15,6 +15,7 @@
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const socketIo = require("socket.io");
 const analystRoutes = require("./routes/AnalystRoutes");
 
 //const app = express();
@@ -42,4 +43,8 @@ require("./config/passport")(passport);
 app.use(analystRoutes);
 
 const port = process.env.PORT || 4000; // process.env.port is Heroku's port if you choose to deploy the app there
-app.listen(port, () => console.log(`Server up and running on port ${port} !`));
+
+// const server = app.listen(port, function(){
+//   console.log('listening for requests on port 4000,');
+// });
+

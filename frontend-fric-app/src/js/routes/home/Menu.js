@@ -9,6 +9,7 @@ const Menu = (
     <MenuItem title="Tasks" to="/home/tasks" />
     <MenuItem title="Subtasks" to="/home/subtasks" />
     <MenuItem title="Findings" to="/home/findings" />
+    <MenuItem title="Sync" to="/home/sync" />
     <MenuItem title="Archive" to="/home/archive " />
   </GroupMenuItem>
 )
