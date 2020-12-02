@@ -75,8 +75,13 @@ io.on('connection', (socket) => {
     console.log('made socket connection', socket.id);
     // Handle finding event
     socket.on('addFinding', function(data){
+      console.log("ADD FINDING");
       data.info.forEach(finding => syncController.addFinding(io, finding));
-  });
+    });
+    // socket.on('updateFinding', function(data){
+    //   console.log("UPDATE FINDING");
+    //   data.info.forEach(finding => syncController.updateFinding(io, finding));
+    // });
 });
 //Export
 module.exports = app;

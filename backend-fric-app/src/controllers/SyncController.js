@@ -27,4 +27,17 @@ syncCtrl.addFinding = (io,finding) => {
     }
   })
 };
+syncCtrl.updateFinding = (io,F) => {
+    let result;
+    Finding.findOneAndUpdate({ _id:F.id }, F, { new:true }, (err,finding) => {
+      if(err){
+        result = {'success':false,'message':'Could not update finding.','error':err};
+        console.log(result);
+      }
+      else{
+          result = {'success':true,'message':'Finding Updated Successfully',finding};
+          io.emit('FindingUpdated', result);
+      }
+    })
+  }
 module.exports = syncCtrl;

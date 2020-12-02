@@ -60,11 +60,20 @@ class SyncView extends Component {
         });  
         socket.emit('addFinding', {
             type: "finding",
+            from: senderIP,
             info: findings,
         });
+        // socket.emit('updateFinding', {
+        //     type: "finding",
+        //     from: senderIP,
+        //     info: findings,
+        // });
         socket.on('FindingAdded', function(data){
             console.log(data);
         });
+        // socket.on('FindingUpdated', function(data){
+        //     console.log(data);
+        // });
     }
     render(){
         return (
