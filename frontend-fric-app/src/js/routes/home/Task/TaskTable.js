@@ -5,7 +5,7 @@ import { ProgressBar } from "react-bootstrap";
 
 const Task = (props) => (
   <tr>
-    <td><input onChange={(e) => props.handleAddItem(e,props.task,"selectedTasks",props.handleOnChange) } type="checkbox" defaultChecked={false} /></td>
+    <td><input onChange={(e) => props.handleAddItem(e,props.task,"selectedTasks",props.archive) } type="checkbox" defaultChecked={false} /></td>
     <td>{props.task.tasktitle}</td>
     <td>{props.task.tasksystem}</td>
     <td>{props.task.taskanalyst}</td>
@@ -31,6 +31,7 @@ class TaskTable extends Component {
       selectedTasks: [] };
 
       this.handleAddItem = this.handleAddItem.bind(this)
+      this.archiveTasks = this.archiveTasks.bind(this)
   }
 
   componentDidMount() {
@@ -44,24 +45,24 @@ class TaskTable extends Component {
       });
   }
 
-  taskList(archive,handleAddItem, handleOnChange) {
+  taskList(archive,handleAddItem) {
     return this.state.tasks.map(function (currentTask, i) {
       //If this is the archive view, then display archived tasks
       if(archive){
         //display all archived tasks
         if(currentTask.archiveStatus){
-          return <Task task={currentTask} handleAddItem={handleAddItem} handleOnChange={handleOnChange} key={i} />;
+          return <Task task={currentTask} handleAddItem={handleAddItem} key={i} archive={archive}/>;
         }
       }
       else{
         if(!currentTask.archiveStatus){
-          return <Task task={currentTask} key={i} />;
+          return <Task task={currentTask} handleAddItem={handleAddItem} key={i} />;
         }
       }
     });
   }
   //For adding task to selected tasks list through check box
-  handleAddItem(e,item,n,handleOnChange){
+  handleAddItem(e,item,n,archive) {
     let items = [...this.state.selectedTasks]
     var ids = items.map(ele => ele.id);
     if(e.target.checked)
@@ -72,7 +73,38 @@ class TaskTable extends Component {
     }
     this.setState({selectedTasks : items});
     //name then value 
-    handleOnChange(n,items)
+    if(archive){
+      //handleOnChange(n,items)
+    }
+  }
+
+  archiveTasks(e){
+    e.preventDefault();
+    for (var i = 0; i < this.state.selectedTasks.length; i++) {
+      console.log("Tasks to archive: " + this.state.selectedTasks[i].tasktitle)
+
+      const updatedTask = {
+        title: this.state.selectedTasks[i].tasktitle,
+        description: this.state.selectedTasks[i].taskdescription,
+        duedate: this.state.selectedTasks[i].taskduedate,
+        system: this.state.selectedTasks[i].tasksystem,
+        priority: this.state.selectedTasks[i].taskpriority,
+        analyst: this.state.selectedTasks[i].taskanalyst,
+        collaborator: this.state.selectedTasks[i].taskcollaborator,
+        relatedsubtask: this.state.selectedTasks[i].relatedtasks,
+        progress: this.state.selectedTasks[i].progress,
+        archiveStatus: 1
+      };
+
+      axios
+      .put(
+        `http://localhost:4000/home/tasks/update/${this.state.selectedTasks[i]._id}`,
+        updatedTask
+      )
+      .then((res) => console.log(res.data));
+
+    }
+    window.location.reload(false)
   }
 
   render() {
@@ -97,7 +129,8 @@ class TaskTable extends Component {
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody>{this.taskList(this.state.displayArchive, this.handleAddItem, this.props.handleOnChange)}</tbody>
+          <tbody>{this.taskList(this.state.displayArchive, this.handleAddItem)}</tbody>
+          <button onClick={this.archiveTasks} type="button" class="btn btn-primary">Archive</button>
         </table>
       </div>
     );
