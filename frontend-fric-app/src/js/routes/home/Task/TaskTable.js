@@ -5,7 +5,7 @@ import { ProgressBar } from "react-bootstrap";
 
 const Task = (props) => (
   <tr>
-    <td><input onChange={(e) => props.handleAddItem(e,props.task) } type="checkbox" defaultChecked={false} /></td>
+    <td><input onChange={(e) => props.handleAddItem(e,props.task,"selectedTasks",props.handleOnChange) } type="checkbox" defaultChecked={false} /></td>
     <td>{props.task.tasktitle}</td>
     <td>{props.task.tasksystem}</td>
     <td>{props.task.taskanalyst}</td>
@@ -31,7 +31,6 @@ class TaskTable extends Component {
       selectedTasks: [] };
 
       this.handleAddItem = this.handleAddItem.bind(this)
-      this.handleSelected = this.handleSelected.bind(this)
   }
 
   componentDidMount() {
@@ -45,13 +44,13 @@ class TaskTable extends Component {
       });
   }
 
-  taskList(archive,handleAddItem) {
+  taskList(archive,handleAddItem, handleOnChange) {
     return this.state.tasks.map(function (currentTask, i) {
       //If this is the archive view, then display archived tasks
       if(archive){
         //display all archived tasks
         if(currentTask.archiveStatus){
-          return <Task task={currentTask} handleAddItem={handleAddItem} key={i} />;
+          return <Task task={currentTask} handleAddItem={handleAddItem} handleOnChange={handleOnChange} key={i} />;
         }
       }
       else{
@@ -62,7 +61,7 @@ class TaskTable extends Component {
     });
   }
   //For adding task to selected tasks list through check box
-  handleAddItem(e,item){
+  handleAddItem(e,item,n,handleOnChange){
     let items = [...this.state.selectedTasks]
     var ids = items.map(ele => ele.id);
     if(e.target.checked)
@@ -71,14 +70,9 @@ class TaskTable extends Component {
       var index = ids.indexOf(item.id);
       items.splice(index,1);
     }
-
     this.setState({selectedTasks : items});
-  }
-
-  handleSelected() {
-    const items = this.state.selectedTasks;
-    alert("Selected items are: " + JSON.stringify(items));
-
+    //name then value 
+    handleOnChange(n,items)
   }
 
   render() {
@@ -103,9 +97,8 @@ class TaskTable extends Component {
               <th>Due Date</th>
             </tr>
           </thead>
-          <tbody>{this.taskList(this.state.displayArchive, this.handleAddItem)}</tbody>
+          <tbody>{this.taskList(this.state.displayArchive, this.handleAddItem, this.props.handleOnChange)}</tbody>
         </table>
-        <button onClick={this.handleSelected}>Get Selected Items (with ID, Name...)</button>
       </div>
     );
   }
