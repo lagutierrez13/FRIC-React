@@ -11,6 +11,7 @@ let taskSchema = new Schema(
         taskcollaborator: String,
         relatedtasks: String,
         progress: Number,
+        archiveStatus: Number,
     },
     {
         timestamps: true,

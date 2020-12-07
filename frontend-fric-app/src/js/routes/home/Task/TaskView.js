@@ -30,7 +30,7 @@ class TaskView extends Component {
             <XPanel visible={panelVisible} onHide={onHide}>
               <XPanel.Title title="Overview"></XPanel.Title>
               <XPanel.Content>
-                <TaskTable />
+                <TaskTable displayArchive={0} />
               </XPanel.Content>
             </XPanel>
           </Col>

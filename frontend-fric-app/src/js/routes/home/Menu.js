@@ -10,7 +10,7 @@ const Menu = (
     <MenuItem title="Subtasks" to="/home/subtasks" />
     <MenuItem title="Findings" to="/home/findings" />
     <MenuItem title="Sync" to="/home/sync" />
-    <MenuItem title="Archive" to="/home/archive " />
+    <MenuItem title="Archive" to="/home/archive" />
   </GroupMenuItem>
 )
 

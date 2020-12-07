@@ -54,6 +54,7 @@ taskCtrl.updateTask = async (req, res) => {
         task.taskanalyst = body.taskanalyst;
         task.taskcollabotator = body.taskcollabotator;
         task.relatedtasks = body.relatedtasks;
+        task.archiveStatus = body.archiveStatus;
         task
             .save()
             .then(() => {
