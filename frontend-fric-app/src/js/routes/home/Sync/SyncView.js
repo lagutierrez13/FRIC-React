@@ -69,6 +69,7 @@ class SyncView extends Component {
         //     info: findings,
         // });
         socket.on('FindingAdded', function(data){
+            alert("Findings Successfully Sent.");
             console.log(data);
         });
         // socket.on('FindingUpdated', function(data){

@@ -39,6 +39,7 @@ class DetailedView extends Component {
       taskanalyst: "",
       taskcollaborator: "",
       relatedtasks: "",
+      archiveStatus: 0,
     };
   }
 
@@ -110,21 +111,21 @@ class DetailedView extends Component {
       taskanalyst: this.state.taskanalyst,
       taskcollaborator: this.state.taskcollaborator,
       relatedtasks: this.state.relatedtasks,
-      archiveStatus: 0
+      archiveStatus: 0,
     };
 
-    const newHistory = {
-      action: `Task ${this.state.title} Edited`,
-      analyst: "",
-    };
+    // const newHistory = {
+    //   action: `Task ${this.state.title} Edited`,
+    //   analyst: "",
+    // };
 
     axios
       .post("http://localhost:4000/home/tasks/new", newTask)
       .then((res) => console.log(res.data));
 
-    axios
-      .post("http://localhost:4000/history/new", newHistory)
-      .then((res) => console.log(res.data));
+    // axios
+    //   .post("http://localhost:4000/history/new", newHistory)
+    //   .then((res) => console.log(res.data));
 
     this.setState({
       tasktitle: "",
@@ -135,6 +136,7 @@ class DetailedView extends Component {
       taskanalyst: "",
       taskcollaborator: "",
       relatedtasks: "",
+      archiveStatus: 0,
     });
   }
 

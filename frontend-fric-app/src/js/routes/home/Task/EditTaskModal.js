@@ -20,7 +20,7 @@ class EditTaskModal extends React.Component {
       showHide: false,
       task: props.task,
       _id: props.task._id,
-      newTitle: props.task.taskitle,
+      newTitle: props.task.tasktitle,
       newDescription: props.task.taskdescription,
       newDuedate: props.task.taskduedate,
       newSystem: props.task.tasksystem,
@@ -135,19 +135,19 @@ class EditTaskModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.onSubmit}>
-              {/* Task name */}
+              
               <div class="form-group row">
                 <label class="control-label  col-sm-2 ">Task Title</label>
                 <div class=" col-sm-10 ">
                   <input
                     type="text"
                     class="form-control"
-                    value={this.state.tasktitle}
+                    value={this.state.task.tasktitle}
                     onChange={this.onChangeTaskTitle}
                   />
                 </div>
               </div>
-              {/* Task Description */}
+              
               <div class="form-group row">
                 <label class="control-label col-sm-2">Task Description</label>
                 <div class=" col-sm-10">
@@ -159,7 +159,7 @@ class EditTaskModal extends React.Component {
                   ></textarea>
                 </div>
               </div>
-              {/* Due Date */}
+              
               <div class="form-group row">
                 <label class="control-label col-md-2 col-sm-2 ">Due date</label>
                 <div class="col-md-10 col-sm-10 ">
@@ -171,7 +171,7 @@ class EditTaskModal extends React.Component {
                   />
                 </div>
               </div>
-              {/* System */}
+              
               <div class="form-group row ">
                 <label class="control-label col-md-2 col-sm-2 ">System</label>
                 <div class="col-md-10 col-sm-10 ">
@@ -182,7 +182,7 @@ class EditTaskModal extends React.Component {
                   ></select>
                 </div>
               </div>
-              {/* Priority */}
+              
               <div class="form-group row ">
                 <label class="control-label col-md-2 col-sm-2 ">Priority</label>
                 <div class="col-md-10 col-sm-10 ">
@@ -193,7 +193,7 @@ class EditTaskModal extends React.Component {
                   ></select>
                 </div>
               </div>
-              {/* Analyst*/}
+              
               <div class="form-group row ">
                 <label class="control-label col-md-2 col-sm-2 ">Analysts</label>
                 <div class="col-md-10 col-sm-10 ">
@@ -204,7 +204,7 @@ class EditTaskModal extends React.Component {
                   ></select>
                 </div>
               </div>
-              {/* Collaborator*/}
+              
               <div class="form-group row ">
                 <label class="control-label col-md-2 col-sm-2 ">
                   Collaborator
@@ -217,7 +217,7 @@ class EditTaskModal extends React.Component {
                   ></select>
                 </div>
               </div>
-              {/* Related Tasks */}
+              
               <div class="form-group row">
                 <label class="control-label col-md-2 col-sm-2 ">
                   Related Tasks

@@ -39,20 +39,20 @@ taskCtrl.updateTask = async (req, res) => {
         });
     }
     Task.findOne({_id: req.params.id }, (err, task) => {
+
         if (err) {
             return res.status(404).json({
                 err,
                 message: "Task not found",
             });
         }
-
         task.tasktitle = body.tasktitle;
         task.taskdescription = body.taskdescription;
         task.taskduedate = body.taskduedate;
         task.tasksystem = body.tasksystem;
         task.taskpriority = body.taskpriority;
         task.taskanalyst = body.taskanalyst;
-        task.taskcollabotator = body.taskcollabotator;
+        task.taskcollaborator = body.taskcollaborator; //this one
         task.relatedtasks = body.relatedtasks;
         task.archiveStatus = body.archiveStatus;
         task

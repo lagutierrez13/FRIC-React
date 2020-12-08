@@ -32,6 +32,7 @@ class TaskTable extends Component {
 
       this.handleAddItem = this.handleAddItem.bind(this)
       this.archiveTasks = this.archiveTasks.bind(this)
+      this.handleOnChange = props.handleOnChange
   }
 
   componentDidMount() {
@@ -56,7 +57,7 @@ class TaskTable extends Component {
       }
       else{
         if(!currentTask.archiveStatus){
-          return <Task task={currentTask} handleAddItem={handleAddItem} key={i} />;
+          return <Task task={currentTask} handleAddItem={handleAddItem} key={i} archive={archive} />;
         }
       }
     });
@@ -74,27 +75,29 @@ class TaskTable extends Component {
     this.setState({selectedTasks : items});
     //name then value 
     if(archive){
-      //handleOnChange(n,items)
+      this.handleOnChange(n,items)
     }
   }
-
   archiveTasks(e){
-    e.preventDefault();
+    //e.preventDefault();
+    console.log(this.state.selectedTasks[0].tasktitle);
     for (var i = 0; i < this.state.selectedTasks.length; i++) {
-      console.log("Tasks to archive: " + this.state.selectedTasks[i].tasktitle)
+      console.log("Tasks to archive: " + this.state.selectedTasks[i].tasktitle + " " + this.state.selectedTasks[i].taskdescription)
 
       const updatedTask = {
-        title: this.state.selectedTasks[i].tasktitle,
-        description: this.state.selectedTasks[i].taskdescription,
-        duedate: this.state.selectedTasks[i].taskduedate,
-        system: this.state.selectedTasks[i].tasksystem,
-        priority: this.state.selectedTasks[i].taskpriority,
-        analyst: this.state.selectedTasks[i].taskanalyst,
-        collaborator: this.state.selectedTasks[i].taskcollaborator,
-        relatedsubtask: this.state.selectedTasks[i].relatedtasks,
-        progress: this.state.selectedTasks[i].progress,
+        tasktitle: this.state.selectedTasks[i].tasktitle,
+        taskdescription: this.state.selectedTasks[i].taskdescription,
+        taskduedate: this.state.selectedTasks[i].taskduedate,
+        tasksystem: this.state.selectedTasks[i].tasksystem,
+        taskpriority: this.state.selectedTasks[i].taskpriority,
+        taskanalys: this.state.selectedTasks[i].taskanalyst,
+        taskcollaborator: this.state.selectedTasks[i].taskcollaborator,
+        relatedtasks: this.state.selectedTasks[i].relatedtasks,
+        //progress: this.state.selectedTasks[i].progress,
         archiveStatus: 1
       };
+
+      // console.log("UPDATED TASK: " + updatedTask.tasktitle);
 
       axios
       .put(
@@ -102,7 +105,6 @@ class TaskTable extends Component {
         updatedTask
       )
       .then((res) => console.log(res.data));
-
     }
     window.location.reload(false)
   }
@@ -112,7 +114,6 @@ class TaskTable extends Component {
       <div class="x_panel">
         <div class="x_title">
           <h2>Tasks Table</h2>
-
           <div class="clearfix"></div>
         </div>
 
@@ -130,8 +131,8 @@ class TaskTable extends Component {
             </tr>
           </thead>
           <tbody>{this.taskList(this.state.displayArchive, this.handleAddItem)}</tbody>
-          <button onClick={this.archiveTasks} type="button" class="btn btn-primary">Archive</button>
         </table>
+        <button onClick={this.archiveTasks} type="button" class="btn btn-primary">Archive</button>
       </div>
     );
   }
