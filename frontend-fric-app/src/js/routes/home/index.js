@@ -11,6 +11,7 @@ import SubtaskView from "./Subtask/SubtaskView";
 import FindingView from "./finding/FindingView";
 import SyncView from "./Sync/SyncView";
 import CreateEvent from "./login/CreateEvent";
+import ArchiveView from "./Archive/ArchiveView"
 
 
 
@@ -28,7 +29,7 @@ export default [
   <Route path="/home/subtasks" component={SubtaskView} />,
   <Route path="/home/findings" component={FindingView} />,
   <Route path="/home/sync" component={SyncView} />,
-  <Route path="/home/archive" component={Dashboard} />,
+  <Route path="/home/archive" component={ArchiveView} />,
   
 
 ];

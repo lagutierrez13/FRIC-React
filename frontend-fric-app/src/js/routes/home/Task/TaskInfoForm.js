@@ -110,6 +110,7 @@ class DetailedView extends Component {
       taskanalyst: this.state.taskanalyst,
       taskcollaborator: this.state.taskcollaborator,
       relatedtasks: this.state.relatedtasks,
+      archiveStatus: 0
     };
 
     const newHistory = {
