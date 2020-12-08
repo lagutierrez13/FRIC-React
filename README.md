@@ -1,7 +1,7 @@
 # Finding and Reporting Information Console
 ### By Team Cactus Terror :cactus: :ghost: - Fall 2020 
 
-## In order to run FRIC you need: :woman technologist: :man technologist:
+## In order to run FRIC you need: :womantechnologist: :mantechnologist:
 
 - [Node.js](https://nodejs.org/en/) 
 - [Git-repo](https://github.com/lagutierrez13/FRIC-React)
