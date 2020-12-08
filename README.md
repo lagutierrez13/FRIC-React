@@ -18,6 +18,23 @@ npm install -g nodemon
 ```
 nodemon index
 ```
+This is to start the connection to the database. In this case we are using mongodb://127.0.0.1:27017/fricdb as out host connection. 
 
-- To start the database run the executable
+- To start the database use the following commands on the terminal (Windows)
+```
+md \data\db
+```
+```
+"C:\Program Files\MongoDB\Server\4.2\bin\mongod.exe" --dbpath d:\test\mongodb\data
+```
+- To start the database 
+```
+"C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe"
+```
+- To verify the connection
+```
+[initandlisten] waiting for connections on port 27017
+```
+
+
 
