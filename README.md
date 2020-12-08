@@ -1,5 +1,5 @@
 # Finding and Reporting Information Console
-### By Team Cactus Terror - Fall 2020 
+### By Team Cactus Terror :cactus: :ghost: - Fall 2020 
 
 ## In order to run FRIC you need: 
 
@@ -45,7 +45,7 @@ npm install
 ```
 npm start
 ```
-- The previous step should automatically open your default browser and run FRIC 
+- The previous step should automatically open your default browser and run FRIC and you should be good to go! :shipit:
 
 
 
