@@ -5,6 +5,7 @@
 
 - [Node.js](https://nodejs.org/en/) 
 - [Git-repo](https://github.com/lagutierrez13/FRIC-React)
+- [MongoDB - Windows](https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-4.4.2-signed.msi)
 
 ## After downloading and installing the next steps are:
 
@@ -17,3 +18,6 @@ npm install -g nodemon
 ```
 nodemon index
 ```
+
+- To start the database run the executable
+
