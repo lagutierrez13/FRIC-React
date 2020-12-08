@@ -41,15 +41,15 @@ const reportButtons = () => {
   
   return (
     <div>
-      <button class="btn btn-primary">
+      <button class="btn btn-primary" onClick={() => alert("ERB report genereated.")}>
         ERB Report
       </button>
 
-      <button class="btn btn-primary">
+      <button class="btn btn-primary" onClick={() => alert("Risk Matrix genereated.")} >
         Risk Matrix
       </button>
 
-      <button class="btn btn-primary">
+      <button class="btn btn-primary" onClick={() => alert("Final Report genereated.")}>
         Final Report
       </button>
     </div>
@@ -61,12 +61,12 @@ class FindingTable extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      alert: null,
       findings: [],
       findingElements: [],
       checkedFindings: [] };
       
   }
-
   componentDidMount() {
     axios
       .get("http://localhost:4000/home/findings/get")
@@ -129,5 +129,4 @@ class FindingTable extends Component {
     );
   }
 }
-
 export default FindingTable;
